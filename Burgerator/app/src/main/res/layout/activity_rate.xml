@@ -7,7 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.luis.burgerator.RateActivity">
+    tools:context="com.example.luis.burgerator.RateActivity"
+    android:background="@drawable/background"
+    android:scaleType="centerCrop">
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
