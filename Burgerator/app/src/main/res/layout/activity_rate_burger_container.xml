@@ -1,0 +1,60 @@
+
+<!-- first box of the rating window -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imgv_restaurant_thumbnail"
+        android:gravity="top"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/et_restaurant_name"
+        android:gravity="top"
+        android:layout_toRightOf="@id/imgv_restaurant_thumbnail"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/et_pick_your_restaurant"
+        android:layout_toRightOf="@id/imgv_restaurant_thumbnail"
+        android:layout_below="@id/et_restaurant_name" />
+
+    <ImageButton
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/imgbtn_snapshot"
+        android:layout_below="@id/imgv_restaurant_thumbnail"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_below="@id/imgbtn_snapshot">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_cheese"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_ratio"
+            android:layout_weight="1"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_prep"
+            android:layout_weight="1"/>
+    </LinearLayout>
+</RelativeLayout>

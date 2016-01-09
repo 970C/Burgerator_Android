@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- START ROOT -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- first box of RateActivity* -->
+    <!-- START CHILD 1  -->
+    <include layout="@layout/activity_rate_burger_container" />
+    <!-- END CHILD 1 -->
+
+    <!-- second box of RateActivity* -->
+    <!-- START CHILD 2-->
+    <include layout="@layout/activity_rate_rating_container" />
+    <!-- END CHILD 2 -->
+
+    <!-- third box of RateActivity* -->
+    <!-- START CHILD 3-->
+    <include layout="@layout/activity_rate_comment_container" />
+    <!-- END CHILD 3 -->
+
+    <!-- fourth box of RateActivity* -->
+    <!-- START CHILD 4-->
+    <include layout="@layout/activity_rate_submit_container" />
+    <!-- END CHILD 4 -->
+
+
+</LinearLayout>
+<!-- END ROOT -->

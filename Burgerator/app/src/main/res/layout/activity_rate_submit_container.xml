@@ -1,0 +1,42 @@
+<!-- fourth box of the rating window -->
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:id="@+id/tv_facebook"
+        android:text="F share"/>
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:id="@+id/tglbtn_facebook"
+        android:layout_toRightOf="@id/tv_facebook"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:id="@+id/tv_twitter"
+        android:text="T share"
+        android:layout_toRightOf="@id/tv_twitter"/>
+    <ToggleButton
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:id="@+id/tglbtn_twitter_toggle_button"
+        android:text="T Share"
+        android:layout_toRightOf="@id/tv_twitter"/>
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/btn_submit"
+        android:layout_below="@id/tv_facebook"
+        android:text="Submit Rating"/>
+
+</RelativeLayout>

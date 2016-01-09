@@ -1,0 +1,74 @@
+
+<!-- second box of the rating window -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:id="@+id/tv_taste"
+        android:text="taste"/>
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/seekbtn_taste"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:id="@+id/tv_toppings"
+        android:text="toppings"/>
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/seekbtn_toppings"/>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:id="@+id/tv_bun"
+        android:text="bun"/>
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/seekbtn_bun"/>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:id="@+id/tv_come_back"
+            android:text="Would you come back for the burger?"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/tv_come_back"
+            android:orientation="horizontal"
+            android:gravity="right">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/radbtn_thumbs_up"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/radbtn_thumbs_down"
+                />
+        </RadioGroup>
+    </RelativeLayout>
+</LinearLayout>

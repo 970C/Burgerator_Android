@@ -1,4 +1,18 @@
 <resources>
     <string name="app_name">Burgerator</string>
     <string name="action_settings">Settings</string>
+
+    <string name="yelp">YELP ACTIVITY</string>
+    <string name="find_a_burger">[Find A Burger]</string>
+    <string name="burger_feed">[Burger Feed]</string>
+    <string name="rate_a_burger">[Rate A Burger]</string>
+    <string name="top_burgers">[Top Burgers]</string>
+    <string name="profile">[Profile]</string>
+
+    <string name="title_activity_find_aburger">findABurger</string>
+    <string name="title_activity_burger_feed">burger_feed</string>
+    <string name="title_activity_burger_rating">burger_rating</string>
+    <string name="title_activity_top_burgers">top_burgers</string>
+    <string name="title_activity_profile">profile</string>
+
 </resources>
