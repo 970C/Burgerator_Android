@@ -1,15 +1,13 @@
 package com.example.luis.burgerator;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SearchActivity extends Activity {
+public class ProfileActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_profile);
     }
-
 }
