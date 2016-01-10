@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:id="@+id/tv_facebook"
-        android:text="F share"/>
+        android:text="@string/Fshare"/>
     <ToggleButton
         android:layout_width="wrap_content"
         android:layout_height="100dp"
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:id="@+id/tv_twitter"
-        android:text="T share"
+        android:text="@string/Tshare"
         android:layout_toRightOf="@id/tv_twitter"/>
     <ToggleButton
         android:layout_width="wrap_content"
