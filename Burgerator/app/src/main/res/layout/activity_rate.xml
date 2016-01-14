@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,10 +12,23 @@
     android:background="@drawable/background"
     android:scaleType="centerCrop">
 
+    <ImageButton
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/imgbtn_back"
+        android:gravity="top"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/burgerator_banner"
+        android:layout_toRightOf="@+id/imgbtn_back"/>
+
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
-        android:layout_height="493dp"
+        android:layout_height="440dp"
+        android:layout_marginTop="70dp"
         android:id="@+id/restaurantScrollView"
         android:fillViewport="true">
     </ScrollView>
@@ -31,7 +45,8 @@
             android:layout_weight="1"
             android:text="@string/find_a_burger"
             android:id="@+id/btn_search_activity"
-            android:layout_gravity="bottom" />
+            android:layout_gravity="bottom"
+            android:background="@mipmap/search_burger"/>
 
 
         <Button
@@ -41,7 +56,8 @@
             android:layout_weight="1"
             android:text="@string/burger_feed"
             android:id="@+id/btn_feed_activity"
-            android:layout_gravity="bottom" />
+            android:layout_gravity="bottom"
+            android:background="@mipmap/burger_feed"/>
 
 
         <Button
@@ -51,7 +67,8 @@
             android:layout_weight="1"
             android:text="@string/rate_a_burger"
             android:id="@+id/btn_rate_activity"
-            android:layout_gravity="bottom" />
+            android:layout_gravity="bottom"
+            android:background="@mipmap/rate_button"/>
 
 
         <Button
@@ -61,7 +78,8 @@
             android:layout_weight="1"
             android:text="@string/top_burgers"
             android:id="@+id/btn_top10_activity"
-            android:layout_gravity="bottom" />
+            android:layout_gravity="bottom"
+            android:background="@mipmap/top10burgers"/>
 
 
         <Button
@@ -72,7 +90,9 @@
             android:text="@string/profile"
             android:id="@+id/btn_profile_activity"
             android:layout_gravity="bottom"
+            android:background="@mipmap/profile"
             android:layout_marginLeft="0dp" />
+
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

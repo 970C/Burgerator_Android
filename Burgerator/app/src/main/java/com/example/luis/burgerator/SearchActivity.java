@@ -20,31 +20,18 @@ public class SearchActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-    /*This indented block should come before the onClick listeners before
+        /*This indented block should come before the onClick listeners before
         the onClick listeners wont trigger.*/
         // Adding custom elements to a ScrollView
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View v = inflater.inflate(R.layout.activity_search, null);
 
         // Find the ScrollView
-        ScrollView sv = (ScrollView) v.findViewById(R.id.restaurantScrollView);
+        ScrollView sv = (ScrollView) v.findViewById(R.id.searchScrollView);
 
         // Inflate the first box of the scroll view
-        View restaurantView = inflater.inflate(R.layout.activity_search_scroll_content,null);
+        View restaurantView = inflater.inflate(R.layout.activity_search_result_container,null);
 
-
-        // Create a LinearLayout element
-        LinearLayout ll = new LinearLayout(this);
-        ll.setOrientation(LinearLayout.VERTICAL);
-
-        for(int i=0; i<100; i++) {
-            // Add text
-            TextView tv = new TextView(this);
-            tv.setText("my text");
-            tv.setTextColor(Color.BLACK);
-            tv.setHeight(50);
-            ll.addView(tv);
-        }
 
         // Add the forms/content to the ScrollView
         sv.addView(restaurantView);
@@ -52,7 +39,6 @@ public class SearchActivity extends Activity {
 
         // Display the view
         setContentView(v);
-
 
         // Initializes button views and their onClickListeners
         // button to go to findABurger
