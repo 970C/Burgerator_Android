@@ -1,12 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.luis.burgerator.ProfileActivity">
+    android:orientation="vertical"
+    tools:context="com.example.luis.burgerator.ProfileActivity"
+    android:background="@drawable/background"
+    android:scaleType="centerCrop">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/burgerator_banner"
+        android:gravity="top"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imgv_user_image"
+        android:layout_below="@+id/burgerator_banner"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/user_name"
+        android:layout_below="@+id/burgerator_banner"
+        android:layout_toRightOf="@+id/imgv_user_image"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/user_ranking"
+        android:layout_below="@+id/user_name"
+        android:layout_toRightOf="@+id/imgv_user_image"/>
+
+    <!--<EditText-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="25dp"-->
+        <!--android:id="@+id/user_ranking"-->
+        <!--android:layout_below="@+id/user_moto"/>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@+id/user_ranking">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_top_burgers"
+            android:layout_weight="1"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_recently_added"
+            android:layout_weight="1"/>
+
+        <!--<ImageButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:id="@+id/edit_profile"-->
+            <!--android:layout_weight="1"/>-->
+
+    </LinearLayout>
+
+      <ScrollView
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="290dp"
+          android:layout_marginTop="220dp"
+        android:id="@+id/profileScrollView"
+        android:fillViewport="true">
+
+      </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:text="@string/find_a_burger"
+            android:id="@+id/btn_search_activity"
+            android:layout_gravity="bottom"
+            android:background="@mipmap/search_burger"/>
+
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:text="@string/burger_feed"
+            android:id="@+id/btn_feed_activity"
+            android:layout_gravity="bottom"
+            android:background="@mipmap/burger_feed"/>
+
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:text="@string/rate_a_burger"
+            android:id="@+id/btn_rate_activity"
+            android:layout_gravity="bottom"
+            android:background="@mipmap/rate_button"/>
+
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:text="@string/top_burgers"
+            android:id="@+id/btn_top10_activity"
+            android:layout_gravity="bottom"
+            android:background="@mipmap/top10burgers"/>
+
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:text="@string/profile"
+            android:id="@+id/btn_profile_activity"
+            android:layout_gravity="bottom"
+            android:background="@mipmap/profile"
+            android:layout_marginLeft="0dp" />
+
+    </LinearLayout>
 
 </RelativeLayout>
