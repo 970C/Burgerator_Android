@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +40,11 @@ public class ProfileActivity extends Activity {
         // Display the view
         setContentView(v);
 
+        //Add the string to the banner
+        TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
+        bannerBurgerFeed.setText(R.string.title_activity_profile);
+        bannerBurgerFeed.setTextSize((float)30.0);
+        bannerBurgerFeed.setGravity(Gravity.CENTER);
 
         // Initializes button views and their onClickListeners
         // button to go to findABurger
@@ -84,7 +90,6 @@ public class ProfileActivity extends Activity {
 
         // button to go to profile
         Button profileButton = (Button) findViewById(R.id.btn_profile_activity);
-        profileButton.setBackgroundResource(R.mipmap.profile2);
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
