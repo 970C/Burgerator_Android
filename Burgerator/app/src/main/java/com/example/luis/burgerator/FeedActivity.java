@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
 public class FeedActivity extends Activity {
 
@@ -19,7 +17,7 @@ public class FeedActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
-                        /*This indented block should come before the onClick listeners before
+        /*This indented block should come before the onClick listeners before
         the onClick listeners wont trigger.*/
         // Adding custom elements to a ScrollView
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -39,12 +37,6 @@ public class FeedActivity extends Activity {
         // Display the view
         setContentView(v);
 
-        //Add the string to the banner
-        TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
-        bannerBurgerFeed.setText(R.string.title_activity_burger_feed);
-        bannerBurgerFeed.setTextSize((float)30.0);
-        bannerBurgerFeed.setGravity(Gravity.CENTER);
-
 
         // Initializes button views and their onClickListeners
         // button to go to findABurger
@@ -59,6 +51,7 @@ public class FeedActivity extends Activity {
 
         // button to go to burger_feed
         Button burgerFeedButton = (Button) findViewById(R.id.btn_feed_activity);
+        burgerFeedButton.setBackgroundResource(R.mipmap.burger_feed2);
         burgerFeedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,4 +91,5 @@ public class FeedActivity extends Activity {
             }
         });
     }
+
 }
