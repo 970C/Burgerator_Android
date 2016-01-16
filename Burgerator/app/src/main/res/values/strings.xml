@@ -13,12 +13,11 @@
     <string name="taste">Taste</string>
     <string name="toppings">Toppings</string>
     <string name="bun">Bun</string>
-    <string name="Would_you_come_back_for_the_burger">Would you come back for the burger?</string>
+    <string name="would_you_come_back_for_the_burger">Would you come back for the burger?</string>
 
 
     <string name="Fshare">F share</string>
     <string name="Tshare">T share</string>
-    <string name="taste">Toppings</string>
 
 
     <string name="title_activity_find_aburger">findABurger</string>

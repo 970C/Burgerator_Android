@@ -51,7 +51,7 @@
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:id="@+id/tv_come_back"
-            android:text="@string/Would_you_come_back_for_the_burger" />
+            android:text="@string/would_you_come_back_for_the_burger" />
 
         <RadioGroup
             android:layout_width="match_parent"

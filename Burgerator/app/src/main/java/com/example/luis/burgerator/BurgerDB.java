@@ -26,7 +26,7 @@ public class BurgerDB {
     private RequestQueue mRequestQueue;
 
     public BurgerDB(Context context){
-
+        /*
         mRequestQueue = Volley.newRequestQueue(context);
 
 
@@ -61,7 +61,7 @@ public class BurgerDB {
 
         };
         requestQueue.add(request);
-
+        */
     }
 
     public Object getRecentBurgers(){
