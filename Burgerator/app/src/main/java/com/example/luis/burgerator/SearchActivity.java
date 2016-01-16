@@ -50,6 +50,7 @@ public class SearchActivity extends Activity {
         // Initializes button views and their onClickListeners
         // button to go to findABurger
         Button findABurgerButton = (Button) findViewById(R.id.btn_search_activity);
+        findABurgerButton.setBackgroundResource(R.mipmap.search_button_on);
         findABurgerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

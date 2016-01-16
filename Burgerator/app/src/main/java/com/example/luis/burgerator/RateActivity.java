@@ -84,6 +84,7 @@ public class RateActivity extends Activity {
 
         // button to go to burger_rating
         Button burgerRatingButton = (Button) findViewById(R.id.btn_rate_activity);
+        burgerRatingButton.setBackgroundResource(R.mipmap.rate_button_on);
         burgerRatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

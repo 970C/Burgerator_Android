@@ -90,6 +90,7 @@ public class ProfileActivity extends Activity {
 
         // button to go to profile
         Button profileButton = (Button) findViewById(R.id.btn_profile_activity);
+        profileButton.setBackgroundResource(R.mipmap.profile_button_on);
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
