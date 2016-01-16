@@ -59,6 +59,7 @@ public class FeedActivity extends Activity {
 
         // button to go to burger_feed
         Button burgerFeedButton = (Button) findViewById(R.id.btn_feed_activity);
+        burgerFeedButton.setBackgroundResource(R.mipmap.feed_button_on);
         burgerFeedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

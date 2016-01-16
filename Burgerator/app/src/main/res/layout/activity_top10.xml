@@ -22,67 +22,7 @@
 
     </ScrollView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            android:text="@string/find_a_burger"
-            android:id="@+id/btn_search_activity"
-            android:layout_gravity="bottom"
-            android:background="@mipmap/search_burger"/>
-
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            android:text="@string/burger_feed"
-            android:id="@+id/btn_feed_activity"
-            android:layout_gravity="bottom"
-            android:background="@mipmap/burger_feed"/>
-
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            android:text="@string/rate_a_burger"
-            android:id="@+id/btn_rate_activity"
-            android:layout_gravity="bottom"
-            android:background="@mipmap/rate_button"/>
-
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            android:text="@string/top_burgers"
-            android:id="@+id/btn_top10_activity"
-            android:layout_gravity="bottom"
-            android:background="@mipmap/top10burgers"/>
-
-
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            android:text="@string/profile"
-            android:id="@+id/btn_profile_activity"
-            android:layout_gravity="bottom"
-            android:background="@mipmap/profile"
-            android:layout_marginLeft="0dp" />
-
-    </LinearLayout>
-
+    <!-- navigation bar on each activity-->
+    <include layout="@layout/navigation_bar_container"/>
 
 </RelativeLayout>

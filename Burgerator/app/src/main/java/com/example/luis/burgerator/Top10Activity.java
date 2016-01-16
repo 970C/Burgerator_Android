@@ -79,6 +79,7 @@ public class Top10Activity extends Activity {
 
         // button to go to top_burgers
         Button topBurgersButton = (Button) findViewById(R.id.btn_top10_activity);
+        topBurgersButton.setBackgroundResource(R.mipmap.top10_button_on);
         topBurgersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
