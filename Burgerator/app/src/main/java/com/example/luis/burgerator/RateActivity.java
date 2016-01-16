@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -54,6 +55,11 @@ public class RateActivity extends Activity {
         // Display the view
         setContentView(v);
 
+        //Add the string to the banner
+        TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
+        bannerBurgerFeed.setText(R.string.title_activity_burger_rating);
+        bannerBurgerFeed.setTextSize((float)30.0);
+        bannerBurgerFeed.setGravity(Gravity.CENTER);
 
         // Initializes button views and their onClickListeners
         // button to go to findABurger
@@ -78,6 +84,7 @@ public class RateActivity extends Activity {
 
         // button to go to burger_rating
         Button burgerRatingButton = (Button) findViewById(R.id.btn_rate_activity);
+        burgerRatingButton.setBackgroundResource(R.mipmap.rate_button_on);
         burgerRatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
