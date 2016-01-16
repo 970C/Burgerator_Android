@@ -1,12 +1,15 @@
 
 <!-- second box of the rating window -->
 <LinearLayout
+
+
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+
+<TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:id="@+id/tv_taste" android:text="@string/taste" />
