@@ -21,7 +21,7 @@ import java.util.Map;
  */
 public class BurgerDB {
 
-    private String mEndpoint = "http://burger-dev.elasticbeanstalk.com";
+
     private String mRequestType = "POST";
     private RequestQueue mRequestQueue;
 
