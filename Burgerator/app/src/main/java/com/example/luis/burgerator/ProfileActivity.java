@@ -98,5 +98,11 @@ public class ProfileActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        // Putting in an HTML Request to get recent rated burgers
+        BurgerDB testRecentBurgers = new BurgerDB(getApplicationContext());
+        //should return an object that contains:
+        //      a list of burger objects, and the boolean to hasNextPage
+        testRecentBurgers.getUserRatedBurgers(null, "harokevin@yahoo.com","1");
     }
 }

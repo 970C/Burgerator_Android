@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 public class FeedActivity extends Activity {
 
     @Override
@@ -19,7 +21,7 @@ public class FeedActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
 
-                        /*This indented block should come before the onClick listeners before
+        /*This indented block should come before the onClick listeners before
         the onClick listeners wont trigger.*/
         // Adding custom elements to a ScrollView
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -98,5 +100,19 @@ public class FeedActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        // Putting in an HTML Request to get the burger feed
+        final BurgerDB testFeed = new BurgerDB(getApplicationContext());
+        //should return an object that contains:
+        //      a list of burger objects, and the boolean to hasNextPage
+        JSONObject obj;
+        int two;
+        testFeed.getBurgerFeed(null, "harokevin@yahoo.com", "1", "false",
+                new BurgerDB.VolleyCallback() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        
+                    }
+                });
     }
 }

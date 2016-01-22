@@ -99,6 +99,14 @@ public class SearchActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        // Putting in an HTML Request to get the burger feed
+        BurgerDB testLogin = new BurgerDB(getApplicationContext());
+        //should return an object that contains:
+        //      a list of burger objects, and the boolean to hasNextPage
+        //testLogin.emailLogin(null, "harokevin@yahoo.com","1","false");
+        testLogin.renewPassword(null, "harokevin@yahoo.com");
+
     }
 
 }
