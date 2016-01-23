@@ -4,7 +4,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="500dp"
+    android:layout_marginTop="550dp"
     android:background="@drawable/tab_bar">
 
     <Button
@@ -21,89 +21,40 @@
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_weight="1"
-        android:text="@string/burger_feed"
         android:id="@+id/btn_feed_activity"
         android:layout_gravity="bottom"
         android:background="@mipmap/feed_button_off"/>
 
-    <!--<Button-->
-    <!--style="?android:attr/buttonStyleSmall"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="70dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:text="@string/burger_feed"-->
-    <!--android:id="@+id/btn_feed_activity2"-->
-    <!--android:layout_gravity="bottom"-->
-    <!--android:background="@mipmap/burger_feed2"-->
-    <!--android:visibility="invisible"/>-->
-
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_weight="1"
-        android:text="@string/rate_a_burger"
         android:id="@+id/btn_rate_activity"
         android:layout_gravity="bottom"
         android:background="@mipmap/rate_button_off"/>
 
-    <!--<Button-->
-    <!--style="?android:attr/buttonStyleSmall"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="70dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:text="@string/rate_a_burger"-->
-    <!--android:id="@+id/btn_rate_activity2"-->
-    <!--android:layout_gravity="bottom"-->
-    <!--android:background="@mipmap/rate_burger2"-->
-    <!--android:visibility="invisible"/>-->
-
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_weight="1"
-        android:text="@string/top_burgers"
         android:id="@+id/btn_top10_activity"
         android:layout_gravity="bottom"
         android:background="@mipmap/top10_button_off"/>
 
-    <!--<Button-->
-    <!--style="?android:attr/buttonStyleSmall"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="70dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:text="@string/top_burgers"-->
-    <!--android:id="@+id/btn_top10_activity2"-->
-    <!--android:layout_gravity="bottom"-->
-    <!--android:background="@mipmap/top10burgers2"-->
-    <!--android:visibility="invisible"/>-->
-
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_weight="1"
-        android:text="@string/profile"
         android:id="@+id/btn_profile_activity"
         android:layout_gravity="bottom"
         android:background="@mipmap/profile_button_off"
         android:layout_marginLeft="0dp" />
-
-    <!--<Button-->
-    <!--style="?android:attr/buttonStyleSmall"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="70dp"-->
-    <!--android:layout_weight="1"-->
-    <!--android:text="@string/profile"-->
-    <!--android:id="@+id/btn_profile_activity2"-->
-    <!--android:layout_gravity="bottom"-->
-    <!--android:background="@mipmap/profile2"-->
-    <!--android:layout_marginLeft="0dp"-->
-    <!--android:visibility="invisible"/>-->
 
 
 </LinearLayout>
