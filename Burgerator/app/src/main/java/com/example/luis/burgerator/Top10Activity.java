@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -27,8 +28,9 @@ public class Top10Activity extends Activity {
         // Find the ScrollView
         ScrollView sv = (ScrollView) v.findViewById(R.id.top10ScrollView);
 
-        // Inflate the first box of the scroll view
-        View restaurantView = inflater.inflate(R.layout.activity_top10_burger_feed_container,null);
+
+        // Inflate the first 10 boxes of the scroll view
+        View restaurantView = inflater.inflate(R.layout.activity_top10_burger_feed_containers, null);
 
 
         // Add the forms/content to the ScrollView
@@ -37,6 +39,16 @@ public class Top10Activity extends Activity {
 
         // Display the view
         setContentView(v);
+
+        //set the picture for this burger entry
+        String burgerUrl0 = "https://s3.amazonaws.com/burgerdev/uploads/image_1453390645.png";
+        ImageView burgerImg0 = (ImageView)findViewById(R.id.imgv_burger_picture0);
+        new ImageLoadTask(burgerUrl0, burgerImg0).execute();
+
+        String burgerUrl1 = "https://s3.amazonaws.com/burgerdev/uploads/image_1453390645.png";
+        ImageView burgerImg1 = (ImageView)findViewById(R.id.imgv_burger_picture1);
+        new ImageLoadTask(burgerUrl1, burgerImg1).execute();
+
 
 
         //Add the string to the banner

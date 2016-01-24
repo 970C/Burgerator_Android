@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imgv_burger_ranking0"
+            android:gravity="top"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/restaurant_name0"
+            android:gravity="top"
+            android:layout_toRightOf="@+id/imgv_burger_ranking0"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/burger_name0"
+            android:layout_below="@+id/restaurant_name0"
+            android:layout_toRightOf="@+id/imgv_burger_ranking0"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/restaurant_address0"
+            android:layout_below="@+id/burger_name0"
+            android:layout_toRightOf="@+id/imgv_burger_ranking0"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:id="@+id/imgv_burger_picture0"
+            android:layout_below="@+id/imgv_burger_ranking0"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/imgv_burger_ranking1"
+            android:gravity="top"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/restaurant_name1"
+            android:gravity="top"
+            android:layout_toRightOf="@+id/imgv_burger_ranking1"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:id="@+id/burger_name1"
+            android:layout_below="@+id/restaurant_name1"
+            android:layout_toRightOf="@+id/imgv_burger_ranking1"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:id="@+id/restaurant_address"
+            android:layout_below="@+id/burger_name1"
+            android:layout_toRightOf="@+id/imgv_burger_ranking1"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:id="@+id/imgv_burger_picture1"
+            android:layout_below="@+id/imgv_burger_ranking1"/>
+
+    </RelativeLayout>
+</LinearLayout>
