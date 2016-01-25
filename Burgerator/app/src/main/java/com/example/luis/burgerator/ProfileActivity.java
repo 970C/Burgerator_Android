@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import org.json.JSONObject;
 
 public class ProfileActivity extends Activity {
 
@@ -103,6 +106,18 @@ public class ProfileActivity extends Activity {
         BurgerDB testRecentBurgers = new BurgerDB(getApplicationContext());
         //should return an object that contains:
         //      a list of burger objects, and the boolean to hasNextPage
-        testRecentBurgers.getUserRatedBurgers(null, "harokevin@yahoo.com","1");
+        testRecentBurgers.getUserRatedBurgers(null, "harokevin@yahoo.com","1",
+                new BurgerDB.VolleyCallback() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        onRecentBurgersResponse(response);
+                    }
+                });
+    }
+
+    public void onRecentBurgersResponse(JSONObject response){
+        Log.d("Burgerator ProfileActivity","onRecentBurgersResponse(): " + response.toString());
+
+        //TODO: populate views with burger data from response
     }
 }

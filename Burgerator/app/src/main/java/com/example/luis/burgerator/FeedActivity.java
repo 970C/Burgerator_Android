@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -101,18 +102,28 @@ public class FeedActivity extends Activity {
             }
         });
 
-        // Putting in an HTML Request to get the burger feed
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // HTTP Request to get the burger feed
         final BurgerDB testFeed = new BurgerDB(getApplicationContext());
-        //should return an object that contains:
-        //      a list of burger objects, and the boolean to hasNextPage
-        JSONObject obj;
-        int two;
-        testFeed.getBurgerFeed(null, "harokevin@yahoo.com", "1", "false",
+        testFeed.getBurgerFeed(null, "harokevin@yahoo.com", "", "",
                 new BurgerDB.VolleyCallback() {
                     @Override
                     public void onSuccess(JSONObject result) {
-                        
+                        onFeedResponse(result);
                     }
                 });
     }
+
+    //called when the server returns the burger feed
+    private void onFeedResponse(JSONObject response){
+        Log.d("Burgerator FeedActivity","onFeedResponse(): " + response.toString());
+
+        //TODO: populate views with burger data from response
+    }
+
 }

@@ -41,6 +41,7 @@ public class BurgerDB {
         }
     };
 
+
     public BurgerDB(Context context){
         mRequestQueue = Volley.newRequestQueue(context);
     }
@@ -54,7 +55,7 @@ public class BurgerDB {
      * @return - should return an object that contains:
      *                  a list of burger objects, and the boolean to hasNextPage
      */
-    public void getUserRatedBurgers(View view, final String userEmail, final String page){
+    public void getUserRatedBurgers(View view, final String userEmail, final String page, final VolleyCallback callback){
 
         String endpointFile =  "/recentburgers.php";
 
@@ -73,6 +74,8 @@ public class BurgerDB {
                     public void onResponse(JSONObject response) {
                         // return a list of burger objects using the backend code
                         Log.d("BurgerDbLog", response.toString());
+
+                        callback.onSuccess(response);
                     }
                 },
                 mErrListener);  //end of request arguments
@@ -99,7 +102,6 @@ public class BurgerDB {
         String endpointFile = "/feed.php";
 
 
-
         // Request parameters(body of request)
         Map<String,String> params = new HashMap<String,String>();
         //TODO: Check userEmail, page, and global are safe to pass to the server
@@ -113,9 +115,10 @@ public class BurgerDB {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        callback.onSuccess(response);
                         // return a list of burger objects using the backend code
                         Log.d("BurgerDbLog", response.toString());
+
+                        callback.onSuccess(response);
                     }
                 },
                 mErrListener);  //end of request arguments
@@ -133,7 +136,7 @@ public class BurgerDB {
      * @param userEmail
      * @return password renewal sucessfull
      */
-    public void renewPassword(View view, final String userEmail){
+    public void renewPassword(View view, final String userEmail, final VolleyCallback callback){
         String endpointFile = "/forgotten_password.php";
 
         // Request parameters(body of request)
@@ -149,6 +152,8 @@ public class BurgerDB {
                     public void onResponse(JSONObject response) {
                         // return an object that tells if it was sucessful or not
                         Log.d("BurgerDbLog", response.toString());
+
+                        callback.onSuccess(response);
                     }
                 },
                 mErrListener);  //end of request arguments
@@ -186,7 +191,6 @@ public class BurgerDB {
                         Log.d("BurgerDbLog", response.toString());
 
                         callback.onSuccess(response);
-
                     }
                 },
                 mErrListener);  //end of request arguments

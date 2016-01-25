@@ -2,6 +2,7 @@ package com.example.luis.burgerator;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -56,12 +57,24 @@ public class LoginActivity extends Activity {
                             mPassword.getText().toString(),
                             new BurgerDB.VolleyCallback() {
                                 @Override
-                                public void onSuccess(JSONObject result) {
-                                    //TODO: if 1 go to search, if 0 open error dialog
-                                    mPassword.setText("pass");
+                                public void onSuccess(JSONObject response) {
+                                    onLoginResponse(response);
                                 }
                             });
+    }
 
+    public void onLoginResponse(JSONObject response){
+        Log.d("Burgerator LoginActivity","onLoginResponse(): " + response.toString());
+
+        //TODO: if status 1 go to search, if status 0 open error dialog
+        User.instance().setUser(response);
+
+        Log.d("Burgerator User Test", User.instance().toString());
+
+        Log.d("Burgerator User Test getEmail", User.instance().getEmail());
+        Log.d("Burgerator User Test getUserPassword", User.instance().getUserPassword());
+        Log.d("Burgerator User Test getResult", User.instance().getResult());
+        Log.d("Burgerator Sanity test", "Sanity Test");
     }
 
     public void facebookRegister(View view){
