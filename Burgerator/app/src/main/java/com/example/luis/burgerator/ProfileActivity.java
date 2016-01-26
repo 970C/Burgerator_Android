@@ -10,6 +10,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -21,7 +22,6 @@ public class ProfileActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
 
         /*This indented block should come before the onClick listeners before
         the onClick listeners wont trigger.*/
@@ -35,10 +35,8 @@ public class ProfileActivity extends Activity {
         // Inflate the first box of the scroll view
         View restaurantView = inflater.inflate(R.layout.activity_profile_scroll_content,null);
 
-
         // Add the forms/content to the ScrollView
         sv.addView(restaurantView);
-
 
         // Display the view
         setContentView(v);
@@ -48,6 +46,16 @@ public class ProfileActivity extends Activity {
         bannerBurgerFeed.setText(R.string.title_activity_profile);
         bannerBurgerFeed.setTextSize((float)30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
+
+        TextView userName = (TextView)findViewById(R.id.user_name);
+        userName.setText(User.instance().getUserName());
+
+        TextView userTitle = (TextView)findViewById(R.id.user_ranking);
+        userTitle.setText(User.instance().getTitle());
+
+        ImageView userPhoto = (ImageView)findViewById(R.id.imgv_user_image);
+        String userPhotoUrl = User.instance().getPhoto();
+        new ImageLoadTask(userPhotoUrl, userPhoto).execute();
 
         // Initializes button views and their onClickListeners
         // button to go to findABurger

@@ -1,6 +1,7 @@
 package com.example.luis.burgerator;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -75,6 +76,10 @@ public class LoginActivity extends Activity {
         Log.d("Burgerator User Test getUserPassword", User.instance().getUserPassword());
         Log.d("Burgerator User Test getResult", User.instance().getResult());
         Log.d("Burgerator Sanity test", "Sanity Test");
+
+        //Go to search activity
+        Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+        startActivity(intent);
     }
 
     public void facebookRegister(View view){

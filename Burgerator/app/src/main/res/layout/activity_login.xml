@@ -51,7 +51,7 @@
         android:layout_height="50dp"
         android:id="@+id/et_email_address"
         android:layout_below="@id/img_member_login"
-        android:text="email address"/>
+        android:text="harokevin@yahoo.com"/>
 
     <EditText
         android:layout_width="match_parent"

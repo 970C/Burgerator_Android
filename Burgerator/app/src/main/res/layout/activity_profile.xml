@@ -11,26 +11,29 @@
 
     <!-- banner on each activity -->
     <include
+        android:id="@+id/banner"
         layout="@layout/banner"/>
 
     <!-- profile on profile activity -->
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="100dp"
+        android:layout_below="@id/banner"
+        android:id="@+id/profile">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:id="@+id/imgv_user_image"/>
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/user_name"
             android:layout_below="@+id/burgerator_banner"
             android:layout_toRightOf="@+id/imgv_user_image"/>
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/user_ranking"
@@ -47,7 +50,9 @@
     <!-- filters on profile activity -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:layout_below="@id/profile"
+        android:id="@+id/filters">
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -71,16 +76,17 @@
 
     <!-- list of users burgers on profile activity -->
       <ScrollView
-
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="290dp"
         android:id="@+id/profileScrollView"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:layout_below="@id/filters">
 
       </ScrollView>
 
     <!-- navigation bar on each activity-->
-        <include layout="@layout/navigation_bar_container" />
+        <include
+            layout="@layout/navigation_bar_container" />
 
 </RelativeLayout>
