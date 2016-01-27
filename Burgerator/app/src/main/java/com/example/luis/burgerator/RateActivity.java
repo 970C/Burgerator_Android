@@ -5,9 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.graphics.Matrix;
-import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -17,12 +15,13 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowId;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -37,13 +36,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 public class RateActivity extends Activity {
 
-    private SeekBar tasteSeekBar;
-    private SeekBar toppingSeekBar;
-    private SeekBar bunSeekBar;
+    //Seekbars for taste toppings and bun
+    private SeekBar tasteSeekBar,toppingSeekBar,bunSeekBar;
+    private String mRateTaste = "", mRateToppings = "", mRateBun = "";
 
     // HTTP request handler
     private BurgerDB mRequest;
@@ -55,10 +53,17 @@ public class RateActivity extends Activity {
     // path for burger photo
     private String mBurgerPhotoPath;
 
-    //Spinners - prep for show; it is never taken into the db
+    //Spinners - prep is for show; it is never taken into the db
     private Spinner mSpnrCheese,mSpnrRatio,mSpnrPrep;
     private String mSelectedCheese = "",mSelectedRatio = "",mSelcetedPrep = "";
 
+    //WOULD YOU COME BACK FOR THE BURGER
+    private RadioGroup wycbftb;
+    private String mSelectedWycbftb = "";
+
+    //Comments on burgers
+    private EditText mComments;
+    String mWritenComments = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +157,6 @@ public class RateActivity extends Activity {
 
                 //seekbar intervals
                 tasteSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
                     @Override
                     public void onStopTrackingTouch(SeekBar tasteSeekBar) {}
                     @Override
@@ -164,12 +168,13 @@ public class RateActivity extends Activity {
                         tasteSeekBar.setMax(8);
                         progress = ((int) Math.round(progress / increment)) * increment;
                         tasteSeekBar.setProgress(progress);
-                    }
 
+                        //Update value for burgerator object
+                        mRateTaste = String.valueOf(progress);
+                    }
                 });
 
                 toppingSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
                     @Override
                     public void onStopTrackingTouch(SeekBar toppingSeekBar) {}
                     @Override
@@ -181,12 +186,13 @@ public class RateActivity extends Activity {
                         toppingSeekBar.setMax(8);
                         progress = ((int)Math.round(progress/increment))*increment;
                         toppingSeekBar.setProgress(progress);
-                    }
 
+                        //Update value for burgerator object
+                        mRateToppings = String.valueOf(progress);
+                    }
                 });
 
                 bunSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-
                     @Override
                     public void onStopTrackingTouch(SeekBar bunSeekBar) {}
                     @Override
@@ -198,14 +204,16 @@ public class RateActivity extends Activity {
                         bunSeekBar.setMax(8);
                         progress = ((int)Math.round(progress/increment))*increment;
                         bunSeekBar.setProgress(progress);
-                    }
 
+                        //Update value for burgerator object
+                        mRateBun = String.valueOf(progress);
+                    }
                 });
 
                 //TODO:Replace with proper activity
-                /////SETTING UP SPINNERS
+        /////SETTING UP SPINNERS
                 
-                ////SETTING UP CHEESE SPINNER
+            ////SETTING UP CHEESE SPINNER
                 Spinner mSpnrCheese = (Spinner) findViewById(R.id.spnr_cheese);
                 // Spinner Drop down elements
                 List<String> cheeses = new ArrayList <String>();
@@ -243,7 +251,7 @@ public class RateActivity extends Activity {
                     public void onNothingSelected(AdapterView<?> arg0) {}
                 });
 
-                ////SETTING UP RATIO SPINNER
+            ////SETTING UP RATIO SPINNER
                 mSpnrRatio = (Spinner) findViewById(R.id.spnr_ratio);
                 List<String> ratios = new ArrayList <String>();
                 ratios.add("bun heavy");
@@ -270,7 +278,7 @@ public class RateActivity extends Activity {
                     public void onNothingSelected(AdapterView<?> arg0) {}
                 });
         
-                ////SETTING UP PREP SPINNER
+            ////SETTING UP PREP SPINNER
                 mSpnrPrep = (Spinner) findViewById(R.id.spnr_prep);
                 List<String> preps = new ArrayList <String>();
                 preps.add("under done");
@@ -296,6 +304,21 @@ public class RateActivity extends Activity {
                     }
                     public void onNothingSelected(AdapterView<?> arg0) {}
                 });
+
+        ////RADIO GROUP WYCBFTB
+                wycbftb = (RadioGroup)findViewById(R.id.radgrp_wycbftb);
+                wycbftb.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        if(checkedId == R.id.radbtn_thumbs_up){
+                            mSelectedWycbftb = "10";    //Thumbs up is 10 in iOS db
+                        }else if(checkedId == R.id.radbtn_thumbs_down){
+                            mSelectedWycbftb = "0";     //Thumbs down is 0 in iOS db
+                        }
+                    }
+                });
+
+        ////Comments on Burger -> in method onRatingSubmit
     }
 
     public void onTakePicture(View view){
@@ -387,47 +410,58 @@ public class RateActivity extends Activity {
         //construct burgerator backend class
         Burgerator rating = new Burgerator();
 
-        //populate burgerator with data from views
-        rating.setVal("useremail",User.instance().getEmail());
-        rating.setVal("restaurantId", "5"); //test value
-        rating.setVal("burgerName","Test Post Toast Burger"); //test value
-        rating.setVal("restaurantName","Testaurant"); //test value
-        rating.setVal("restaurantZip","98909");
+            //populate burgerator with data from views
+            rating.setVal("useremail",User.instance().getEmail());
 
+            //set cheese and ratio - no where to put prep in db
+            rating.setVal("cheese",mSelectedCheese);
+            rating.setVal("ratio", mSelectedRatio);
 
-        rating.setVal("cheese",mSelectedCheese);
-        rating.setVal("ratio", mSelectedRatio);
+            //set taste, toppings, bun
+            rating.setVal("taste", mRateTaste);
+            rating.setVal("toppings", mRateToppings);
+            rating.setVal("bunrate", mRateBun);
 
-        //Making these test values not be null beacuse of lots of null point exceptions
-        rating.setVal("restaurantImageUrl","");
-        rating.setVal("restaurantAddress","");
-        rating.setVal("restaurantCity","");
-        rating.setVal("restaurantImageUrl","");
-        rating.setVal("fries","");
-        rating.setVal("size","");
-        rating.setVal("bun","");
-        rating.setVal("price","");
-        rating.setVal("taste","");
-        rating.setVal("ambience","");
-        rating.setVal("friesrate","");
-        rating.setVal("bunrate","");
-        rating.setVal("donenessRequested","");
-        rating.setVal("donenessReceived","");
-        rating.setVal("presentation","");
-        rating.setVal("toppings","");
-        rating.setVal("sauces","");
-        rating.setVal("juicyness","");
-        rating.setVal("service","");
-        rating.setVal("wycbftb","");
-        rating.setVal("comment","");
-        rating.setVal("image","");    //image added at request level
-        rating.setVal("imageUrl","");
-        rating.setVal("date","");
+            //set wycbftb
+            rating.setVal("wycbftb",mSelectedWycbftb);
+
+            //set comment
+            mComments = (EditText)findViewById(R.id.et_comments);
+            mWritenComments = mComments.getText().toString();
+            rating.setVal("comment","");
+
+            //TODO: get information from yelp api
+            rating.setVal("restaurantId", "5"); //test value
+            rating.setVal("burgerName","Test Post Toast Burger"); //test value
+            rating.setVal("restaurantName","Testaurant"); //test value
+            rating.setVal("restaurantZip","98909");
+            rating.setVal("restaurantImageUrl","");
+            rating.setVal("restaurantAddress","");
+            rating.setVal("restaurantCity","");
+
+            //Making these test values not be null beacuse of lots of null point exceptions
+            rating.setVal("fries","0");         //0 by default in iOS db
+            rating.setVal("size","0");              //
+            rating.setVal("bun","0");               //
+            rating.setVal("price","0");             //
+            rating.setVal("ambience","0");          //
+            rating.setVal("friesrate","0");         //
+            rating.setVal("presentation","0");      //
+            rating.setVal("sauces","0");            //
+            rating.setVal("juicyness","0");         //
+            rating.setVal("service","0");           //
+
+            rating.setVal("donenessRequested","20");    //Majority of iOS db entires are 20
+            rating.setVal("donenessReceived","0");      //Majority of iOS db entires are 0
+
+            rating.setVal("image","");      //image added at request level
+            rating.setVal("imageUrl","");   //handled by db
+            rating.setVal("date","");       //handled by db
 
 
         try {
             //get map from burgerator blackend class
-            //pass map to custom request
+            //pass map to BurgerDB
             mRequest.rate(rating.getBurgerMap(), mBurgerPhotoPath, new BurgerDB.VolleyCallback() {
                 @Override
                 public void onSuccess(JSONObject response) {
