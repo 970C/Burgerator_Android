@@ -11,9 +11,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class RateActivity extends Activity {
+
+    private SeekBar tasteSeekBar;
+    private SeekBar toppingSeekBar;
+    private SeekBar bunSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +43,11 @@ public class RateActivity extends Activity {
 
                 // Display the view
                 setContentView(v);
+
+                //seekBar
+                tasteSeekBar = (SeekBar) findViewById(R.id.seekbtn_taste);
+                toppingSeekBar = (SeekBar) findViewById(R.id.seekbtn_toppings);
+                bunSeekBar = (SeekBar) findViewById(R.id.seekbtn_bun);
 
                 //Add the string to the banner
                 TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
@@ -96,6 +106,81 @@ public class RateActivity extends Activity {
                         Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
                         startActivity(intent);
                     }
+                });
+
+                tasteSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar tasteSeekBar) {
+
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar tasteSeekBar) {
+
+                    }
+
+                    @Override
+                    public void onProgressChanged(SeekBar tasteSeekBar, int progress, boolean fromUser) {
+                        //tasteSeekBar.setProgress(0);
+                        int increment = 1;
+                        tasteSeekBar.setMax(8);
+                        //tasteSeekBar.incrementProgressBy(1);
+                        progress = ((int) Math.round(progress / increment)) * increment;
+                        tasteSeekBar.setProgress(progress);
+                        //taste.setText(progress + "");
+                    }
+
+                });
+
+                toppingSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar toppingSeekBar) {
+
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar toppingSeekBar) {
+
+                    }
+
+                    @Override
+                    public void onProgressChanged(SeekBar toppingSeekBar, int progress, boolean fromUser) {
+                        //tasteSeekBar.setProgress(0);
+                        int increment = 1;
+                        toppingSeekBar.setMax(8);
+                        //tasteSeekBar.incrementProgressBy(1);
+                        progress = ((int)Math.round(progress/increment))*increment;
+                        toppingSeekBar.setProgress(progress);
+                        //taste.setText(progress + "");
+                    }
+
+                });
+
+                bunSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar bunSeekBar) {
+
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar bunSeekBar) {
+
+                    }
+
+                    @Override
+                    public void onProgressChanged(SeekBar bunSeekBar, int progress, boolean fromUser) {
+                        //tasteSeekBar.setProgress(0);
+                        int increment = 1;
+                        bunSeekBar.setMax(8);
+                        //tasteSeekBar.incrementProgressBy(1);
+                        progress = ((int)Math.round(progress/increment))*increment;
+                        bunSeekBar.setProgress(progress);
+                        //taste.setText(progress + "");
+                    }
+
                 });
     }
 }
