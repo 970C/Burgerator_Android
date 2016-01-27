@@ -1,0 +1,17 @@
+import java.util.*;
+
+
+public class Burgerator {
+	
+	//map of all burgerator params
+	HashMap<String, String> burgerMap;
+	
+	public Burgerator(){
+		burgerMap = new HashMap<>();
+	}
+	
+	public void setUserEmail(String _s){
+		
+	}
+
+}
