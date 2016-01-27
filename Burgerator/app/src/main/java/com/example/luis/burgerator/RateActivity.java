@@ -14,6 +14,8 @@ import android.widget.ScrollView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
+import org.json.JSONObject;
+
 public class RateActivity extends Activity {
 
     private SeekBar tasteSeekBar;
@@ -182,5 +184,18 @@ public class RateActivity extends Activity {
                     }
 
                 });
+    }
+
+    public void onRatingSubmit(View view){
+        //TODO:
+        //pull data from views
+        //construct burgerator backend class
+        //get map from burgerator blackend class
+        //pass map to custom request
+        //execute custom request
+    }
+
+    public void onRatingSubmitResponse(JSONObject response){
+        //TODO:print scuccess or fail dialog depending on status returned?
     }
 }
