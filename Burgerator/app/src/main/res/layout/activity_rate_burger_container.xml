@@ -43,22 +43,22 @@
         android:layout_height="75dp"
         android:layout_below="@id/imgbtn_snapshot">
 
-        <Button
+        <Spinner
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/btn_cheese"
+            android:id="@+id/spnr_cheese"
             android:layout_weight="1"/>
 
-        <Button
+        <Spinner
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/btn_ratio"
+            android:id="@+id/spnr_ratio"
             android:layout_weight="1"/>
 
-        <Button
+        <Spinner
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/btn_prep"
+            android:id="@+id/spnr_prep"
             android:layout_weight="1"/>
     </LinearLayout>
 </RelativeLayout>

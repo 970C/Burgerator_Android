@@ -18,19 +18,25 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowId;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public class RateActivity extends Activity {
@@ -47,7 +53,12 @@ public class RateActivity extends Activity {
     static final int REQUEST_TAKE_PHOTO = 1;
 
     // path for burger photo
-    String mBurgerPhotoPath;
+    private String mBurgerPhotoPath;
+
+    //Spinners - prep for show; it is never taken into the db
+    private Spinner mSpnrCheese,mSpnrRatio,mSpnrPrep;
+    private String mSelectedCheese = "",mSelectedRatio = "",mSelcetedPrep = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,14 +154,9 @@ public class RateActivity extends Activity {
                 tasteSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
                     @Override
-                    public void onStopTrackingTouch(SeekBar tasteSeekBar) {
-
-                    }
-
+                    public void onStopTrackingTouch(SeekBar tasteSeekBar) {}
                     @Override
-                    public void onStartTrackingTouch(SeekBar tasteSeekBar) {
-
-                    }
+                    public void onStartTrackingTouch(SeekBar tasteSeekBar) {}
 
                     @Override
                     public void onProgressChanged(SeekBar tasteSeekBar, int progress, boolean fromUser) {
@@ -165,14 +171,9 @@ public class RateActivity extends Activity {
                 toppingSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
                     @Override
-                    public void onStopTrackingTouch(SeekBar toppingSeekBar) {
-
-                    }
-
+                    public void onStopTrackingTouch(SeekBar toppingSeekBar) {}
                     @Override
-                    public void onStartTrackingTouch(SeekBar toppingSeekBar) {
-
-                    }
+                    public void onStartTrackingTouch(SeekBar toppingSeekBar) {}
 
                     @Override
                     public void onProgressChanged(SeekBar toppingSeekBar, int progress, boolean fromUser) {
@@ -187,14 +188,9 @@ public class RateActivity extends Activity {
                 bunSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
                     @Override
-                    public void onStopTrackingTouch(SeekBar bunSeekBar) {
-
-                    }
-
+                    public void onStopTrackingTouch(SeekBar bunSeekBar) {}
                     @Override
-                    public void onStartTrackingTouch(SeekBar bunSeekBar) {
-
-                    }
+                    public void onStartTrackingTouch(SeekBar bunSeekBar) {}
 
                     @Override
                     public void onProgressChanged(SeekBar bunSeekBar, int progress, boolean fromUser) {
@@ -204,6 +200,101 @@ public class RateActivity extends Activity {
                         bunSeekBar.setProgress(progress);
                     }
 
+                });
+
+                //TODO:Replace with proper activity
+                /////SETTING UP SPINNERS
+                
+                ////SETTING UP CHEESE SPINNER
+                Spinner mSpnrCheese = (Spinner) findViewById(R.id.spnr_cheese);
+                // Spinner Drop down elements
+                List<String> cheeses = new ArrayList <String>();
+                cheeses.add("no cheese");
+                cheeses.add("american");
+                cheeses.add("cheddar");
+                cheeses.add("pepper jack");
+                cheeses.add("blue");
+                cheeses.add("swiss");
+                cheeses.add("gouda");
+                cheeses.add("other");
+                cheeses.add("provolone");
+                cheeses.add("goat");
+                cheeses.add("mozzarella");
+                cheeses.add("monterey jack");
+
+                // Creating adapter for spinner
+                ArrayAdapter<String> cheeseAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, cheeses);
+
+                // Drop down layout style - list view with radio button
+                cheeseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                // attaching data adapter to spinner
+                mSpnrCheese.setAdapter(cheeseAdapter);
+                mSpnrCheese.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        // On selecting a spinner item
+                        mSelectedCheese = parent.getItemAtPosition(position).toString();
+                        String item = parent.getItemAtPosition(position).toString();
+
+                        // Showing selected spinner item
+                        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+                    }
+                    public void onNothingSelected(AdapterView<?> arg0) {}
+                });
+
+                ////SETTING UP RATIO SPINNER
+                mSpnrRatio = (Spinner) findViewById(R.id.spnr_ratio);
+                List<String> ratios = new ArrayList <String>();
+                ratios.add("bun heavy");
+                ratios.add("balanced");
+                ratios.add("meat heavy");
+                // Creating adapter for spinner
+                ArrayAdapter<String> ratioAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, ratios);
+
+                // Drop down layout style - list view with radio button
+                ratioAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                // attaching data adapter to spinner
+                mSpnrRatio.setAdapter(ratioAdapter);
+                mSpnrRatio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        // On selecting a spinner item
+                        mSelectedRatio = parent.getItemAtPosition(position).toString();
+                        String item = parent.getItemAtPosition(position).toString();
+
+                        // Showing selected spinner item
+                        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+                    }
+                    public void onNothingSelected(AdapterView<?> arg0) {}
+                });
+        
+                ////SETTING UP PREP SPINNER
+                mSpnrPrep = (Spinner) findViewById(R.id.spnr_prep);
+                List<String> preps = new ArrayList <String>();
+                preps.add("under done");
+                preps.add("just right");
+                preps.add("over done");
+                // Creating adapter for spinner
+                ArrayAdapter<String> prepAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, preps);
+
+                // Drop down layout style - list view with radio button
+                prepAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+                // attaching data adapter to spinner
+                mSpnrPrep.setAdapter(prepAdapter);
+                mSpnrPrep.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        // On selecting a spinner item
+                        mSelcetedPrep = parent.getItemAtPosition(position).toString();
+                        String item = parent.getItemAtPosition(position).toString();
+
+                        // Showing selected spinner item
+                        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+                    }
+                    public void onNothingSelected(AdapterView<?> arg0) {}
                 });
     }
 
@@ -303,16 +394,18 @@ public class RateActivity extends Activity {
         rating.setVal("restaurantName","Testaurant"); //test value
         rating.setVal("restaurantZip","98909");
 
+
+        rating.setVal("cheese",mSelectedCheese);
+        rating.setVal("ratio", mSelectedRatio);
+
         //Making these test values not be null beacuse of lots of null point exceptions
         rating.setVal("restaurantImageUrl","");
         rating.setVal("restaurantAddress","");
         rating.setVal("restaurantCity","");
         rating.setVal("restaurantImageUrl","");
-        rating.setVal("cheese","");
         rating.setVal("fries","");
         rating.setVal("size","");
         rating.setVal("bun","");
-        rating.setVal("ratio","");
         rating.setVal("price","");
         rating.setVal("taste","");
         rating.setVal("ambience","");
