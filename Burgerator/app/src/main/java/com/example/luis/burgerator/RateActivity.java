@@ -233,6 +233,7 @@ public class RateActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
+        //When the user is done taking the photo
         if(requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK){
             //Setting the image button's image to the photo taken by the user
 
@@ -269,7 +270,6 @@ public class RateActivity extends Activity {
 
                     //Set the image
                     burgerImage.setImageBitmap(bmBurgerImage);
-
         }
 
     }
@@ -327,7 +327,7 @@ public class RateActivity extends Activity {
         rating.setVal("service","");
         rating.setVal("wycbftb","");
         rating.setVal("comment","");
-        rating.setVal("image","");
+        rating.setVal("image","");    //image added at request level
         rating.setVal("imageUrl","");
         rating.setVal("date","");
 
@@ -335,20 +335,20 @@ public class RateActivity extends Activity {
         try {
             //get map from burgerator blackend class
             //pass map to custom request
-            mRequest.rate(rating.getBurgerMap(), new BurgerDB.VolleyCallback() {
+            mRequest.rate(rating.getBurgerMap(), mBurgerPhotoPath, new BurgerDB.VolleyCallback() {
                 @Override
                 public void onSuccess(JSONObject response) {
-                    Log.d("Burgerator", response.toString());
+                    Log.d("Burgerator Rate Response", response.toString());
                     onRatingSubmitResponse(response);
                 }
             });
         }catch(Exception e){
-            Log.d("Burgerator",e.toString());
+            Log.d("Burgerator BurgerDB.Rate Catch",e.toString());
         }
     }
 
     public void onRatingSubmitResponse(JSONObject response){
         //TODO:print scuccess or fail dialog depending on status returned?
-        Log.d("Burgerator",response.toString());
+        Log.d("Burgerator Rate Response",response.toString());
     }
 }

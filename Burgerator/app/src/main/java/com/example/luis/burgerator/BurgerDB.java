@@ -15,6 +15,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.net.URL;
 import java.util.AbstractMap;
 import java.util.Collection;
@@ -201,10 +202,12 @@ public class BurgerDB {
         //TODO: return an object that contains the user information
     }
 
-    public void rate(Map<String,String> params, final VolleyCallback callback){
+    public void rate(Map<String,String> params, String imagePath, final VolleyCallback callback){
         String endpointFile = "/rate.php";
+        final File imageFile = new File(imagePath);
 
         try {
+            /*
             // Create request and its response
             CustomRequest request = new CustomRequest(
                     Request.Method.POST, mEndpoint + endpointFile, params,
@@ -217,12 +220,25 @@ public class BurgerDB {
                             callback.onSuccess(response);
                         }
                     },
-                    mErrListener);  //end of request arguments
+                    mErrListener);  //end of request arguments*/
+
+
+            // Create request and its response
+            MultipartRequest request = new MultipartRequest(
+                    mEndpoint + endpointFile, mErrListener, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            // return an object that contains the user information
+                            Log.d("BurgerDbLog", response.toString());
+
+                            callback.onSuccess(response);
+                        }
+                    },imageFile, params);
 
             // Add the request to the request queue to be executed
             mRequestQueue.add(request);
         }catch(Exception e){
-            Log.d("Burgerator",e.toString());
+            Log.e("Burgerator MulipartRequest Catch",e.toString());
         }
     }
 

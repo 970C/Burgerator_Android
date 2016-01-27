@@ -9,6 +9,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
+import org.json.JSONObject;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -21,14 +22,14 @@ public class MultipartRequest extends Request<String> {
 
     private MultipartEntityBuilder entity = MultipartEntityBuilder.create();
     private HttpEntity httpentity;
-    private static final String FILE_PART_NAME = "file";
+    private static final String FILE_PART_NAME = "image";
 
-    private final Response.Listener<String> mListener;
+    private final Response.Listener<JSONObject> mListener;
     private final File mFilePart;
     private final Map<String, String> mStringPart;
 
     public MultipartRequest(String url, Response.ErrorListener errorListener,
-                            Response.Listener<String> listener, File file,
+                            Response.Listener<JSONObject> listener, File file,
                             Map<String, String> mStringPart) {
         super(Method.POST, url, errorListener);
 
@@ -44,10 +45,11 @@ public class MultipartRequest extends Request<String> {
     }
 
     private void buildMultipartEntity() {
-        entity.addPart(FILE_PART_NAME, new FileBody(mFilePart));
         for (Map.Entry<String, String> entry : mStringPart.entrySet()) {
             entity.addTextBody(entry.getKey(), entry.getValue());
         }
+        // Comes after for loop to override the value of "image"
+        entity.addPart(FILE_PART_NAME, new FileBody(mFilePart));
     }
 
     @Override
@@ -74,6 +76,6 @@ public class MultipartRequest extends Request<String> {
 
     @Override
     protected void deliverResponse(String response) {
-        mListener.onResponse(response);
+        //mListener.onResponse(response);
     }
 }
