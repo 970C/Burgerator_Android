@@ -3,8 +3,12 @@ package com.example.luis.burgerator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -231,8 +235,41 @@ public class RateActivity extends Activity {
 
         if(requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK){
             //Setting the image button's image to the photo taken by the user
-            ImageButton burgerImage = (ImageButton)findViewById(R.id.imgbtn_snapshot);
-            burgerImage.setImageDrawable(Drawable.createFromPath(mBurgerPhotoPath));
+
+                    //Initialize image button view and bitmap that will represent the image
+                    ImageButton burgerImage = (ImageButton)findViewById(R.id.imgbtn_snapshot);
+                    Bitmap bmBurgerImage = BitmapFactory.decodeFile(mBurgerPhotoPath);
+
+                    //Determine the orientation and rotate the bitmap accordingly
+                    //This is done so the image is upright when displayed in the activity
+                    try {
+                        ExifInterface exif = new ExifInterface(mBurgerPhotoPath);
+                        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+
+                        Log.d("Burgerator Image", "Exif: " + orientation);
+
+                        Matrix matrix = new Matrix();
+                        if (orientation == 6) {
+                            matrix.postRotate(90);
+                        }
+                        else if (orientation == 3) {
+                            matrix.postRotate(180);
+                        }
+                        else if (orientation == 8) {
+                            matrix.postRotate(270);
+                        }
+                        bmBurgerImage = Bitmap.createBitmap(bmBurgerImage,
+                                                            0, 0, bmBurgerImage.getWidth(),
+                                                            bmBurgerImage.getHeight(),
+                                                            matrix, true); // rotating bitmap
+                    }
+                    catch (Exception e) {
+                        Log.d("Burgerator Image", e.toString());
+                    }
+
+                    //Set the image
+                    burgerImage.setImageBitmap(bmBurgerImage);
+
         }
 
     }

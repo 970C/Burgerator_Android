@@ -34,7 +34,8 @@
         android:layout_height="200dp"
         android:id="@+id/imgbtn_snapshot"
         android:layout_below="@id/imgv_restaurant_thumbnail"
-        android:onClick="onTakePicture"/>
+        android:onClick="onTakePicture"
+        android:scaleType="fitXY"/>
 
 
     <LinearLayout
