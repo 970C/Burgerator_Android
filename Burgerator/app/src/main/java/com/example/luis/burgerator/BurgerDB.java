@@ -201,7 +201,30 @@ public class BurgerDB {
         //TODO: return an object that contains the user information
     }
 
+    public void rate(Map<String,String> params, final VolleyCallback callback){
+        String endpointFile = "/rate.php";
 
+        try {
+            // Create request and its response
+            CustomRequest request = new CustomRequest(
+                    Request.Method.POST, mEndpoint + endpointFile, params,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            // return an object that contains the user information
+                            Log.d("BurgerDbLog", response.toString());
+
+                            callback.onSuccess(response);
+                        }
+                    },
+                    mErrListener);  //end of request arguments
+
+            // Add the request to the request queue to be executed
+            mRequestQueue.add(request);
+        }catch(Exception e){
+            Log.d("Burgerator",e.toString());
+        }
+    }
 
     public Object socialLogin(){
         return null;

@@ -4,11 +4,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowId;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
@@ -16,11 +23,27 @@ import android.widget.TextView;
 
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
+
 public class RateActivity extends Activity {
 
     private SeekBar tasteSeekBar;
     private SeekBar toppingSeekBar;
     private SeekBar bunSeekBar;
+
+    // HTTP request handler
+    private BurgerDB mRequest;
+
+    // result for taking a picture
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_TAKE_PHOTO = 1;
+
+    // path for burger photo
+    String mBurgerPhotoPath;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +52,8 @@ public class RateActivity extends Activity {
         /*This indented block should come before the onClick listeners before
         the onClick listeners wont trigger.*/
         /* Setting up the activity's views */
+
+                mRequest = new BurgerDB(getApplicationContext());
 
                 // Adding custom elements to a ScrollView
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -178,16 +203,115 @@ public class RateActivity extends Activity {
                 });
     }
 
+    public void onTakePicture(View view){
+
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        // Ensure that there's a camera activity to handle the intent
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                photoFile = createImageFile();
+            } catch (IOException ex) {
+                Log.d("Burgerator", ex.toString());
+            }
+            // Continue only if the File was successfully created
+            if (photoFile != null) {
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                        Uri.fromFile(photoFile));
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+                Log.d("Burgerator Image", mBurgerPhotoPath );
+            }
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK){
+            //Setting the image button's image to the photo taken by the user
+            ImageButton burgerImage = (ImageButton)findViewById(R.id.imgbtn_snapshot);
+            burgerImage.setImageDrawable(Drawable.createFromPath(mBurgerPhotoPath));
+        }
+
+    }
+
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        mBurgerPhotoPath = image.getAbsolutePath();
+        return image;
+    }
+
     public void onRatingSubmit(View view){
         //TODO:
-        //pull data from views
         //construct burgerator backend class
-        //get map from burgerator blackend class
-        //pass map to custom request
-        //execute custom request
+        Burgerator rating = new Burgerator();
+
+        //populate burgerator with data from views
+        rating.setVal("useremail",User.instance().getEmail());
+        rating.setVal("restaurantId", "5"); //test value
+        rating.setVal("burgerName","Test Post Toast Burger"); //test value
+        rating.setVal("restaurantName","Testaurant"); //test value
+        rating.setVal("restaurantZip","98909");
+
+        //Making these test values not be null beacuse of lots of null point exceptions
+        rating.setVal("restaurantImageUrl","");
+        rating.setVal("restaurantAddress","");
+        rating.setVal("restaurantCity","");
+        rating.setVal("restaurantImageUrl","");
+        rating.setVal("cheese","");
+        rating.setVal("fries","");
+        rating.setVal("size","");
+        rating.setVal("bun","");
+        rating.setVal("ratio","");
+        rating.setVal("price","");
+        rating.setVal("taste","");
+        rating.setVal("ambience","");
+        rating.setVal("friesrate","");
+        rating.setVal("bunrate","");
+        rating.setVal("donenessRequested","");
+        rating.setVal("donenessReceived","");
+        rating.setVal("presentation","");
+        rating.setVal("toppings","");
+        rating.setVal("sauces","");
+        rating.setVal("juicyness","");
+        rating.setVal("service","");
+        rating.setVal("wycbftb","");
+        rating.setVal("comment","");
+        rating.setVal("image","");
+        rating.setVal("imageUrl","");
+        rating.setVal("date","");
+
+
+        try {
+            //get map from burgerator blackend class
+            //pass map to custom request
+            mRequest.rate(rating.getBurgerMap(), new BurgerDB.VolleyCallback() {
+                @Override
+                public void onSuccess(JSONObject response) {
+                    Log.d("Burgerator", response.toString());
+                    onRatingSubmitResponse(response);
+                }
+            });
+        }catch(Exception e){
+            Log.d("Burgerator",e.toString());
+        }
     }
 
     public void onRatingSubmitResponse(JSONObject response){
         //TODO:print scuccess or fail dialog depending on status returned?
+        Log.d("Burgerator",response.toString());
     }
 }
