@@ -6,7 +6,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
 
 
 <TextView
@@ -17,18 +19,21 @@
     <SeekBar
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/seekbtn_taste"/>
+        android:id="@+id/seekbtn_taste"
+        android:progressDrawable="@drawable/scroll_bar_marks"
+        android:background="@drawable/scroll_bar_background"/>
 
 
-
-    <TextView
+<TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:id="@+id/tv_toppings" android:text="@string/toppings" />
     <SeekBar
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/seekbtn_toppings"/>
+        android:id="@+id/seekbtn_toppings"
+        android:progressDrawable="@drawable/scroll_bar_marks"
+        android:background="@drawable/scroll_bar_background"/>
 
 
 
@@ -39,7 +44,9 @@
     <SeekBar
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:id="@+id/seekbtn_bun"/>
+        android:id="@+id/seekbtn_bun"
+        android:progressDrawable="@drawable/scroll_bar_marks"
+        android:background="@drawable/scroll_bar_background"/>
 
 
 

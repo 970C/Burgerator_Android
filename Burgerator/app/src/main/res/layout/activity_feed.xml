@@ -18,7 +18,9 @@
         android:layout_height="440dp"
         android:layout_marginTop="70dp"
         android:id="@+id/feedScrollView"
-        android:fillViewport="true">
+        android:fillViewport="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
     </ScrollView>
 
     <!-- navigation bar on each activity-->

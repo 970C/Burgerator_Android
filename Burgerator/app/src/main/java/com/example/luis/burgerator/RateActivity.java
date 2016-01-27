@@ -108,6 +108,7 @@ public class RateActivity extends Activity {
                     }
                 });
 
+                //seekbar intervals
                 tasteSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
                     @Override
@@ -122,13 +123,10 @@ public class RateActivity extends Activity {
 
                     @Override
                     public void onProgressChanged(SeekBar tasteSeekBar, int progress, boolean fromUser) {
-                        //tasteSeekBar.setProgress(0);
                         int increment = 1;
                         tasteSeekBar.setMax(8);
-                        //tasteSeekBar.incrementProgressBy(1);
                         progress = ((int) Math.round(progress / increment)) * increment;
                         tasteSeekBar.setProgress(progress);
-                        //taste.setText(progress + "");
                     }
 
                 });
@@ -147,13 +145,10 @@ public class RateActivity extends Activity {
 
                     @Override
                     public void onProgressChanged(SeekBar toppingSeekBar, int progress, boolean fromUser) {
-                        //tasteSeekBar.setProgress(0);
                         int increment = 1;
                         toppingSeekBar.setMax(8);
-                        //tasteSeekBar.incrementProgressBy(1);
                         progress = ((int)Math.round(progress/increment))*increment;
                         toppingSeekBar.setProgress(progress);
-                        //taste.setText(progress + "");
                     }
 
                 });
@@ -172,13 +167,10 @@ public class RateActivity extends Activity {
 
                     @Override
                     public void onProgressChanged(SeekBar bunSeekBar, int progress, boolean fromUser) {
-                        //tasteSeekBar.setProgress(0);
                         int increment = 1;
                         bunSeekBar.setMax(8);
-                        //tasteSeekBar.incrementProgressBy(1);
                         progress = ((int)Math.round(progress/increment))*increment;
                         bunSeekBar.setProgress(progress);
-                        //taste.setText(progress + "");
                     }
 
                 });

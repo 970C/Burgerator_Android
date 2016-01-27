@@ -19,7 +19,9 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_below="@id/banner"
-        android:id="@+id/profile">
+        android:id="@+id/profile"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <ImageView
             android:layout_width="100dp"
@@ -52,7 +54,9 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/profile"
-        android:id="@+id/filters">
+        android:id="@+id/filters"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
 
         <ImageButton
             android:layout_width="wrap_content"
@@ -81,7 +85,9 @@
         android:layout_height="290dp"
         android:id="@+id/profileScrollView"
         android:fillViewport="true"
-        android:layout_below="@id/filters">
+        android:layout_below="@id/filters"
+          android:layout_marginLeft="10dp"
+          android:layout_marginRight="10dp">
 
       </ScrollView>
 
