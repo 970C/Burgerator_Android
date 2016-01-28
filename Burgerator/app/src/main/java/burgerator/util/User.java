@@ -1,12 +1,9 @@
-package com.example.luis.burgerator;
+package burgerator.util;
 
 //package burgeratorBackend;
 
 import android.util.Log;
 
-import java.util.*;
-
-import org.json.JSONException;
 import org.json.JSONObject;
 
 

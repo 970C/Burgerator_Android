@@ -17,24 +17,24 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.NoTitleBar">
         <activity
-            android:name=".SearchActivity"
+            android:name="burgerator.ui.SearchActivity"
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
-        <activity android:name=".RateActivity"
+        <activity android:name="burgerator.ui.RateActivity"
             android:windowSoftInputMode="stateHidden"/>
 
-        <activity android:name=".FeedActivity"
+        <activity android:name="burgerator.ui.FeedActivity"
             android:windowSoftInputMode="stateHidden" />
 
-        <activity android:name=".Top10Activity"
+        <activity android:name="burgerator.ui.Top10Activity"
             android:windowSoftInputMode="stateHidden"/>
 
-        <activity android:name=".ProfileActivity"
+        <activity android:name="burgerator.ui.ProfileActivity"
             android:windowSoftInputMode="stateHidden"/>
 
-        <activity android:name=".LoginActivity"
+        <activity android:name="burgerator.ui.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="stateHidden">
             <intent-filter>

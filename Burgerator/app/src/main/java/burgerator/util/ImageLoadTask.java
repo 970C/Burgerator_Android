@@ -1,4 +1,4 @@
-package com.example.luis.burgerator;
+package burgerator.util;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

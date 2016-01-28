@@ -1,4 +1,4 @@
-package com.example.luis.burgerator;
+package burgerator.ui;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -10,7 +10,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.example.luis.burgerator.R;
+
 import org.json.JSONObject;
+
+import burgerator.db.BurgerDB;
+import burgerator.util.User;
 
 public class LoginActivity extends Activity {
 

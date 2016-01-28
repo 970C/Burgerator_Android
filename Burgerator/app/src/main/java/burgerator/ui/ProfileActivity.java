@@ -1,9 +1,8 @@
-package com.example.luis.burgerator;
+package burgerator.ui;
 
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -11,11 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.example.luis.burgerator.R;
+
 import org.json.JSONObject;
+
+import burgerator.db.BurgerDB;
+import burgerator.util.ImageLoadTask;
+import burgerator.util.User;
 
 public class ProfileActivity extends Activity {
 

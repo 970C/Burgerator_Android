@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.luis.burgerator.SearchActivity"
+    tools:context="burgerator.ui.SearchActivity"
     android:background="@drawable/background">
 
     <!-- banner on each activity -->

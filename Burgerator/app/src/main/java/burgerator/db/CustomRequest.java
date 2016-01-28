@@ -1,4 +1,4 @@
-package com.example.luis.burgerator;
+package burgerator.db;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.example.luis.burgerator;
+package burgerator.ui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
@@ -28,6 +27,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.luis.burgerator.R;
+
 import org.json.JSONObject;
 
 import java.io.File;
@@ -36,6 +37,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import burgerator.db.BurgerDB;
+import burgerator.util.Burgerator;
+import burgerator.util.User;
 
 public class RateActivity extends Activity {
 
@@ -331,7 +336,7 @@ public class RateActivity extends Activity {
             try {
                 photoFile = createImageFile();
             } catch (IOException ex) {
-                Log.d("Burgerator", ex.toString());
+                Log.d("burgerator", ex.toString());
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
@@ -411,7 +416,7 @@ public class RateActivity extends Activity {
         Burgerator rating = new Burgerator();
 
             //populate burgerator with data from views
-            rating.setVal("useremail",User.instance().getEmail());
+            rating.setVal("useremail", User.instance().getEmail());
 
             //set cheese and ratio - no where to put prep in db
             rating.setVal("cheese",mSelectedCheese);
