@@ -3,11 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="70dp">
+    android:layout_height="70dp"
+    android:background="@drawable/banner_background">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:id="@+id/et_banner"/>
+        android:id="@+id/et_banner"
+        android:textColor="@color/lightGrey"/>
 
 </LinearLayout>

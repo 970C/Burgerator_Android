@@ -20,10 +20,10 @@
     <string name="Tshare">T share</string>
 
 
-    <string name="title_activity_find_aburger">findABurger</string>
-    <string name="title_activity_burger_feed">burger_feed</string>
-    <string name="title_activity_burger_rating">burger_rating</string>
-    <string name="title_activity_top_burgers">top_burgers</string>
-    <string name="title_activity_profile">profile</string>
+    <string name="title_activity_find_aburger">.findABurger</string>
+    <string name="title_activity_burger_feed">.burger_feed</string>
+    <string name="title_activity_burger_rating">.burger_rating</string>
+    <string name="title_activity_top_burgers">.top_burgers</string>
+    <string name="title_activity_profile">.profile</string>
 
 </resources>

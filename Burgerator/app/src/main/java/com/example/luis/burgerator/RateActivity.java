@@ -127,7 +127,7 @@ public class RateActivity extends Activity {
                     public void onProgressChanged(SeekBar tasteSeekBar, int progress, boolean fromUser) {
                         int increment = 1;
                         tasteSeekBar.setMax(8);
-                        progress = ((int) Math.round(progress / increment)) * increment;
+                        progress = Math.round(progress / increment) * increment;
                         tasteSeekBar.setProgress(progress);
                     }
 
@@ -149,7 +149,7 @@ public class RateActivity extends Activity {
                     public void onProgressChanged(SeekBar toppingSeekBar, int progress, boolean fromUser) {
                         int increment = 1;
                         toppingSeekBar.setMax(8);
-                        progress = ((int)Math.round(progress/increment))*increment;
+                        progress = Math.round(progress/increment) *increment;
                         toppingSeekBar.setProgress(progress);
                     }
 
@@ -171,7 +171,7 @@ public class RateActivity extends Activity {
                     public void onProgressChanged(SeekBar bunSeekBar, int progress, boolean fromUser) {
                         int increment = 1;
                         bunSeekBar.setMax(8);
-                        progress = ((int)Math.round(progress/increment))*increment;
+                        progress = Math.round(progress/increment) *increment;
                         bunSeekBar.setProgress(progress);
                     }
 

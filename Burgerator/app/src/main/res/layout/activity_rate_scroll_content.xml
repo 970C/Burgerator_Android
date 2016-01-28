@@ -12,6 +12,8 @@
     <include layout="@layout/activity_rate_burger_container" />
     <!-- END CHILD 1 -->
 
+    <include layout="@layout/activity_rate_srollbar_container" />
+
     <!-- second box of RateActivity* -->
     <!-- START CHILD 2-->
     <include layout="@layout/activity_rate_rating_container" />

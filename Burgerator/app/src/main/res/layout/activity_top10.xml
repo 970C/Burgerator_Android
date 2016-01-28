@@ -19,8 +19,8 @@
         android:layout_marginTop="70dp"
         android:id="@+id/top10ScrollView"
         android:fillViewport="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp">
 
     </ScrollView>
 

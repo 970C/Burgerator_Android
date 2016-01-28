@@ -10,49 +10,49 @@
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:layout_weight="1"
         android:id="@+id/btn_search_activity"
-        android:layout_gravity="bottom"
-        android:background="@mipmap/search_button_off" />
+        android:layout_gravity="center"
+        android:background="@mipmap/search_button_off"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:layout_weight="1"
         android:id="@+id/btn_feed_activity"
-        android:layout_gravity="bottom"
+        android:layout_gravity="center"
         android:background="@mipmap/feed_button_off"/>
 
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_height="90dp"
         android:layout_weight="1"
         android:id="@+id/btn_rate_activity"
-        android:layout_gravity="bottom"
+        android:layout_gravity="center"
         android:background="@mipmap/rate_button_off"/>
 
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:layout_weight="1"
         android:id="@+id/btn_top10_activity"
-        android:layout_gravity="bottom"
+        android:layout_gravity="center"
         android:background="@mipmap/top10_button_off"/>
 
 
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
+        android:layout_height="80dp"
         android:layout_weight="1"
         android:id="@+id/btn_profile_activity"
-        android:layout_gravity="bottom"
+        android:layout_gravity="center"
         android:background="@mipmap/profile_button_off"
         android:layout_marginLeft="0dp" />
 

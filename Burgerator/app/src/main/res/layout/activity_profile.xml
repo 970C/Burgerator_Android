@@ -15,68 +15,26 @@
         layout="@layout/banner"/>
 
     <!-- profile on profile activity -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@id/banner"
-        android:id="@+id/profile"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-
-        <ImageView
-            android:layout_width="100dp"
+        <include
+            android:id="@+id/profile"
+            layout="@layout/activity_profile_user_container"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/banner"
             android:layout_height="100dp"
-            android:id="@+id/imgv_user_image"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/user_name"
-            android:layout_below="@+id/burgerator_banner"
-            android:layout_toRightOf="@+id/imgv_user_image"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/user_ranking"
-            android:layout_below="@+id/user_name"
-            android:layout_toRightOf="@+id/imgv_user_image"/>
-
-        <!--<EditText-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="25dp"-->
-            <!--android:id="@+id/user_ranking"-->
-            <!--android:layout_below="@+id/user_moto"/>-->
-    </RelativeLayout>
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"/>
 
     <!-- filters on profile activity -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_below="@id/profile"
-        android:id="@+id/filters"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/btn_top_burgers"
-            android:layout_weight="1"/>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/btn_recently_added"
-            android:layout_weight="1"/>
-
-        <!--<ImageButton-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:id="@+id/edit_profile"-->
-            <!--android:layout_weight="1"/>-->
-
-    </LinearLayout>
+        <include
+            android:id="@+id/filters"
+            layout="@layout/activity_profile_sortby_container"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_below="@+id/profile"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"/>
 
     <!-- list of users burgers on profile activity -->
       <ScrollView
@@ -85,9 +43,10 @@
         android:layout_height="290dp"
         android:id="@+id/profileScrollView"
         android:fillViewport="true"
-        android:layout_below="@id/filters"
+        android:layout_below="@+id/filters"
           android:layout_marginLeft="10dp"
-          android:layout_marginRight="10dp">
+          android:layout_marginRight="10dp"
+          android:layout_marginTop="5dp">
 
       </ScrollView>
 

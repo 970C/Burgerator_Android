@@ -5,86 +5,124 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp">
 
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="600dp"
+        android:background="@drawable/burger_feed_border">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:id="@+id/imgv_burger_ranking0"
-            android:gravity="top"/>
+            android:gravity="top"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:id="@+id/restaurant_name0"
             android:gravity="top"
-            android:layout_toRightOf="@+id/imgv_burger_ranking0"/>
+            android:layout_toRightOf="@+id/imgv_burger_ranking0"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/burger_name0"
             android:layout_below="@+id/restaurant_name0"
-            android:layout_toRightOf="@+id/imgv_burger_ranking0"/>
+            android:layout_toRightOf="@+id/imgv_burger_ranking0"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:id="@+id/restaurant_address0"
             android:layout_below="@+id/burger_name0"
-            android:layout_toRightOf="@+id/imgv_burger_ranking0"/>
+            android:layout_toRightOf="@+id/imgv_burger_ranking0"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
 
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="400dp"
             android:id="@+id/imgv_burger_picture0"
-            android:layout_below="@+id/imgv_burger_ranking0"/>
+            android:layout_below="@+id/imgv_burger_ranking0"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
 
     </RelativeLayout>
 
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="600dp"
+        android:background="@drawable/burger_feed_border"
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:id="@+id/imgv_burger_ranking1"
-            android:gravity="top"/>
+            android:gravity="top"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:id="@+id/restaurant_name1"
             android:gravity="top"
-            android:layout_toRightOf="@+id/imgv_burger_ranking1"/>
+            android:layout_toRightOf="@+id/imgv_burger_ranking1"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/burger_name1"
             android:layout_below="@+id/restaurant_name1"
-            android:layout_toRightOf="@+id/imgv_burger_ranking1"/>
+            android:layout_toRightOf="@+id/imgv_burger_ranking1"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="25dp"
             android:id="@+id/restaurant_address"
             android:layout_below="@+id/burger_name1"
-            android:layout_toRightOf="@+id/imgv_burger_ranking1"/>
+            android:layout_toRightOf="@+id/imgv_burger_ranking1"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
 
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="400dp"
             android:id="@+id/imgv_burger_picture1"
-            android:layout_below="@+id/imgv_burger_ranking1"/>
+            android:layout_below="@+id/imgv_burger_ranking1"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"/>
 
     </RelativeLayout>
 </LinearLayout>
