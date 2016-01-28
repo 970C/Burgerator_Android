@@ -54,15 +54,9 @@
         android:orientation="horizontal"
         android:layout_below="@+id/imgv_burger_picture">
 
-<<<<<<< HEAD
-        <EditText
-            android:layout_width="210dp"
-            android:layout_height="50dp"
-=======
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
->>>>>>> origin/master
             android:id="@+id/amount_burger_pounded"
             android:layout_marginLeft="5dp"/>
 

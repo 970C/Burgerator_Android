@@ -267,13 +267,6 @@ public class RateActivity extends Activity {
                 mSpnrRatio.setAdapter(ratioAdapter);
                 mSpnrRatio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
                     @Override
-<<<<<<< HEAD
-                    public void onProgressChanged(SeekBar bunSeekBar, int progress, boolean fromUser) {
-                        int increment = 1;
-                        bunSeekBar.setMax(8);
-                        progress = Math.round(progress/increment) *increment;
-                        bunSeekBar.setProgress(progress);
-=======
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         // On selecting a spinner item
                         mSelectedRatio = parent.getItemAtPosition(position).toString();
@@ -281,7 +274,6 @@ public class RateActivity extends Activity {
 
                         // Showing selected spinner item
                         Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
->>>>>>> origin/master
                     }
                     public void onNothingSelected(AdapterView<?> arg0) {}
                 });

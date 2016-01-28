@@ -21,30 +21,28 @@
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".RateActivity" />
-        <activity android:name=".FeedActivity" />
-        <activity android:name=".Top10Activity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".LoginActivity">
+
+        <activity android:name=".RateActivity"
+            android:windowSoftInputMode="stateHidden"/>
+
+        <activity android:name=".FeedActivity"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity android:name=".Top10Activity"
+            android:windowSoftInputMode="stateHidden"/>
+
+        <activity android:name=".ProfileActivity"
+            android:windowSoftInputMode="stateHidden"/>
+
+        <activity android:name=".LoginActivity"
+            android:exported="true"
+            android:windowSoftInputMode="stateHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity android:name=".RateActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".FeedActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".Top10Activity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".ProfileActivity"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name=".LoginActivity"
-            android:windowSoftInputMode="stateHidden"></activity>
-=======
->>>>>>> origin/master
     </application>
 
 </manifest>
