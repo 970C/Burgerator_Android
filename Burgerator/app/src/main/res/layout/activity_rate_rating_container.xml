@@ -26,7 +26,8 @@
             android:layout_height="match_parent"
             android:layout_toRightOf="@id/tv_come_back"
             android:orientation="horizontal"
-            android:gravity="right">
+            android:gravity="right"
+            android:id="@+id/radgrp_wycbftb">
 
             <RadioButton
                 android:layout_width="wrap_content"

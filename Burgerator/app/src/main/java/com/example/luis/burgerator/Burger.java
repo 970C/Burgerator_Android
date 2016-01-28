@@ -45,13 +45,13 @@ public class Burger {
         return getVal("rating");
     }
     public String getImageURL(){
-        return getVal("imageURL");
+        return getVal("imageUrl");
     }
     public String getRestaurantName(){
         return getVal("restaurantName");
     }
     public String getRestaurantImageURL(){
-        return getVal("restaurantImageURL");
+        return getVal("restaurantImageUrl");
     }
     public String getRestaurantAddress(){
         return getVal("restaurantAddress");
@@ -66,7 +66,7 @@ public class Burger {
         return getVal("date");
     }
     public String getUserPhoto(){
-        return getVal("userPhoto");
+        return getVal("userphoto");
     }
     public String getPound(){
         return getVal("pound");
