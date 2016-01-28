@@ -4,13 +4,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class Top10Activity extends Activity {
 
@@ -30,7 +36,7 @@ public class Top10Activity extends Activity {
 
 
         // Inflate the first 10 boxes of the scroll view
-        View restaurantView = inflater.inflate(R.layout.activity_top10_burger_feed_containers, null);
+        View restaurantView = inflater.inflate(R.layout.activity_top10_scroll_content, null);
 
 
         // Add the forms/content to the ScrollView
@@ -39,16 +45,6 @@ public class Top10Activity extends Activity {
 
         // Display the view
         setContentView(v);
-
-        //set the picture for this burger entry
-        String burgerUrl0 = "https://s3.amazonaws.com/burgerdev/uploads/image_1453390645.png";
-        ImageView burgerImg0 = (ImageView)findViewById(R.id.imgv_burger_picture0);
-        new ImageLoadTask(burgerUrl0, burgerImg0).execute();
-
-        String burgerUrl1 = "https://s3.amazonaws.com/burgerdev/uploads/image_1453390645.png";
-        ImageView burgerImg1 = (ImageView)findViewById(R.id.imgv_burger_picture1);
-        new ImageLoadTask(burgerUrl1, burgerImg1).execute();
-
 
 
         //Add the string to the banner
@@ -109,5 +105,61 @@ public class Top10Activity extends Activity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        // HTTP Request to get the burger feed
+        final BurgerDB feedRequest = new BurgerDB(getApplicationContext());
+        feedRequest.getTopBurgers(null, "harokevin@yahoo.com", "",
+                new BurgerDB.VolleyCallback() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        onFeedResponse(result);
+                    }
+                });
+
+    }
+
+    //called when the server returns the burger feed
+    private void onFeedResponse(JSONObject response){
+        Log.d("Burgerator Top10Activity","onFeedResponse(): " + response.toString());
+
+        /////Initialize feed - populate views with burger data from response
+        BurgerFeed.instance().setFeed(response);
+
+        int[] containers = {R.id.container0,R.id.container1,R.id.container2,R.id.container3,R.id.container4,R.id.container5,R.id.container6,R.id.container7,R.id.container8,R.id.container9};
+
+        for(int i=0; i<10; i++) {
+                //Get current layout
+                RelativeLayout feedElement = (RelativeLayout) findViewById(containers[i]);
+
+                //Get current burger
+                Burger burger = BurgerFeed.instance().get(i);
+
+                //TODO: Set rank image/photo
+                /*ImageView userPhoto = (ImageView)feedElement.findViewById(R.id.imgv_user_image);
+                String userPhotoUrl = burger.getUserPhoto();
+                new ImageLoadTask(userPhotoUrl, userPhoto).execute();*/
+
+                //Set restaurant name
+                TextView restaurantName = (TextView) feedElement.findViewById(R.id.restaurant_name);
+                restaurantName.setText(burger.getRestaurantName());
+
+                //Set burger name
+                TextView burgerName = (TextView) feedElement.findViewById(R.id.burger_name);
+                burgerName.setText(burger.getBurgerName());
+
+                //Set restaurant address
+                TextView restaurantAddress = (TextView) feedElement.findViewById(R.id.restaurant_address);
+                restaurantAddress.setText(burger.getRestaurantAddress());
+
+                //Set burger image/photo
+                ImageView burgerPhoto = (ImageView) feedElement.findViewById(R.id.imgv_burger_picture);
+                String burgerPhotoUrl = burger.getImageURL();
+                new ImageLoadTask(burgerPhotoUrl, burgerPhoto).execute();
+        }
     }
 }

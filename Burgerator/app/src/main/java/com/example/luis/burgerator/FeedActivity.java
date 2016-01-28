@@ -109,8 +109,8 @@ public class FeedActivity extends Activity {
         super.onStart();
 
         // HTTP Request to get the burger feed
-        final BurgerDB testFeed = new BurgerDB(getApplicationContext());
-        testFeed.getBurgerFeed(null, "harokevin@yahoo.com", "", "",
+        final BurgerDB feedRequest = new BurgerDB(getApplicationContext());
+        feedRequest.getBurgerFeed(null, "harokevin@yahoo.com", "", "",
                 new BurgerDB.VolleyCallback() {
                     @Override
                     public void onSuccess(JSONObject result) {

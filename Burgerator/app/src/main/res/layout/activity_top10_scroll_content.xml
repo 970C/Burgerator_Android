@@ -3,6 +3,56 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/activity_top10_burger_feed_containers"/>
+    <include
+        android:id="@+id/container0"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_top10_burger_feed_container"/>
+    <include
+        android:id="@+id/container1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_top10_burger_feed_container"/>
+    <include
+        android:id="@+id/container2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_top10_burger_feed_container"/>
+    <include
+        android:id="@+id/container3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_top10_burger_feed_container"/>
+    <include
+        android:id="@+id/container4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_top10_burger_feed_container"/>
+    <include
+        android:id="@+id/container5"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_top10_burger_feed_container"/>
+    <include
+        android:id="@+id/container6"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_top10_burger_feed_container"/>
+    <include
+        android:id="@+id/container7"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_top10_burger_feed_container"/>
+    <include
+        android:id="@+id/container8"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_top10_burger_feed_container"/>
+    <include
+        android:id="@+id/container9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_top10_burger_feed_container"/>
+
 
 </LinearLayout>

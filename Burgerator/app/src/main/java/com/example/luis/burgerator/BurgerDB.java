@@ -126,9 +126,44 @@ public class BurgerDB {
 
         // Add the request to the request queue to be executed
         mRequestQueue.add(request);
-
         //TODO: Return the list of burgers and the hasNextPage boolean in a class
+    }
 
+
+    /**
+     * Returns the burger feed for a user
+     * @param userEmail - users email
+     * @param page      - page of the feed to return. 1 page = 10 items
+     * @return - should return an object that contains:
+     *                  a list of burger objects, and the boolean to hasNextPage
+     */
+    public void getTopBurgers(View view, final String userEmail, final String page, final VolleyCallback callback){
+        // /feed.php only works when you only send in the email
+        String endpointFile = "/topratedburgers.php";
+
+
+        // Request parameters(body of request)
+        Map<String,String> params = new HashMap<String,String>();
+        //TODO: Check userEmail, page, and global are safe to pass to the server
+        params.put("useremail", userEmail);
+        //params.put("page", page);
+
+        // Create request and its response
+        CustomRequest request = new CustomRequest(
+                Request.Method.POST, mEndpoint+endpointFile, params,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // return a list of burger objects using the backend code
+                        Log.d("BurgerDbLog getTopBurgers", response.toString());
+
+                        callback.onSuccess(response);
+                    }
+                },
+                mErrListener);  //end of request arguments
+
+        // Add the request to the request queue to be executed
+        mRequestQueue.add(request);
     }
 
     /***
@@ -207,23 +242,6 @@ public class BurgerDB {
         final File imageFile = new File(imagePath);
 
         try {
-            /*
-            // Create request and its response
-            CustomRequest request = new CustomRequest(
-                    Request.Method.POST, mEndpoint + endpointFile, params,
-                    new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            // return an object that contains the user information
-                            Log.d("BurgerDbLog", response.toString());
-
-                            callback.onSuccess(response);
-                        }
-                    },
-                    mErrListener);  //end of request arguments*/
-
-
-            // Create request and its response
             MultipartRequest request = new MultipartRequest(
                     mEndpoint + endpointFile, mErrListener, new Response.Listener<JSONObject>() {
                         @Override
