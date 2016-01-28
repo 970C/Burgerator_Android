@@ -10,17 +10,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 public class FeedActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feed);
 
         /*This indented block should come before the onClick listeners before
         the onClick listeners wont trigger.*/
@@ -33,7 +35,6 @@ public class FeedActivity extends Activity {
 
         // Inflate the first box of the scroll view
         View restaurantView = inflater.inflate(R.layout.activity_feed_scroll_content,null);
-
 
         // Add the forms/content to the ScrollView
         sv.addView(restaurantView);
@@ -101,7 +102,6 @@ public class FeedActivity extends Activity {
                 startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -117,13 +117,50 @@ public class FeedActivity extends Activity {
                         onFeedResponse(result);
                     }
                 });
+
     }
 
     //called when the server returns the burger feed
     private void onFeedResponse(JSONObject response){
         Log.d("Burgerator FeedActivity","onFeedResponse(): " + response.toString());
 
-        //TODO: populate views with burger data from response
+        /////Initialize feed - populate views with burger data from response
+        BurgerFeed.instance().setFeed(response);
+
+        //Get current layout
+        RelativeLayout feedElement = (RelativeLayout)findViewById(R.id.container0);
+
+        //Get current burger
+        Burger burger = BurgerFeed.instance().get(0);
+
+        //Set user image/photo
+        ImageView userPhoto = (ImageView)feedElement.findViewById(R.id.imgv_user_image);
+        String userPhotoUrl = burger.getUserPhoto();
+        new ImageLoadTask(userPhotoUrl, userPhoto).execute();
+
+        //Set restaurant name
+        TextView restaurantName = (TextView)feedElement.findViewById(R.id.restaurant_name);
+        restaurantName.setText(burger.getRestaurantName());
+
+        //Set burger name
+        TextView burgerName = (TextView)feedElement.findViewById(R.id.burger_name);
+        burgerName.setText(burger.getBurgerName());
+
+        //Set restaurant address
+        TextView restaurantAddress = (TextView)feedElement.findViewById(R.id.restaurant_address);
+        restaurantAddress.setText(burger.getRestaurantAddress());
+
+        //Set burger image/photo
+        ImageView burgerPhoto = (ImageView)feedElement.findViewById(R.id.imgv_burger_picture);
+        String burgerPhotoUrl = burger.getImageURL();
+        new ImageLoadTask(burgerPhotoUrl, burgerPhoto).execute();
+
+        //set number of pounds
+        TextView pounds = (TextView)feedElement.findViewById(R.id.amount_burger_pounded);
+        pounds.setText(burger.getPound());
+
+        //TODO: add pound it picture to imgbtn_pound_it
+
     }
 
 }

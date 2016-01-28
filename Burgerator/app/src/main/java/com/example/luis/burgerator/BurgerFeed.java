@@ -1,13 +1,17 @@
 package com.example.luis.burgerator;
 
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BurgerFeed {
 
     private JSONObject json;
     //store individual burger JSONObjects in an array;
-    private Burger[] burgers;
+    private List<Burger> burgers;
 
     //instantiate burgerFeed
     private static final BurgerFeed FEED = new BurgerFeed();
@@ -28,10 +32,15 @@ public class BurgerFeed {
             int size = json.getJSONArray("burger").length();
             int count = 0;
 
-            burgers = new Burger[size];
+            burgers = new ArrayList<>();
+            JSONArray burgerArray = json.getJSONArray("burger");
             while (count < size) {
                 //creates a Burger JSONObject for each burger in the JSONArray - necessary for specific getters for burger
-                burgers[count].setJSON(json.getJSONArray("burger").getJSONObject(count));
+                JSONObject burger = burgerArray.getJSONObject(count);
+                Burger b = new Burger();
+                b.setJSON(burger);
+                burgers.add(b);
+                count++;
             }
         }catch(Exception e){
             System.out.println(e);
@@ -52,11 +61,11 @@ public class BurgerFeed {
     }
 
     public int size(){
-        return this.burgers.length;
+        return this.burgers.size();
     }
 
     public Burger get(int _index){
-        return burgers[_index];
+        return burgers.get(_index);
     }
 
 

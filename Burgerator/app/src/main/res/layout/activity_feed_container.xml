@@ -13,21 +13,21 @@
         android:id="@+id/imgv_user_image"
         android:gravity="top"/>
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:id="@+id/restaurant_name"
         android:gravity="top"
         android:layout_toRightOf="@+id/imgv_user_image"/>
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/burger_name"
         android:layout_below="@+id/restaurant_name"
         android:layout_toRightOf="@+id/imgv_user_image"/>
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="25dp"
         android:id="@+id/restaurant_address"
@@ -46,7 +46,7 @@
         android:orientation="horizontal"
         android:layout_below="@+id/imgv_burger_picture">
 
-        <EditText
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/amount_burger_pounded"
