@@ -49,7 +49,9 @@ public class MultipartRequest extends Request<String> {
             entity.addTextBody(entry.getKey(), entry.getValue());
         }
         // Comes after for loop to override the value of "image"
-        entity.addPart(FILE_PART_NAME, new FileBody(mFilePart));
+        if(mFilePart == null){
+            entity.addTextBody(FILE_PART_NAME, "");
+        }else{ entity.addPart(FILE_PART_NAME, new FileBody(mFilePart)); }
     }
 
     @Override

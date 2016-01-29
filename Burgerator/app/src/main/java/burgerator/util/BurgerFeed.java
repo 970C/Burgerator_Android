@@ -65,7 +65,11 @@ public class BurgerFeed {
     }
 
     public Burger get(int _index){
-        return burgers.get(_index);
+        if (burgers.isEmpty()){
+            return null;
+        }else{
+            return burgers.get(_index);
+        }
     }
 
 

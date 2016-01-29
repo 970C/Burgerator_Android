@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.luis.burgerator.R;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import burgerator.util.Burger;
@@ -129,43 +130,49 @@ public class FeedActivity extends Activity {
     private void onFeedResponse(JSONObject response){
         Log.d("Burgerator FeedActivity","onFeedResponse(): " + response.toString());
 
-        /////Initialize feed - populate views with burger data from response
-        BurgerFeed.instance().setFeed(response);
+        try {
+            if(Integer.valueOf(response.getJSONObject("result").get("status").toString()) != 0){
+                /////Initialize feed - populate views with burger data from response
+                BurgerFeed.instance().setFeed(response);
 
-        //Get current layout
-        RelativeLayout feedElement = (RelativeLayout)findViewById(R.id.container0);
+                //Get current layout
+                RelativeLayout feedElement = (RelativeLayout)findViewById(R.id.container0);
 
-        //Get current burger
-        Burger burger = BurgerFeed.instance().get(0);
+                //Get current burger
+                Burger burger = BurgerFeed.instance().get(0);
 
-        //Set user image/photo
-        ImageView userPhoto = (ImageView)feedElement.findViewById(R.id.imgv_user_image);
-        String userPhotoUrl = burger.getUserPhoto();
-        new ImageLoadTask(userPhotoUrl, userPhoto).execute();
+                //Set user image/photo
+                ImageView userPhoto = (ImageView) feedElement.findViewById(R.id.imgv_user_image);
+                String userPhotoUrl = burger.getUserPhoto();
+                new ImageLoadTask(userPhotoUrl, userPhoto).execute();
 
-        //Set restaurant name
-        TextView restaurantName = (TextView)feedElement.findViewById(R.id.restaurant_name);
-        restaurantName.setText(burger.getRestaurantName());
+                //Set restaurant name
+                TextView restaurantName = (TextView) feedElement.findViewById(R.id.restaurant_name);
+                restaurantName.setText(burger.getRestaurantName());
 
-        //Set burger name
-        TextView burgerName = (TextView)feedElement.findViewById(R.id.burger_name);
-        burgerName.setText(burger.getBurgerName());
+                //Set burger name
+                TextView burgerName = (TextView) feedElement.findViewById(R.id.burger_name);
+                burgerName.setText(burger.getBurgerName());
 
-        //Set restaurant address
-        TextView restaurantAddress = (TextView)feedElement.findViewById(R.id.restaurant_address);
-        restaurantAddress.setText(burger.getRestaurantAddress());
+                //Set restaurant address
+                TextView restaurantAddress = (TextView) feedElement.findViewById(R.id.restaurant_address);
+                restaurantAddress.setText(burger.getRestaurantAddress());
 
-        //Set burger image/photo
-        ImageView burgerPhoto = (ImageView)feedElement.findViewById(R.id.imgv_burger_picture);
-        String burgerPhotoUrl = burger.getImageURL();
-        new ImageLoadTask(burgerPhotoUrl, burgerPhoto).execute();
+                //Set burger image/photo
+                ImageView burgerPhoto = (ImageView) feedElement.findViewById(R.id.imgv_burger_picture);
+                String burgerPhotoUrl = burger.getImageURL();
+                new ImageLoadTask(burgerPhotoUrl, burgerPhoto).execute();
 
-        //set number of pounds
-        TextView pounds = (TextView)feedElement.findViewById(R.id.amount_burger_pounded);
-        pounds.setText(burger.getPound());
+                //set number of pounds
+                TextView pounds = (TextView) feedElement.findViewById(R.id.amount_burger_pounded);
+                pounds.setText(burger.getPound());
 
-        //TODO: add pound it picture to imgbtn_pound_it
-
+                //TODO: add pound it picture to imgbtn_pound_it
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
+
 
 }

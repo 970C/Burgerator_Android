@@ -433,7 +433,7 @@ public class RateActivity extends Activity {
             //set comment
             mComments = (EditText)findViewById(R.id.et_comments);
             mWritenComments = mComments.getText().toString();
-            rating.setVal("comment","");
+            rating.setVal("comment",mWritenComments);
 
             //TODO: get information from yelp api
             rating.setVal("restaurantId", "5"); //test value
@@ -467,6 +467,7 @@ public class RateActivity extends Activity {
         try {
             //get map from burgerator blackend class
             //pass map to BurgerDB
+
             mRequest.rate(rating.getBurgerMap(), mBurgerPhotoPath, new BurgerDB.VolleyCallback() {
                 @Override
                 public void onSuccess(JSONObject response) {

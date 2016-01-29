@@ -136,7 +136,7 @@ public class Top10Activity extends Activity {
 
         int[] containers = {R.id.container0,R.id.container1,R.id.container2,R.id.container3,R.id.container4,R.id.container5,R.id.container6,R.id.container7,R.id.container8,R.id.container9};
 
-        for(int i=0; i<10; i++) {
+        for(int i=0; i<2; i++) {
                 //Get current layout
                 RelativeLayout feedElement = (RelativeLayout) findViewById(containers[i]);
 
