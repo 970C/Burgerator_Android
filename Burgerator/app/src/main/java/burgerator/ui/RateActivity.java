@@ -486,7 +486,7 @@ public class RateActivity extends Activity {
             if (response.getJSONObject("result").getInt("status") == 1) {
                 toastMessage = "Burger Successfully Rated!";
             }else{
-                toastMessage = response.getJSONObject("result").getJSONObject("status").get("status").toString();
+                toastMessage = "Burger Not Successfullt Rated! :(";
             }
         }catch(JSONException e){
             toastMessage = "no status key in the response";

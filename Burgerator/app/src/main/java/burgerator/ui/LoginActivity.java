@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.luis.burgerator.R;
 
@@ -49,7 +51,11 @@ public class LoginActivity extends Activity {
         //Initialize HTTP request handler
         mRequest = new BurgerDB(getApplicationContext());
 
-        //TODO: set banners text
+        //Add the string to the banner
+        TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
+        bannerBurgerFeed.setText(R.string.title_activity_burgerator);
+        bannerBurgerFeed.setTextSize((float)30.0);
+        bannerBurgerFeed.setGravity(Gravity.CENTER);
 
     }
 
