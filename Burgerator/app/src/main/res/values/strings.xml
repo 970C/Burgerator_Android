@@ -26,4 +26,6 @@
     <string name="title_activity_top_burgers">.top burgers.</string>
     <string name="title_activity_profile">.profile.</string>
 
+    <string name="in_dev">IN DEVELOPMENT</string>
+
 </resources>

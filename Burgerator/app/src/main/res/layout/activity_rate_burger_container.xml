@@ -13,21 +13,24 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:id="@+id/imgv_restaurant_thumbnail"
-        android:gravity="top"/>
+        android:gravity="top"
+        android:background="@drawable/in_dev"/>
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/et_restaurant_name"
         android:gravity="top"
-        android:layout_toRightOf="@id/imgv_restaurant_thumbnail"/>
+        android:layout_toRightOf="@id/imgv_restaurant_thumbnail"
+        android:text="@string/in_dev"/>
 
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/et_pick_your_restaurant"
         android:layout_toRightOf="@id/imgv_restaurant_thumbnail"
-        android:layout_below="@id/et_restaurant_name" />
+        android:layout_below="@id/et_restaurant_name"
+        android:text="@string/in_dev"/>
 
     <ImageButton
         android:layout_width="match_parent"
@@ -35,7 +38,8 @@
         android:id="@+id/imgbtn_snapshot"
         android:layout_below="@id/imgv_restaurant_thumbnail"
         android:onClick="onTakePicture"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:background="@drawable/burger_snap_shot"/>
 
 
     <LinearLayout

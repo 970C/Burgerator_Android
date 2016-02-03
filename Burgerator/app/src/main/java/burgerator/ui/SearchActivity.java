@@ -30,11 +30,11 @@ public class SearchActivity extends Activity {
         ScrollView sv = (ScrollView) v.findViewById(R.id.searchScrollView);
 
         // Inflate the first box of the scroll view
-        View restaurantView = inflater.inflate(R.layout.activity_search_result_container,null);
+        //TODO: Undo Comment:View restaurantView = inflater.inflate(R.layout.activity_search_result_container,null);
 
 
         // Add the forms/content to the ScrollView
-        sv.addView(restaurantView);
+        //TODO: Undo Comment: sv.addView(restaurantView);
 
 
         // Display the view
@@ -42,7 +42,7 @@ public class SearchActivity extends Activity {
 
         //Add the string to the banner
         TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
-        bannerBurgerFeed.setText(R.string.title_activity_find_aburger);
+        bannerBurgerFeed.setText(R.string.in_dev);
         bannerBurgerFeed.setTextSize((float)30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
 
