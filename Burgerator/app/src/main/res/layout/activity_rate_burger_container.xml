@@ -20,14 +20,16 @@
         android:layout_height="50dp"
         android:id="@+id/et_restaurant_name"
         android:gravity="top"
-        android:layout_toRightOf="@id/imgv_restaurant_thumbnail"/>
+        android:layout_toRightOf="@id/imgv_restaurant_thumbnail"
+        android:textColor="@color/black"/>
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/et_pick_your_restaurant"
         android:layout_toRightOf="@id/imgv_restaurant_thumbnail"
-        android:layout_below="@id/et_restaurant_name" />
+        android:layout_below="@id/et_restaurant_name"
+        android:textColor="@color/black"/>
 
     <ImageButton
         android:layout_width="match_parent"
