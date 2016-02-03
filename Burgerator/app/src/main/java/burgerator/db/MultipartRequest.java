@@ -3,21 +3,25 @@ package burgerator.db;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
+import com.android.volley.ParseError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.HttpHeaderParser;
 
-public class MultipartRequest extends Request<String> {
+public class MultipartRequest extends Request<JSONObject> {
 
 
     private MultipartEntityBuilder entity = MultipartEntityBuilder.create();
@@ -72,12 +76,21 @@ public class MultipartRequest extends Request<String> {
     }
 
     @Override
-    protected Response<String> parseNetworkResponse(NetworkResponse response) {
-        return Response.success("Uploaded", getCacheEntry());
+    protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+        try {
+            String jsonString = new String(response.data,
+                    HttpHeaderParser.parseCharset(response.headers));
+            return Response.success(new JSONObject(jsonString),
+                    HttpHeaderParser.parseCacheHeaders(response));
+        } catch (UnsupportedEncodingException e) {
+            return Response.error(new ParseError(e));
+        } catch (JSONException je) {
+            return Response.error(new ParseError(je));
+        }
     }
 
     @Override
-    protected void deliverResponse(String response) {
-        //mListener.onResponse(response);
+    protected void deliverResponse(JSONObject response) {
+        mListener.onResponse(response);
     }
 }

@@ -29,6 +29,7 @@ import android.widget.Toast;
 
 import com.example.luis.burgerator.R;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
@@ -249,9 +250,6 @@ public class RateActivity extends Activity {
                         // On selecting a spinner item
                         mSelectedCheese = parent.getItemAtPosition(position).toString();
                         String item = parent.getItemAtPosition(position).toString();
-
-                        // Showing selected spinner item
-                        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
                     }
                     public void onNothingSelected(AdapterView<?> arg0) {}
                 });
@@ -276,9 +274,6 @@ public class RateActivity extends Activity {
                         // On selecting a spinner item
                         mSelectedRatio = parent.getItemAtPosition(position).toString();
                         String item = parent.getItemAtPosition(position).toString();
-
-                        // Showing selected spinner item
-                        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
                     }
                     public void onNothingSelected(AdapterView<?> arg0) {}
                 });
@@ -303,9 +298,6 @@ public class RateActivity extends Activity {
                         // On selecting a spinner item
                         mSelcetedPrep = parent.getItemAtPosition(position).toString();
                         String item = parent.getItemAtPosition(position).toString();
-
-                        // Showing selected spinner item
-                        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
                     }
                     public void onNothingSelected(AdapterView<?> arg0) {}
                 });
@@ -478,10 +470,33 @@ public class RateActivity extends Activity {
         }catch(Exception e){
             Log.d("Burgerator BurgerDB.Rate Catch",e.toString());
         }
+
+        Toast.makeText(getApplicationContext(),
+                "Uploading Burger...",
+                Toast.LENGTH_LONG).show();
     }
 
-    public void onRatingSubmitResponse(JSONObject response){
+    public void onRatingSubmitResponse(JSONObject response) {
         //TODO:print scuccess or fail dialog depending on status returned?
-        Log.d("Burgerator Rate Response",response.toString());
+        Log.d("Burgerator Rate Response", response.toString());
+
+
+        String toastMessage = "default/null";
+        try{
+            if (response.getJSONObject("result").getInt("status") == 1) {
+                toastMessage = "Burger Successfully Rated!";
+            }else{
+                toastMessage = response.getJSONObject("result").getJSONObject("status").get("status").toString();
+            }
+        }catch(JSONException e){
+            toastMessage = "no status key in the response";
+        }
+
+        Toast.makeText(getApplicationContext(),
+                        toastMessage,
+                        Toast.LENGTH_SHORT).show();
+
+        //TODO:clear forms
+
     }
 }
