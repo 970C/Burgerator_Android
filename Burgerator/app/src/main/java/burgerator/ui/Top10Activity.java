@@ -2,6 +2,7 @@ package burgerator.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -136,7 +137,7 @@ public class Top10Activity extends Activity {
 
         int[] containers = {R.id.container0,R.id.container1,R.id.container2,R.id.container3,R.id.container4,R.id.container5,R.id.container6,R.id.container7,R.id.container8,R.id.container9};
 
-        for(int i=0; i<2; i++) {
+        for(int i=0; i<10; i++) {
                 //Get current layout
                 RelativeLayout feedElement = (RelativeLayout) findViewById(containers[i]);
 
@@ -144,6 +145,43 @@ public class Top10Activity extends Activity {
                 Burger burger = BurgerFeed.instance().get(i);
 
                 //TODO: Set rank image/photo
+                int rank = R.drawable.rank10;
+                switch (i){
+                    case 0:
+                        rank = R.drawable.rank1;
+                        break;
+                    case 1:
+                        rank = R.drawable.rank2;
+                        break;
+                    case 2:
+                        rank = R.drawable.rank3;
+                        break;
+                    case 3:
+                        rank = R.drawable.rank4;
+                        break;
+                    case 4:
+                        rank = R.drawable.rank5;
+                        break;
+                    case 5:
+                        rank = R.drawable.rank6;
+                        break;
+                    case 6:
+                        rank = R.drawable.rank7;
+                        break;
+                    case 7:
+                        rank = R.drawable.rank8;
+                        break;
+                    case 8:
+                        rank = R.drawable.rank9;
+                        break;
+                    case 9:
+                        rank = R.drawable.rank10;
+                        break;
+                    default:
+                        rank = R.drawable.rank1;
+                }
+                ImageView rankPhoto = (ImageView)feedElement.findViewById(R.id.imgv_burger_ranking);
+                rankPhoto.setImageResource(rank);
                 /*ImageView userPhoto = (ImageView)feedElement.findViewById(R.id.imgv_user_image);
                 String userPhotoUrl = burger.getUserPhoto();
                 new ImageLoadTask(userPhotoUrl, userPhoto).execute();*/
@@ -161,9 +199,9 @@ public class Top10Activity extends Activity {
                 restaurantAddress.setText(burger.getRestaurantAddress());
 
                 //Set burger image/photo
-                ImageView burgerPhoto = (ImageView) feedElement.findViewById(R.id.imgv_burger_picture);
-                String burgerPhotoUrl = burger.getImageURL();
-                new ImageLoadTask(burgerPhotoUrl, burgerPhoto).execute();
+                //TODO: UNCOMMNET ImageView burgerPhoto = (ImageView) feedElement.findViewById(R.id.imgv_burger_picture);
+                //String burgerPhotoUrl = burger.getImageURL();
+                //TODO: UNCOMMNET new ImageLoadTask(burgerPhotoUrl, burgerPhoto).execute();
         }
     }
 }

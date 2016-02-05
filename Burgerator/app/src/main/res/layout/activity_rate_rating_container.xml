@@ -19,7 +19,8 @@
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:id="@+id/tv_come_back"
-            android:text="@string/would_you_come_back_for_the_burger" />
+            android:text="@string/would_you_come_back_for_the_burger"
+            android:textColor="@color/black"/>
 
         <RadioGroup
             android:layout_width="match_parent"
@@ -32,12 +33,14 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:id="@+id/radbtn_thumbs_up"/>
+                android:id="@+id/radbtn_thumbs_up"
+                android:button="@drawable/thumbs_up_black"/>
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/radbtn_thumbs_down"
+                android:button="@drawable/thumbs_down_black"
                 />
         </RadioGroup>
     </RelativeLayout>

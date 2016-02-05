@@ -13,6 +13,8 @@
         android:inputType="textMultiLine"
         android:ems="10"
         android:id="@+id/et_comments"
-        android:text="comments..."/>
+        android:text="comments..."
+        android:textColor="@color/black"
+        android:background="@drawable/profile_background"/>
 
 </LinearLayout>

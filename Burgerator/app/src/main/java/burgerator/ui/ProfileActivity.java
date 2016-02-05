@@ -34,13 +34,13 @@ public class ProfileActivity extends Activity {
         View v = inflater.inflate(R.layout.activity_profile, null);
 
         // Find the ScrollView
-        ScrollView sv = (ScrollView) v.findViewById(R.id.profileScrollView);
+        //TODO: UNCOMMNET ScrollView sv = (ScrollView) v.findViewById(R.id.profileScrollView);
 
         // Inflate the first box of the scroll view
-        View restaurantView = inflater.inflate(R.layout.activity_profile_scroll_content,null);
+        ////TODO: UNCOMMNET View restaurantView = inflater.inflate(R.layout.activity_profile_scroll_content,null);
 
         // Add the forms/content to the ScrollView
-        sv.addView(restaurantView);
+        //TODO: UNCOMMNET sv.addView(restaurantView);
 
         // Display the view
         setContentView(v);
