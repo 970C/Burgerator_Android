@@ -25,6 +25,9 @@
     <string name="title_activity_burger_rating">.burger rating.</string>
     <string name="title_activity_top_burgers">.top burgers.</string>
     <string name="title_activity_profile">.profile.</string>
+    <string name="title_activity_ranking">.burger rankings</string>
+    <string name="title_activity_setting">.settings</string>
+    <string name="title_activity_restaurant_view">.restaurant view</string>
 
     <string name="in_dev">IN DEVELOPMENT</string>
 
