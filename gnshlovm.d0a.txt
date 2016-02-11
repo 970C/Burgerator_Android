@@ -1,0 +1,44 @@
+﻿Merge remote-tracking branch 'origin/master'
+
+# Conflicts:
+#	Burgerator/app/app.iml
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 1 different commit each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   Burgerator/.idea/gradle.xml
+#	modified:   Burgerator/.idea/misc.xml
+#	deleted:    Burgerator/app/app.iml
+#	new file:   Burgerator/app/src/main/java/burgerator/ui/RankingActivity.java
+#	new file:   Burgerator/app/src/main/java/burgerator/ui/RestaurantViewActivity.java
+#	new file:   Burgerator/app/src/main/java/burgerator/ui/SettingsActivity.java
+#	new file:   Burgerator/app/src/main/res/drawable/grey_button.png
+#	new file:   Burgerator/app/src/main/res/drawable/red_button.png
+#	new file:   Burgerator/app/src/main/res/drawable/settings_background.png
+#	new file:   Burgerator/app/src/main/res/drawable/settins_imgbutton_background.png
+#	new file:   Burgerator/app/src/main/res/layout/activity_burger_current_ranking_container.xml
+#	new file:   Burgerator/app/src/main/res/layout/activity_burger_rankings.xml
+#	new file:   Burgerator/app/src/main/res/layout/activity_burger_rankings_to_go.xml
+#	new file:   Burgerator/app/src/main/res/layout/activity_restaurant_view.xml
+#	new file:   Burgerator/app/src/main/res/layout/activity_restaurant_view_burgers.xml
+#	new file:   Burgerator/app/src/main/res/layout/activity_restaurant_view_menu_container.xml
+#	new file:   Burgerator/app/src/main/res/layout/activity_restaurant_view_restaurantinfo_container.xml
+#	new file:   Burgerator/app/src/main/res/layout/activity_restaurant_view_scroll_content.xml
+#	new file:   Burgerator/app/src/main/res/layout/activity_settings.xml
+#	new file:   Burgerator/app/src/main/res/layout/activity_settings_container.xml
+#	modified:   Burgerator/app/src/main/res/values/strings.xml
+#
+

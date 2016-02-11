@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background"
+    tools:context="burgerator.ui.SettingsActivity">
+
+    <include
+        android:id="@+id/banner"
+        layout="@layout/banner"/>
+
+    <include
+        android:id="@+id/settings_container"
+        layout="@layout/activity_settings_container"
+        android:layout_below="@+id/banner"
+        android:layout_width="match_parent"
+        android:layout_height="490dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp" />
+
+    <include layout="@layout/navigation_bar_container" />
+
+</RelativeLayout>
