@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="540dp"
     android:background="@drawable/burger_feed_border"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
@@ -29,27 +28,60 @@
             android:textColor="@color/black"
             android:layout_toRightOf="@+id/imgv_burger_ranking"/>
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:id="@+id/burger_name"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="15dp"
-            android:textColor="@color/black"
-            android:layout_below="@+id/restaurant_name"
-            android:layout_toRightOf="@+id/imgv_burger_ranking"/>
+            android:layout_height="wrap_content"
+            android:layout_below="@id/restaurant_name"
+            android:layout_marginRight="20dp"
+            android:id="@+id/top_10_container_header"
+            android:layout_toRightOf="@id/imgv_burger_ranking">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:id="@+id/restaurant_address"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="15dp"
-            android:textColor="@color/black"
-            android:layout_below="@+id/burger_name"
-            android:layout_toRightOf="@+id/imgv_burger_ranking"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:id="@+id/burger_name"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/black"
+                    android:gravity="left"
+                    android:text="BURGER NAME"
+                    />
 
-        <ImageView
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:id="@+id/restaurant_address"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginLeft="15dp"
+                    android:textColor="@color/black"
+                    android:layout_below="@+id/burger_name"
+                    android:gravity="left"
+                    android:text="RESTAURANT NAME"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:id="@+id/rating_value"
+                    android:gravity="right"
+                    android:textAlignment="gravity"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@id/burger_name"
+                    android:text="RatNum"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:id="@+id/rating_text"
+                    android:text="rating"
+                    android:layout_toRightOf="@id/restaurant_address"
+                    android:layout_below="@id/rating_value"
+                    android:gravity="right"
+                    android:textAlignment="gravity"
+                    android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+
+        <ImageButton
             android:layout_width="330dp"
             android:layout_height="400dp"
             android:id="@+id/imgv_burger_picture"
@@ -57,7 +89,9 @@
             android:layout_marginTop="5dp"
             android:layout_marginLeft="5dp"
             android:layout_below="@+id/imgv_burger_ranking"
-            android:background="@drawable/bacon_cheddar_burger"/>
+            android:onClick="onTop10BurgerClick"
+            android:descendantFocusability="blocksDescendants"/>
+
 
 </RelativeLayout>
 

@@ -9,20 +9,19 @@
     android:scaleType="centerCrop">
 
     <!-- banner on each activity -->
-    <include layout="@layout/banner"/>
+    <include layout="@layout/banner"
+            android:id="@+id/banner"/>
 
-    <ScrollView
-
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
+    <ListView
+        android:layout_below="@id/banner"
+        android:layout_width="match_parent"
         android:layout_height="440dp"
-        android:layout_marginTop="70dp"
-        android:id="@+id/top10ScrollView"
+        android:id="@+id/top10ListView"
         android:fillViewport="true"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp">
 
-    </ScrollView>
+    </ListView>
 
     <!-- navigation bar on each activity-->
     <include layout="@layout/navigation_bar_container"/>

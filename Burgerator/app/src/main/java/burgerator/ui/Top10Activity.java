@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -18,12 +19,18 @@ import com.example.luis.burgerator.R;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 import burgerator.util.Burger;
 import burgerator.db.BurgerDB;
 import burgerator.util.BurgerFeed;
 import burgerator.util.ImageLoadTask;
+import burgerator.util.Top10Adapter;
 
 public class Top10Activity extends Activity {
+
+    private ListView listView;
+    private Top10Adapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,25 +39,14 @@ public class Top10Activity extends Activity {
 
         /*This indented block should come before the onClick listeners before
         the onClick listeners wont trigger.*/
-        // Adding custom elements to a ScrollView
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.activity_top10, null);
 
-        // Find the ScrollView
-        ScrollView sv = (ScrollView) v.findViewById(R.id.top10ScrollView);
+        // Find the ListView
+        listView = (ListView) findViewById(R.id.top10ListView);
 
-
-        // Inflate the first 10 boxes of the scroll view
-        View restaurantView = inflater.inflate(R.layout.activity_top10_scroll_content, null);
-
-
-        // Add the forms/content to the ScrollView
-        sv.addView(restaurantView);
-
-
-        // Display the view
-        setContentView(v);
-
+        //Attach the adaper to the list view -> in: OnFeedResponse()
+        ArrayList dummyBurgers = new ArrayList<>();
+        mAdapter = new Top10Adapter(this, dummyBurgers );
+        listView.setAdapter(mAdapter);
 
         //Add the string to the banner
         TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
@@ -130,61 +126,72 @@ public class Top10Activity extends Activity {
 
     //called when the server returns the burger feed
     private void onFeedResponse(JSONObject response){
-        Log.d("Burgerator Top10Activity","onFeedResponse(): " + response.toString());
+        Log.d("Burgerator Top10Act","onFeedResponse(): " + response.toString());
 
         /////Initialize feed - populate views with burger data from response
         BurgerFeed.instance().setFeed(response);
 
-        int[] containers = {R.id.container0,R.id.container1,R.id.container2,R.id.container3,R.id.container4,R.id.container5,R.id.container6,R.id.container7,R.id.container8,R.id.container9};
+        //Create burger array
+        ArrayList<Burger> burgers = new ArrayList<Burger>();
+        for(int i=0; i<10; i++)
+            burgers.add(BurgerFeed.instance().get(i));
 
-        for(int i=0; i<10; i++) {
-                //Get current layout
-                RelativeLayout feedElement = (RelativeLayout) findViewById(containers[i]);
 
-                //Get current burger
-                Burger burger = BurgerFeed.instance().get(i);
+        mAdapter = (Top10Adapter) listView.getAdapter();
+        mAdapter.clear();
+        mAdapter.addAll(burgers);
+        mAdapter.notifyDataSetChanged();
+        //Attach the adaper to the list view
+        //listView.setAdapter(mAdapter);
 
-                //TODO: Set rank image/photo
-                int rank = R.drawable.rank10;
-                switch (i){
-                    case 0:
-                        rank = R.drawable.rank1;
-                        break;
-                    case 1:
-                        rank = R.drawable.rank2;
-                        break;
-                    case 2:
-                        rank = R.drawable.rank3;
-                        break;
-                    case 3:
-                        rank = R.drawable.rank4;
-                        break;
-                    case 4:
-                        rank = R.drawable.rank5;
-                        break;
-                    case 5:
-                        rank = R.drawable.rank6;
-                        break;
-                    case 6:
-                        rank = R.drawable.rank7;
-                        break;
-                    case 7:
-                        rank = R.drawable.rank8;
-                        break;
-                    case 8:
-                        rank = R.drawable.rank9;
-                        break;
-                    case 9:
-                        rank = R.drawable.rank10;
-                        break;
-                    default:
-                        rank = R.drawable.rank1;
-                }
+
+        //Get current layout
+        //RelativeLayout feedElement = (RelativeLayout) findViewById(containers[i]);
+
+        //Get current burger
+        //Burger burger = BurgerFeed.instance().get(i);
+        /*
+        //TODO: Set rank image/photo
+        int rank = R.drawable.rank10;
+        switch (i){
+            case 0:
+                rank = R.drawable.rank1;
+                break;
+            case 1:
+                rank = R.drawable.rank2;
+                break;
+            case 2:
+                rank = R.drawable.rank3;
+                break;
+            case 3:
+                rank = R.drawable.rank4;
+                break;
+            case 4:
+                rank = R.drawable.rank5;
+                break;
+            case 5:
+                rank = R.drawable.rank6;
+                break;
+            case 6:
+                rank = R.drawable.rank7;
+                break;
+            case 7:
+                rank = R.drawable.rank8;
+                break;
+            case 8:
+                rank = R.drawable.rank9;
+                break;
+            case 9:
+                rank = R.drawable.rank10;
+                break;
+            default:
+                rank = R.drawable.rank1;
+
                 ImageView rankPhoto = (ImageView)feedElement.findViewById(R.id.imgv_burger_ranking);
                 rankPhoto.setImageResource(rank);
                 /*ImageView userPhoto = (ImageView)feedElement.findViewById(R.id.imgv_user_image);
                 String userPhotoUrl = burger.getUserPhoto();
-                new ImageLoadTask(userPhotoUrl, userPhoto).execute();*/
+                new ImageLoadTask(userPhotoUrl, userPhoto).execute();/////////
 
                 //Set restaurant name
                 TextView restaurantName = (TextView) feedElement.findViewById(R.id.restaurant_name);
@@ -196,12 +203,8 @@ public class Top10Activity extends Activity {
 
                 //Set restaurant address
                 TextView restaurantAddress = (TextView) feedElement.findViewById(R.id.restaurant_address);
-                restaurantAddress.setText(burger.getRestaurantAddress());
+                restaurantAddress.setText(burger.getRestaurantAddress());*/
 
-                //Set burger image/photo
-                //TODO: UNCOMMNET ImageView burgerPhoto = (ImageView) feedElement.findViewById(R.id.imgv_burger_picture);
-                //String burgerPhotoUrl = burger.getImageURL();
-                //TODO: UNCOMMNET new ImageLoadTask(burgerPhotoUrl, burgerPhoto).execute();
-        }
     }
 }
+
