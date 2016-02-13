@@ -7,18 +7,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BurgerFeed {
-
-    private JSONObject json;
-    //store individual burger JSONObjects in an array;
-    private List<Burger> burgers;
-
-    //instantiate burgerFeed
-    private static final BurgerFeed FEED = new BurgerFeed();
-
-    private BurgerFeed(){
-        this.json = new JSONObject();
-    }
+public class BurgerFeed extends Feed{
 
     //return this instance of burgerFeed
     public static BurgerFeed instance(){
