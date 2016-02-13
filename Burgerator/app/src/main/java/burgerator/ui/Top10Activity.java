@@ -37,9 +37,6 @@ public class Top10Activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top10);
 
-        /*This indented block should come before the onClick listeners before
-        the onClick listeners wont trigger.*/
-
         // Find the ListView
         listView = (ListView) findViewById(R.id.top10ListView);
 

@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Acts as an adapter for the ListView in Top10Activity
+ * Acts as an adapter for the ListView in Top10Activity.
  * Uses Layout: R.layout.activity_top10_burger_feed_container
  */
 public class Top10Adapter extends ArrayAdapter {

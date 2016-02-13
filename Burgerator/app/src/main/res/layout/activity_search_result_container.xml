@@ -2,37 +2,92 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
+    android:layout_height="115dp"
+    android:background="@drawable/burger_feed_border"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp">
 
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:id="@+id/imgv_restaurant_thumbnail"
-        android:gravity="top" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="25dp"
-        android:id="@+id/restaurant_info"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
         android:gravity="top"
-        android:layout_toRightOf="@+id/imgv_restaurant_thumbnail"/>
+        android:id="@+id/imgv_restaurant_thumbnail"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:id="@+id/restaurant_name"
-        android:layout_below="@+id/restaurant_info"
-        android:layout_toRightOf="@+id/imgv_restaurant_thumbnail"/>
-
-    <EditText
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="25dp"
-        android:id="@+id/restaurant_address"
-        android:layout_below="@+id/restaurant_name"
-        android:layout_toRightOf="@+id/imgv_restaurant_thumbnail"/>
+        android:id="@+id/tv_distance"
+        android:gravity="top"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/black"
+        android:layout_toRightOf="@+id/imgv_restaurant_thumbnail"
+        android:text="1.9 mi"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_distance"
+        android:layout_marginRight="20dp"
+        android:id="@+id/layout_info_container"
+        android:layout_toRightOf="@id/imgv_restaurant_thumbnail">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/tv_num_in_list"
+            android:layout_toLeftOf="@id/restaurant_name"
+            android:text="1. "/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/tv_restaurant_name"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/black"
+            android:gravity="left"
+            android:text="RESTAURANT NAME"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:id="@+id/restaurant_address"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
+            android:layout_below="@id/tv_restaurant_name"
+            android:layout_alignParentLeft="true"
+            android:text="RESTAURANT ADDRESS"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/rating_value"
+            android:gravity="right"
+            android:textAlignment="gravity"
+            android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/tv_restaurant_name"
+            android:text="RatNum"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:id="@+id/rating_text"
+            android:text="rating"
+            android:layout_toRightOf="@id/restaurant_address"
+            android:layout_below="@id/rating_value"
+            android:gravity="right"
+            android:textAlignment="gravity"
+            android:layout_alignParentRight="true"/>
+
+    </RelativeLayout>
+
 
 </RelativeLayout>

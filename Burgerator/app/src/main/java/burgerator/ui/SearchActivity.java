@@ -4,45 +4,69 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.luis.burgerator.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import burgerator.util.SearchAdapter;
+import burgerator.util.Top10Adapter;
+import burgerator.yelp.YelpCallback;
+import burgerator.yelp.YelpRestaurantListRequest;
+import burgerator.yelp.YelpSingleRestaurantRequest;
+
 public class SearchActivity extends Activity {
+
+    private ListView mListView;
+    private SearchAdapter mAdapter;
+    private List mRestaurants = new ArrayList<>();
+    private YelpResponseCallbacks mCallbacks;
+
+    private class YelpResponseCallbacks implements YelpCallback {
+        @Override
+        public void onSuccess(JSONObject result) {onRestaurantListResponse(result);}
+        @Override
+        public void onSuccess(List<JSONObject> result) {onSingleRestaurantResponse(result);}
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
-        /*This indented block should come before the onClick listeners before
-        the onClick listeners wont trigger.*/
-        // Adding custom elements to a ScrollView
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.activity_search, null);
+        // Find the ListView
+        mListView = (ListView) findViewById(R.id.searchListView);
 
-        // Find the ScrollView
-        ScrollView sv = (ScrollView) v.findViewById(R.id.searchScrollView);
+        //Attach the adapter to the list view and requisition request
+        mCallbacks = new YelpResponseCallbacks();
+        new YelpRestaurantListRequest(mCallbacks).execute("Seattle, WA");
+        ArrayList dummyBurgers = new ArrayList<>();
+        mAdapter = new SearchAdapter(this, dummyBurgers );
+        mListView.setAdapter(mAdapter);
 
-        // Inflate the first box of the scroll view
-        //TODO: Undo Comment:View restaurantView = inflater.inflate(R.layout.activity_search_result_container,null);
-
-
-        // Add the forms/content to the ScrollView
-        //TODO: Undo Comment: sv.addView(restaurantView);
-
-
-        // Display the view
-        setContentView(v);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+                Toast.makeText(SearchActivity.this, "List Item Clicked", Toast.LENGTH_LONG).show();
+            }
+        });
 
         //Add the string to the banner
         TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
-        bannerBurgerFeed.setText(R.string.in_dev);
+        bannerBurgerFeed.setText(R.string.find_a_burger);
         bannerBurgerFeed.setTextSize((float)30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
 
@@ -98,8 +122,21 @@ public class SearchActivity extends Activity {
                 startActivity(intent);
             }
         });
+    }
 
 
+    public void onRestaurantListResponse(JSONObject response){
+        Log.d("SearchActiivity oRLR", response.toString());
+    }
+    public void onSingleRestaurantResponse(List<JSONObject> response){
+        Log.d("SearchActiivity oSRR", response.toString());
+
+        //Pass a fresh data set to the adapter to load
+        mRestaurants = response;
+        mAdapter = (SearchAdapter) mListView.getAdapter();
+        mAdapter.clear();
+        mAdapter.addAll(mRestaurants);
+        mAdapter.notifyDataSetChanged();
     }
 
 }
