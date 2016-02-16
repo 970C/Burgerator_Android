@@ -166,7 +166,8 @@ public class RateActivity extends Activity {
                     @Override
                     public void onStopTrackingTouch(SeekBar tasteSeekBar) {}
                     @Override
-                    public void onStartTrackingTouch(SeekBar tasteSeekBar) {}
+                    public void onStartTrackingTouch(SeekBar tasteSeekBar) {
+                    }
 
                     @Override
                     public void onProgressChanged(SeekBar tasteSeekBar, int progress, boolean fromUser) {
@@ -223,6 +224,7 @@ public class RateActivity extends Activity {
                 Spinner mSpnrCheese = (Spinner) findViewById(R.id.spnr_cheese);
                 // Spinner Drop down elements
                 List<String> cheeses = new ArrayList <String>();
+                cheeses.add(" ");
                 cheeses.add("no cheese");
                 cheeses.add("american");
                 cheeses.add("cheddar");
@@ -257,6 +259,7 @@ public class RateActivity extends Activity {
             ////SETTING UP RATIO SPINNER
                 mSpnrRatio = (Spinner) findViewById(R.id.spnr_ratio);
                 List<String> ratios = new ArrayList <String>();
+                ratios.add(" ");
                 ratios.add("bun heavy");
                 ratios.add("balanced");
                 ratios.add("meat heavy");
@@ -281,6 +284,7 @@ public class RateActivity extends Activity {
             ////SETTING UP PREP SPINNER
                 mSpnrPrep = (Spinner) findViewById(R.id.spnr_prep);
                 List<String> preps = new ArrayList <String>();
+                preps.add(" ");
                 preps.add("under done");
                 preps.add("just right");
                 preps.add("over done");

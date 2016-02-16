@@ -10,13 +10,19 @@
     android:background="@drawable/background">
 
     <!-- banner on each activity -->
-    <include layout="@layout/banner"/>
+    <include
+        android:id="@+id/banner"
+        layout="@layout/banner"/>
 
+    <include layout="@layout/activity_search_container"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/banner"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="130dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
 
@@ -38,7 +44,7 @@
         android:layout_height="fill_parent"
         android:id="@+id/searchListView"
         android:fillViewport="true"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="170dp"
         android:layout_marginBottom="70dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">

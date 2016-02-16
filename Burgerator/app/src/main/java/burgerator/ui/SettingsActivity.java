@@ -33,7 +33,7 @@ public class SettingsActivity extends Activity {
         setContentView(v);
 
         //Add the string to the banner
-        TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
+        TextView bannerBurgerFeed = (TextView)findViewById(R.id.settings_banner);
         bannerBurgerFeed.setText(R.string.title_activity_setting);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
 

@@ -16,24 +16,36 @@
         android:background="@drawable/settins_imgbutton_background"
         android:layout_marginTop="100dp">
 
-        <ImageButton
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="68dp" />
-        <ImageButton
+            android:layout_height="68dp"
+            android:background="@null"
+            android:text="@string/connect_to_facebook"/>
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="68dp" />
-        <ImageButton
+            android:layout_height="68dp"
+            android:background="@null"
+            android:text="@string/connect_to_twitter"/>
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="68dp" />
-        <ImageButton
+            android:layout_height="68dp"
+            android:background="@null"
+            android:text="@string/find_a_bug"/>
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="68dp" />
-        <ImageButton
+            android:layout_height="68dp"
+            android:background="@null"
+            android:text="@string/contact_us"/>
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="68dp" />
-        <ImageButton
+            android:layout_height="68dp"
+            android:background="@null"
+            android:text="@string/rate_app"/>
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="68dp" />
+            android:layout_height="68dp"
+            android:background="@null"
+            android:text="@string/log_out"/>
     </LinearLayout>
 
 </RelativeLayout>
