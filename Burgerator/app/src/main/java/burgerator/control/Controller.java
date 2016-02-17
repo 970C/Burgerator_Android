@@ -1,7 +1,10 @@
 package burgerator.control;
 
+import android.content.Context;
+
 import org.json.JSONObject;
 
+import burgerator.db.BurgerDB;
 import burgerator.util.*;
 
 /**
@@ -19,6 +22,8 @@ public class Controller {
     private Feed ttFeed = new Feed();
 
     private User user = new User();
+
+    private BurgerDB burgerDB;
 
     private Controller(){
 
@@ -40,7 +45,16 @@ public class Controller {
 
     }
 
-    public Feed getbFeed(){
+    public Feed getbFeed(Context _c){
+        burgerDB = new BurgerDB(_c);
+        burgerDB.getTopBurgers(null, "harokevin@yahoo.com", "",
+                new BurgerDB.VolleyCallback() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                       // onFeedResponse(result);
+                    }
+                });
+
 
         return bFeed;
     }

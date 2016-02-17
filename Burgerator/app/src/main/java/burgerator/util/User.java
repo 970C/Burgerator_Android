@@ -13,7 +13,8 @@ public class User {
 
     private JSONObject json;
 
-    //private static final User USER = new User();
+    //remove when controller ready
+    private static final User USER = new User();
 
     public User(){
 
@@ -24,11 +25,11 @@ public class User {
             Log.e("Burgerator","Cant put the useremail");
         }*/
     }
-/*
+
     public static User instance(){
         return USER;
     }
-    */
+
 
     public void setUser(JSONObject j){
         this.json = j;

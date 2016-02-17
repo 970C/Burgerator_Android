@@ -113,4 +113,8 @@ public class Feed {
         }
     }
 
+    public List<Burger> getAll(){
+        return this.burgers;
+    }
+
 }
