@@ -17,7 +17,7 @@
         android:layout_marginBottom="5dp"/>
 
     <include
-        android:id="@id/search_box"
+        android:id="@+id/search_box"
         layout="@layout/activity_search_container"
         android:layout_below="@+id/red_banner"
         android:layout_width="match_parent"
