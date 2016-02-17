@@ -7,8 +7,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BurgerFeed extends Feed{
+public class BurgerFeed{
 
+    private JSONObject json;
+    private ArrayList<Burger> burgers;
     private static final BurgerFeed FEED = new BurgerFeed();
 
     //return this instance of burgerFeed
@@ -17,15 +19,15 @@ public class BurgerFeed extends Feed{
     }
 
     private BurgerFeed(){
-        this =  new super();
     }
 
     public void setFeed(JSONObject j){
         try {
             //accesses the burgers jsonarray and creates an array of Burger(s)
-            super.json = j.getJSONObject("result").getJSONObject("content");
+            json = j.getJSONObject("result").getJSONObject("content");
             int size = json.getJSONArray("burger").length();
             int count = 0;
+
 
             burgers = new ArrayList<>();
             JSONArray burgerArray = json.getJSONArray("burger");

@@ -39,5 +39,14 @@ public class Controller {
     public void setUser(){
 
     }
+
+    public Feed getbFeed(){
+
+        return bFeed;
+    }
+
+    public Feed getTtFeed(){
+        return ttFeed;
+    }
 }
 
