@@ -13,9 +13,9 @@ public class User {
 
     private JSONObject json;
 
-    private static final User USER = new User();
+    //private static final User USER = new User();
 
-    private User(){
+    public User(){
 
         //this.json = new JSONObject();
         /*try {
@@ -24,10 +24,11 @@ public class User {
             Log.e("Burgerator","Cant put the useremail");
         }*/
     }
-
+/*
     public static User instance(){
         return USER;
     }
+    */
 
     public void setUser(JSONObject j){
         this.json = j;
@@ -44,7 +45,7 @@ public class User {
             //Log.getInstance().addLog(l + " success: " + result + "\n");
             //return result;
         }catch (Exception e){
-            Log.d("Burgerator getVal Exception", e.toString());
+            //Log.d("Burgerator getVal Exception", e.toString());
             //Log.getInstance().addLog("error " + l + ", " + e + "\n");
         }
         return result;

@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Created by Jonathan on 2/9/2016.
- * Feed is a Parent class for BurgerFeed and TopTenFeed
+ * Feed class for BurgerFeed and TopTenFeed
  *
  */
 public class Feed {
@@ -48,7 +48,7 @@ public class Feed {
                 count++;
             }
         }catch (Exception e) {
-            Log.d("addBurgersToList(j) failed to parse JSONObject; ", e.getMessage());
+            Log.d("addBurgersToList; ", e.getMessage());
         }
     }
 
@@ -60,7 +60,7 @@ public class Feed {
         try{
             addBurgersToList(_obj);
         }catch (Exception e) {
-            Log.d("addJSON(j) failed to add a new JSONObject; ", e.getMessage());
+            Log.d("addJSON ", e.getMessage());
         }
     }
 
@@ -72,7 +72,7 @@ public class Feed {
         try{
             addBurgersToList(_obj);
         }catch (Exception e) {
-            Log.d("addJSON(j) failed to add a new JSONObject; ", e.getMessage());
+            Log.d("setJSON", e.getMessage());
         }
     }
 

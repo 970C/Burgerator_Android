@@ -9,15 +9,21 @@ import java.util.List;
 
 public class BurgerFeed extends Feed{
 
+    private static final BurgerFeed FEED = new BurgerFeed();
+
     //return this instance of burgerFeed
     public static BurgerFeed instance(){
         return FEED;
     }
 
+    private BurgerFeed(){
+        this =  new super();
+    }
+
     public void setFeed(JSONObject j){
         try {
             //accesses the burgers jsonarray and creates an array of Burger(s)
-            this.json = j.getJSONObject("result").getJSONObject("content");
+            super.json = j.getJSONObject("result").getJSONObject("content");
             int size = json.getJSONArray("burger").length();
             int count = 0;
 
