@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +14,9 @@ import android.widget.TextView;
 import com.example.luis.burgerator.R;
 
 /**
- * Created by Luis on 2/10/2016.
+ * Created by Luis on 2/15/2016.
  */
-public class RestaurantViewActivity extends Activity {
+public class SelectBurgerActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +42,7 @@ public class RestaurantViewActivity extends Activity {
 
         //Add the string to the banner
         TextView bannerBurgerFeed = (TextView)findViewById(R.id.restaurant_view_banner);
-        bannerBurgerFeed.setText(R.string.title_activity_restaurant_view);
+        bannerBurgerFeed.setText(R.string.title_activity_select_burger);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
 
 
@@ -68,36 +67,5 @@ public class RestaurantViewActivity extends Activity {
             }
         });
 
-        // button to go to burger_rating
-        Button burgerRatingButton = (Button) findViewById(R.id.btn_rate_activity);
-        burgerRatingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RateActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        // button to go to top_burgers
-        Button topBurgersButton = (Button) findViewById(R.id.btn_top10_activity);
-        topBurgersButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Top10Activity.class);
-                startActivity(intent);
-            }
-        });
-
-        // button to go to profile
-        Button profileButton = (Button) findViewById(R.id.btn_profile_activity);
-        profileButton.setBackgroundResource(R.mipmap.profile_button_on);
-        profileButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 }

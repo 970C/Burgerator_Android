@@ -17,10 +17,11 @@
         android:layout_height="40dp"
         android:id="@+id/seekbtn_taste"
         android:background="@drawable/scroll_view_test"
-        android:progressDrawable="@drawable/scroll_bar_progress"
         android:thumb="@drawable/rating_slider_thumb"
+        android:progressDrawable="@color/maroon"
         android:paddingTop="20dp"
         android:paddingBottom="15dp"
+        android:thumbOffset="1dp"
         android:minHeight="10dp"
         android:maxHeight="10dp"/>
 
@@ -35,8 +36,10 @@
         android:id="@+id/seekbtn_toppings"
         android:background="@drawable/scroll_view_test"
         android:thumb="@drawable/rating_slider_thumb"
+        android:progressDrawable="@color/maroon"
         android:paddingTop="20dp"
         android:paddingBottom="15dp"
+        android:thumbOffset="1dp"
         android:minHeight="10dp"
         android:maxHeight="10dp"/>
 
@@ -52,8 +55,10 @@
         android:id="@+id/seekbtn_bun"
         android:background="@drawable/scroll_view_test"
         android:thumb="@drawable/rating_slider_thumb"
+        android:progressDrawable="@color/maroon"
         android:paddingTop="20dp"
         android:paddingBottom="15dp"
+        android:thumbOffset="1dp"
         android:minHeight="10dp"
         android:maxHeight="10dp"/>
 

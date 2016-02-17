@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/burgerator_dialog_box_title"
+        android:background="@android:color/transparent"
+        android:text="@string/dialog_box_title"
+        android:textColor="@color/black"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/imgbtn_open_photo"
+        android:layout_below="@+id/burgerator_dialog_box_title"
+        android:background="@android:color/transparent"
+        android:text="@string/open_photo"
+        android:textColor="@color/colorPrimary"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/imgbtn_open_camera"
+        android:layout_below="@+id/imgbtn_open_photo"
+        android:background="@null"
+        android:text="@string/open_camera"
+        android:textColor="@color/colorPrimary"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:id="@+id/imgbtn_cancel"
+        android:layout_below="@+id/imgbtn_open_camera"
+        android:background="@null"
+        android:text="@string/cancel"
+        android:textColor="@color/colorPrimary"/>
+
+</RelativeLayout>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <include
+        android:id="@+id/red_banner"
+        layout="@layout/select_restaurant_banner"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="5dp"/>
+
+    <include
+        android:id="@+id/restaurant_view_scroll"
+        layout="@layout/activity_restaurant_view_scroll_content"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_below="@+id/red_banner"/>
+
+    <include layout="@layout/activity_rate_dont_see_your_burger"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_below="@+id/restaurant_view_scroll"
+        android:layout_marginRight="5dp"
+        android:layout_marginLeft="5dp"/>
+
+</RelativeLayout>

@@ -10,6 +10,9 @@
     <string name="profile">[Profile]</string>
 
 
+    <string name="restaurant_name">restaurant name</string>
+    <string name="pick_your_restaurant">pick your restaurant</string>
+    <string name="prep">prep?</string>
     <string name="taste">Taste</string>
     <string name="toppings">Toppings</string>
     <string name="bun">Bun</string>
@@ -28,7 +31,24 @@
     <string name="title_activity_ranking">.burger rankings</string>
     <string name="title_activity_setting">.settings</string>
     <string name="title_activity_restaurant_view">.restaurant view</string>
+    <string name="title_activity_select_burger">.select burger</string>
+    <string name="title_activity_select_restaurant">.select restaurant</string>
 
     <string name="in_dev">IN DEVELOPMENT</string>
+
+    <string name="dialog_box_title">burgerator</string>
+    <string name="open_photo">Open Photos</string>
+    <string name="open_camera">Open Camera</string>
+    <string name="cancel">Cancel</string>
+
+    <string name="connect_to_facebook">connect facebook</string>
+    <string name="connect_to_twitter">connect twitter</string>
+    <string name="find_a_bug">find a bug in burgerator?</string>
+    <string name="contact_us">contact us</string>
+    <string name="rate_app">rate app</string>
+    <string name="log_out">log out</string>
+
+    <string name="done">Done</string>
+    <string name="dont_see_burger">Don't see your burger?</string>
 
 </resources>

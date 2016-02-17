@@ -1,6 +1,7 @@
 package burgerator.ui;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -46,7 +47,7 @@ public class ProfileActivity extends Activity {
         setContentView(v);
 
         //Add the string to the banner
-        TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
+        TextView bannerBurgerFeed = (TextView)findViewById(R.id.profile_banner);
         bannerBurgerFeed.setText(R.string.title_activity_profile);
         bannerBurgerFeed.setTextSize((float)30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
@@ -60,6 +61,36 @@ public class ProfileActivity extends Activity {
         ImageView userPhoto = (ImageView)findViewById(R.id.imgv_user_image);
         String userPhotoUrl = User.instance().getPhoto();
         new ImageLoadTask(userPhotoUrl, userPhoto).execute();
+
+        //dialog box
+        userPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Dialog userPhotoDialog = new Dialog(ProfileActivity.this);
+                userPhotoDialog.setContentView(R.layout.user_profile_pic_dialog_box);
+                userPhotoDialog.setCancelable(true);
+
+                //set up text
+                TextView dialogTitle = (TextView) userPhotoDialog.findViewById(R.id.burgerator_dialog_box_title);
+
+                //set up buttons
+                Button photoButton = (Button) userPhotoDialog.findViewById(R.id.imgbtn_open_photo);
+
+                Button cameraButton = (Button) userPhotoDialog.findViewById(R.id.imgbtn_open_camera);
+
+                //set up cancel button
+                Button cancelButton = (Button) userPhotoDialog.findViewById(R.id.imgbtn_cancel);
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+
+                userPhotoDialog.show();
+            }
+        });
 
         // Initializes button views and their onClickListeners
         // button to go to findABurger

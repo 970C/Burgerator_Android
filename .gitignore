@@ -49,3 +49,4 @@ burgeratorBackend/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
 burgeratorBackend/.metadata/.log
 Burgerator/.idea/gradle.xml
 *.iml
+Burgerator/app/app.iml
