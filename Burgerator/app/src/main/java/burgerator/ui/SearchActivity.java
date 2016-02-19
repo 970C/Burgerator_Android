@@ -16,11 +16,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.luis.burgerator.R;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import com.google.gson.reflect.TypeToken;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import burgerator.util.SearchAdapter;
@@ -38,9 +49,9 @@ public class SearchActivity extends Activity {
 
     private class YelpResponseCallbacks implements YelpCallback {
         @Override
-        public void onSuccess(JSONObject result) {onRestaurantListResponse(result);}
+        public void onSuccess(JSONObject result) {onSingleRestaurantResponse(result);}
         @Override
-        public void onSuccess(List<JSONObject> result) {onSingleRestaurantResponse(result);}
+        public void onSuccess(List<JSONObject> result) {onRestaurantListResponse(result);}
     }
 
     @Override
@@ -124,19 +135,88 @@ public class SearchActivity extends Activity {
         });
     }
 
-
-    public void onRestaurantListResponse(JSONObject response){
-        Log.d("SearchActiivity oRLR", response.toString());
+    public class YelpRestaurant{
+        public boolean is_claimed;
+        public Double rating;
+        public String mobile_url;
+        public String rating_img_url;
+        public int review_count;
+        public String name;
+        public String rating_img_url_small;
+        public String url;
+        public List<List<String>> categories;
+        public long menu_date_updated;
+        public String phone;
+        public String snippet_text;
+        public String image_url;
+        public String snippet_image_url;
+        public String display_phone;
+        public String rating_img_url_large;
+        public String menu_provider;
+        public String id;
+        public boolean is_closed;
+        public YelpLocation location;
     }
-    public void onSingleRestaurantResponse(List<JSONObject> response){
-        Log.d("SearchActiivity oSRR", response.toString());
+    public class YelpLocation{
+        public String cross_streets;
+        public String city;
+        public List<String> display_address;
+        public Double geo_accuracy;
+        public List<String> neighborhoods;
+        public String postal_code;
+        public String country_code;
+        public List<String> address;
+        public YelpCoordinate coordinate;
+        public String state_code;
+    }
+    public class YelpCoordinate{
+        public BigDecimal latitude;
+        public BigDecimal longitude;
+    }
 
-        //Pass a fresh data set to the adapter to load
+
+    public class YelpRestaurantRankComparator implements Comparator<YelpRestaurant> {
+        @Override
+        public int compare(YelpRestaurant lhs, YelpRestaurant rhs) {
+            return lhs.rating.compareTo(rhs.rating);
+        }
+    }
+
+    public void onRestaurantListResponse(List<JSONObject> response) {
+        Log.d("SearchActiivity oRLR", response.toString());
+
+        // Pass a fresh data set to mRestaurants
         mRestaurants = response;
+
+        // sort list of restaurants by rating
+        Gson gson = new Gson();
+        List<YelpRestaurant> restaurantList = new ArrayList<>();
+        for(JSONObject restaurant: response ) {
+            restaurantList.add(gson.fromJson(restaurant.toString(), YelpRestaurant.class));
+        }
+        Collections.sort(restaurantList, Collections.reverseOrder(new YelpRestaurantRankComparator()));
+
+        List<JSONObject> sortedRestaurants = new ArrayList<>();
+
+        for(YelpRestaurant yR: restaurantList) {
+            // YelpRestaurant -> JSON String
+            String restaurant = gson.toJson(yR);
+
+            try {
+                // JSON String -> JSONObject
+                sortedRestaurants.add(new JSONObject(restaurant));
+            }catch(JSONException e){Log.e("SearchActivityy oRLR()",e.toString());}
+        }
+        mRestaurants = sortedRestaurants;
+
+        // refresh the adapter
         mAdapter = (SearchAdapter) mListView.getAdapter();
         mAdapter.clear();
         mAdapter.addAll(mRestaurants);
         mAdapter.notifyDataSetChanged();
+    }
+    public void onSingleRestaurantResponse(JSONObject response){
+        Log.d("SearchActiivity oSRR", response.toString());
     }
 
 }
