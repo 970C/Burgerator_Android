@@ -12,7 +12,7 @@
     <!-- banner on each activity -->
     <include
         android:id="@+id/banner"
-        layout="@layout/banner"/>
+        layout="@layout/profile_banner"/>
 
     <!-- profile on profile activity -->
         <include

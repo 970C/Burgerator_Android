@@ -48,7 +48,7 @@ public class ProfileActivity extends Activity {
 
         //Add the string to the banner
         TextView bannerBurgerFeed = (TextView)findViewById(R.id.profile_banner);
-        bannerBurgerFeed.setText(R.string.title_activity_profile);
+        bannerBurgerFeed.setText(getResources().getText(R.string.title_activity_profile));
         bannerBurgerFeed.setTextSize((float)30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
 
