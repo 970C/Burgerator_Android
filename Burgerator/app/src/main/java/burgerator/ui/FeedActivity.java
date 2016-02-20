@@ -19,9 +19,11 @@ import com.example.luis.burgerator.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import burgerator.control.Controller;
 import burgerator.util.Burger;
 import burgerator.db.BurgerDB;
 import burgerator.util.BurgerFeed;
+import burgerator.util.Callback;
 import burgerator.util.ImageLoadTask;
 
 public class FeedActivity extends Activity {
@@ -123,6 +125,16 @@ public class FeedActivity extends Activity {
                         onFeedResponse(result);
                     }
                 });
+        //Controller.instance().requestBurgerFeed(getApplicationContext(), new Callback() {
+          //  @Override
+            //public void onSuccess(JSONObject result) {
+              //  onFeedResponse(result);
+
+                //do things after we know the request has come back
+                    //onFeedResponse
+                    //getFeed()
+           // }
+        //});
 
     }
 

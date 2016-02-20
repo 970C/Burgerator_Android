@@ -11,7 +11,12 @@ import burgerator.util.*;
  * Created by Jonathan on 2/6/2016.
  * static class that routes all requests from UI
  */
-public class Controller {
+public class Controller implements Callback{
+
+    @Override
+    public void onSuccess(JSONObject result) {
+
+    }
 
     private static final Controller CONTROLLER = new Controller();
 
@@ -29,32 +34,41 @@ public class Controller {
 
     }
 
-    public Controller instance(){
+    public static Controller instance(){
         return CONTROLLER;
     }
 
-    public void setBurgerFeed(JSONObject _json){
-        this.bFeed.addJSON(_json);
+    public void requestBurgerFeed(Context _c, final Callback callback){
+        burgerDB = new BurgerDB(_c);
+        burgerDB.getTopBurgers(null, "harokevin@yahoo.com", "",
+                new BurgerDB.VolleyCallback() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        // onFeedResponse(result);
+                        bFeed.addJSON(result);
+                        callback.onSuccess(result);
+                    }
+                });
     }
 
-    public void setTopTenFeed(JSONObject _json){
-        this.bFeed.addJSON(_json);
+    public void requestTopTenFeed(Context _c, final Callback callback){
+        burgerDB = new BurgerDB(_c);
+        burgerDB.getTopBurgers(null, "harokevin@yahoo.com", "",
+                new BurgerDB.VolleyCallback() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        // onFeedResponse(result);
+                        bFeed.addJSON(result);
+                        callback.onSuccess(result);
+                    }
+                });
     }
 
     public void setUser(){
 
     }
 
-    public Feed getbFeed(Context _c){
-        burgerDB = new BurgerDB(_c);
-        burgerDB.getTopBurgers(null, "harokevin@yahoo.com", "",
-                new BurgerDB.VolleyCallback() {
-                    @Override
-                    public void onSuccess(JSONObject result) {
-                       // onFeedResponse(result);
-                    }
-                });
-
+    public Feed getbFeed(){
 
         return bFeed;
     }

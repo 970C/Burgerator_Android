@@ -34,6 +34,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import burgerator.util.Restaurants;
 import burgerator.util.SearchAdapter;
 import burgerator.util.Top10Adapter;
 import burgerator.yelp.YelpCallback;
@@ -208,6 +209,8 @@ public class SearchActivity extends Activity {
             }catch(JSONException e){Log.e("SearchActivityy oRLR()",e.toString());}
         }
         mRestaurants = sortedRestaurants;
+        // Add restaurant list to persistant session object
+        Restaurants.instance().addList(mRestaurants);
 
         // refresh the adapter
         mAdapter = (SearchAdapter) mListView.getAdapter();
