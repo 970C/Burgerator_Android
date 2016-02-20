@@ -22,17 +22,17 @@
             android:layout_below="@+id/banner"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"/>
 
     <!-- filters on profile activity -->
         <include
             android:id="@+id/filters"
             layout="@layout/activity_profile_sortby_container"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="50dp"
             android:layout_below="@+id/profile"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"/>
 

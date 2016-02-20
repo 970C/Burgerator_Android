@@ -34,6 +34,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.BufferUnderflowException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -70,6 +71,11 @@ public class RateActivity extends Activity {
     //Comments on burgers
     private EditText mComments;
     String mWritenComments = "";
+
+    //select restaurant buttons
+    private ImageButton imgbtnLogo;
+    private Button btnPickYourRestaurant;
+    private Button btnSelectYourRestaurant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -157,6 +163,34 @@ public class RateActivity extends Activity {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+                //select restaurant to rate
+                imgbtnLogo = (ImageButton) findViewById(R.id.imgv_restaurant_thumbnail);
+                imgbtnLogo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(), SelectRestaurantActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+                btnSelectYourRestaurant = (Button) findViewById(R.id.et_restaurant_name);
+                btnSelectYourRestaurant.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(), SelectRestaurantActivity.class);
+                        startActivity(intent);
+                    }
+                });
+
+                btnPickYourRestaurant = (Button) findViewById(R.id.et_pick_your_restaurant);
+                btnPickYourRestaurant.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getApplicationContext(), SelectRestaurantActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -284,7 +318,7 @@ public class RateActivity extends Activity {
             ////SETTING UP PREP SPINNER
                 mSpnrPrep = (Spinner) findViewById(R.id.spnr_prep);
                 List<String> preps = new ArrayList <String>();
-                preps.add(" ");
+                preps.add("prep?");
                 preps.add("under done");
                 preps.add("just right");
                 preps.add("over done");
@@ -296,14 +330,16 @@ public class RateActivity extends Activity {
 
                 // attaching data adapter to spinner
                 mSpnrPrep.setAdapter(prepAdapter);
-                mSpnrPrep.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+                mSpnrPrep.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         // On selecting a spinner item
                         mSelcetedPrep = parent.getItemAtPosition(position).toString();
                         String item = parent.getItemAtPosition(position).toString();
                     }
-                    public void onNothingSelected(AdapterView<?> arg0) {}
+
+                    public void onNothingSelected(AdapterView<?> arg0) {
+                    }
                 });
 
         ////RADIO GROUP WYCBFTB
@@ -320,6 +356,13 @@ public class RateActivity extends Activity {
                 });
 
         ////Comments on Burger -> in method onRatingSubmit
+        mComments = (EditText) findViewById(R.id.et_comments);
+        mComments.setOnClickListener(new EditText.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mComments.setText("");
+            }
+        });
     }
 
     public void onTakePicture(View view){
