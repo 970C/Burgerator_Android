@@ -17,7 +17,7 @@ import com.example.luis.burgerator.R;
 import org.json.JSONObject;
 
 import burgerator.db.BurgerDB;
-import burgerator.util.User;
+import burgerator.util.UserOLD;
 
 public class LoginActivity extends Activity {
 
@@ -79,13 +79,13 @@ public class LoginActivity extends Activity {
         Log.d("Burgerator LoginActivity","onLoginResponse(): " + response.toString());
 
         //TODO: if status 1 go to search, if status 0 open error dialog
-        User.instance().setUser(response);
+        UserOLD.instance().setUser(response);
 
-        Log.d("Burgerator User Test", User.instance().toString());
+        Log.d("Burgerator UserOLD Test", UserOLD.instance().toString());
 
-        Log.d("Burgerator User Test getEmail", User.instance().getEmail());
-        Log.d("Burgerator User Test getUserPassword", User.instance().getUserPassword());
-        Log.d("Burgerator User Test getResult", User.instance().getResult());
+        Log.d("Burgerator UserOLD Test getEmail", UserOLD.instance().getEmail());
+        Log.d("Burgerator UserOLD Test getUserPassword", UserOLD.instance().getUserPassword());
+        Log.d("Burgerator UserOLD Test getResult", UserOLD.instance().getResult());
         Log.d("Burgerator Sanity test", "Sanity Test");
 
         //Go to search activity

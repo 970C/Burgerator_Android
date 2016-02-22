@@ -1,18 +1,27 @@
 package burgerator.util;
 
+//package burgeratorBackend;
+
 import org.json.JSONObject;
 
-/**
- * Created by Jonathan on 2/22/2016.
- */
-public class User {
+
+
+public class UserOLD {
+    //UserOLD class is a persistent wrapper for a jsonobject within a context of UserOLD
 
     private JSONObject json;
 
     //remove when controller ready
-    public User(){
-        json = new JSONObject();
+    private static final UserOLD USER = new UserOLD();
+
+    private UserOLD(){
+
     }
+
+    public static UserOLD instance(){
+        return USER;
+    }
+
 
     public void setUser(JSONObject j){
         this.json = j;

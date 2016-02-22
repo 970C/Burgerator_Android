@@ -14,7 +14,7 @@ import burgerator.util.*;
 public class Controller implements Callback{
 
     @Override
-    public void onSuccess(JSONObject result) {
+    public void onSuccess(Object result) {
 
     }
 
@@ -26,7 +26,7 @@ public class Controller implements Callback{
     private Feed bFeed =  new Feed();
     private Feed ttFeed = new Feed();
 
-    private User user = new User();
+    private UserOLD user = new UserOLD();
 
     private BurgerDB burgerDB;
 
@@ -39,27 +39,33 @@ public class Controller implements Callback{
     }
 
     public void requestBurgerFeed(Context _c, final Callback callback){
+
+        // HTTP Request to get the burger feed
         burgerDB = new BurgerDB(_c);
-        burgerDB.getTopBurgers(null, "harokevin@yahoo.com", "",
+        //TODO replace static email with user email
+        burgerDB.getBurgerFeed(null, "harokevin@yahoo.com", "", "",
                 new BurgerDB.VolleyCallback() {
                     @Override
                     public void onSuccess(JSONObject result) {
-                        // onFeedResponse(result);
+                        // add the JSONObject response (the feed in JSON form) to the bFeed
                         bFeed.addJSON(result);
-                        callback.onSuccess(result);
+                        //Pass the formatted feed in the callback
+                        callback.onSuccess(bFeed);
                     }
                 });
     }
 
     public void requestTopTenFeed(Context _c, final Callback callback){
         burgerDB = new BurgerDB(_c);
+        //TODO replace static email with user email
         burgerDB.getTopBurgers(null, "harokevin@yahoo.com", "",
                 new BurgerDB.VolleyCallback() {
                     @Override
                     public void onSuccess(JSONObject result) {
-                        // onFeedResponse(result);
-                        bFeed.addJSON(result);
-                        callback.onSuccess(result);
+                        // add the JSONObject response (the feed in JSON form) to the bFeed
+                        //Pass the formatted feed in the callback
+                        ttFeed.addJSON(result);
+                        callback.onSuccess(ttFeed);
                     }
                 });
     }
@@ -74,6 +80,7 @@ public class Controller implements Callback{
     }
 
     public Feed getTtFeed(){
+
         return ttFeed;
     }
 }

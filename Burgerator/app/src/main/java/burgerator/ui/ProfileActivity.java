@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.luis.burgerator.R;
@@ -20,7 +19,7 @@ import org.json.JSONObject;
 
 import burgerator.db.BurgerDB;
 import burgerator.util.ImageLoadTask;
-import burgerator.util.User;
+import burgerator.util.UserOLD;
 
 public class ProfileActivity extends Activity {
 
@@ -53,13 +52,13 @@ public class ProfileActivity extends Activity {
         bannerBurgerFeed.setGravity(Gravity.CENTER);
 
         TextView userName = (TextView)findViewById(R.id.user_name);
-        userName.setText(User.instance().getUserName());
+        userName.setText(UserOLD.instance().getUserName());
 
         TextView userTitle = (TextView)findViewById(R.id.user_ranking);
-        userTitle.setText(User.instance().getTitle());
+        userTitle.setText(UserOLD.instance().getTitle());
 
         ImageView userPhoto = (ImageView)findViewById(R.id.imgv_user_image);
-        String userPhotoUrl = User.instance().getPhoto();
+        String userPhotoUrl = UserOLD.instance().getPhoto();
         new ImageLoadTask(userPhotoUrl, userPhoto).execute();
 
         //dialog box

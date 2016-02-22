@@ -34,7 +34,6 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.BufferUnderflowException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,7 +41,7 @@ import java.util.List;
 
 import burgerator.db.BurgerDB;
 import burgerator.util.Burgerator;
-import burgerator.util.User;
+import burgerator.util.UserOLD;
 
 public class RateActivity extends Activity {
 
@@ -455,7 +454,7 @@ public class RateActivity extends Activity {
         Burgerator rating = new Burgerator();
 
             //populate burgerator with data from views
-            rating.setVal("useremail", User.instance().getEmail());
+            rating.setVal("useremail", UserOLD.instance().getEmail());
 
             //set cheese and ratio - no where to put prep in db
             rating.setVal("cheese",mSelectedCheese);
