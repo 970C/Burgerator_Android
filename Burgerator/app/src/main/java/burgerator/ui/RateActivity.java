@@ -39,9 +39,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import burgerator.control.Controller;
 import burgerator.db.BurgerDB;
 import burgerator.util.Burgerator;
-import burgerator.util.UserOLD;
+import burgerator.util.User;
 
 public class RateActivity extends Activity {
 
@@ -454,7 +455,7 @@ public class RateActivity extends Activity {
         Burgerator rating = new Burgerator();
 
             //populate burgerator with data from views
-            rating.setVal("useremail", UserOLD.instance().getEmail());
+            rating.setVal("useremail", Controller.instance().getUser().getEmail());
 
             //set cheese and ratio - no where to put prep in db
             rating.setVal("cheese",mSelectedCheese);

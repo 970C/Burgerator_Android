@@ -1,6 +1,7 @@
 package burgerator.control;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONObject;
 
@@ -26,7 +27,7 @@ public class Controller implements Callback{
     private Feed bFeed =  new Feed();
     private Feed ttFeed = new Feed();
 
-    private UserOLD user = new UserOLD();
+    private User user = new User();
 
     private BurgerDB burgerDB;
 
@@ -70,10 +71,6 @@ public class Controller implements Callback{
                 });
     }
 
-    public void setUser(){
-
-    }
-
     public Feed getbFeed(){
 
         return bFeed;
@@ -82,6 +79,34 @@ public class Controller implements Callback{
     public Feed getTtFeed(){
 
         return ttFeed;
+    }
+
+    //User
+    public void requestUserAuth(String email, String pw, Context _c, final Callback callback){
+        burgerDB = new BurgerDB(_c);
+        burgerDB.emailLogin(null, email,
+                pw,
+                new BurgerDB.VolleyCallback() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        // add the JSONObject response (the feed in JSON form) to the bFeed
+                        //Pass the formatted feed in the callback
+                        Log.d("result: ", result.toString());
+                        user.setUser(result);
+                        callback.onSuccess(user);
+                    }
+                });
+    }
+
+    public User getUser(){
+        return user;
+    }
+
+    public boolean isAuthenticated(){
+        if(user.getResult().equalsIgnoreCase("1")) {
+            return true;
+        }
+        return false;
     }
 }
 

@@ -7,13 +7,15 @@ import org.json.JSONObject;
  */
 public class User {
 
+    //container for JSON
     private JSONObject json;
 
-    //remove when controller ready
+    //instantiate empty JSON to prevent null pointer exception
     public User(){
         json = new JSONObject();
     }
 
+    //assign a JSON object (user login response data)
     public void setUser(JSONObject j){
         this.json = j;
     }
@@ -23,14 +25,11 @@ public class User {
     //return a string value for a particular key if it exists
     private String getVal(String k){
         String result = "";
-        String l = "UserOLD: get " + k;
         try{
             result = json.getJSONObject("result").getJSONObject("content").getString(k);
-            //Log.getInstance().addLog(l + " success: " + result + "\n");
             //return result;
         }catch (Exception e){
             //Log.d("Burgerator getVal Exception", e.toString());
-            //Log.getInstance().addLog("error " + l + ", " + e + "\n");
         }
         return result;
     }

@@ -7,8 +7,6 @@ public class Burger {
 
     private JSONObject json;
 
-    //private static final UserOLD USER = new UserOLD();
-
     public Burger(){
         this.json = new JSONObject();
     }

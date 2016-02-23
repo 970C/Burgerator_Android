@@ -17,9 +17,9 @@ import com.example.luis.burgerator.R;
 
 import org.json.JSONObject;
 
+import burgerator.control.Controller;
 import burgerator.db.BurgerDB;
 import burgerator.util.ImageLoadTask;
-import burgerator.util.UserOLD;
 
 public class ProfileActivity extends Activity {
 
@@ -52,13 +52,13 @@ public class ProfileActivity extends Activity {
         bannerBurgerFeed.setGravity(Gravity.CENTER);
 
         TextView userName = (TextView)findViewById(R.id.user_name);
-        userName.setText(UserOLD.instance().getUserName());
+        userName.setText(Controller.instance().getUser().getUserName());
 
         TextView userTitle = (TextView)findViewById(R.id.user_ranking);
-        userTitle.setText(UserOLD.instance().getTitle());
+        userTitle.setText(Controller.instance().getUser().getTitle());
 
         ImageView userPhoto = (ImageView)findViewById(R.id.imgv_user_image);
-        String userPhotoUrl = UserOLD.instance().getPhoto();
+        String userPhotoUrl = Controller.instance().getUser().getPhoto();
         new ImageLoadTask(userPhotoUrl, userPhoto).execute();
 
         //dialog box
