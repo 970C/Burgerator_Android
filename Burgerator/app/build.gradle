@@ -49,4 +49,10 @@ dependencies {
 
     //util/yelp: used to sort yelp JSON
     compile 'com.google.code.gson:gson:2.6.1'
+
+    //facebook login: import com.facebook.FacebookSdk
+    compile 'com.facebook.android:facebook-android-sdk:4.10.0'
+
+
+
 }
