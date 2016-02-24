@@ -25,7 +25,7 @@ public class SelectBurgerActivity extends Activity {
         the onClick listeners wont trigger.*/
         // Adding custom elements to a ScrollView
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.activity_restaurant_view, null);
+        View v = inflater.inflate(R.layout.activity_rate_select_burger, null);
 
         // Find the ScrollView
         ScrollView sv = (ScrollView) v.findViewById(R.id.restaurant_view_scroll);

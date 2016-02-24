@@ -3,7 +3,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="yelp">YELP ACTIVITY</string>
-    <string name="find_a_burger">[Find A Burger]</string>
+    <string name="find_a_burger">.find a burger</string>
     <string name="burger_feed">[Burger Feed]</string>
     <string name="rate_a_burger">[Rate A Burger]</string>
     <string name="top_burgers">[Top Burgers]</string>

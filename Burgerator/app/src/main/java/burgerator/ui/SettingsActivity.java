@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -33,10 +34,18 @@ public class SettingsActivity extends Activity {
         setContentView(v);
 
         //Add the string to the banner
-        TextView bannerBurgerFeed = (TextView)findViewById(R.id.settings_banner);
-        bannerBurgerFeed.setText(R.string.title_activity_setting);
+        TextView bannerBurgerFeed = (TextView)findViewById(R.id.setting_banner);
+        bannerBurgerFeed.setText(getResources().getText(R.string.title_activity_setting));
         bannerBurgerFeed.setGravity(Gravity.CENTER);
 
+        ImageButton back = (ImageButton) findViewById(R.id.imgbtn_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // Initializes button views and their onClickListeners
         // button to go to findABurger

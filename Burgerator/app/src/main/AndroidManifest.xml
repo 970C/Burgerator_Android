@@ -39,6 +39,18 @@
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:name="burgerator.ui.SelectBurgerActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name="burgerator.ui.SelectRestaurantActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name="burgerator.ui.SettingsActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity android:name="burgerator.ui.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="stateHidden"
