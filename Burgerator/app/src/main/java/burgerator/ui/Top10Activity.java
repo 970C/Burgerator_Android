@@ -19,11 +19,15 @@ import com.example.luis.burgerator.R;
 
 import org.json.JSONObject;
 
+import java.io.Console;
 import java.util.ArrayList;
 
+import burgerator.control.Controller;
 import burgerator.util.Burger;
 import burgerator.db.BurgerDB;
 import burgerator.util.BurgerFeed;
+import burgerator.util.Callback;
+import burgerator.util.Feed;
 import burgerator.util.ImageLoadTask;
 import burgerator.util.Top10Adapter;
 
@@ -110,6 +114,7 @@ public class Top10Activity extends Activity {
         super.onStart();
 
         // HTTP Request to get the burger feed
+        /* OLD
         final BurgerDB feedRequest = new BurgerDB(getApplicationContext());
         feedRequest.getTopBurgers(null, "harokevin@yahoo.com", "",
                 new BurgerDB.VolleyCallback() {
@@ -118,20 +123,30 @@ public class Top10Activity extends Activity {
                         onFeedResponse(result);
                     }
                 });
+        */
+        Controller.instance().requestTopTenFeed(getApplicationContext(), new Callback() {
+            @Override
+            public void onSuccess(Object result) {
+                //on successful callback, call onfeedresponse and pass it our populated feed
+                onFeedResponse( (Feed) result );
+            }
+        });
 
     }
 
     //called when the server returns the burger feed
-    private void onFeedResponse(JSONObject response){
+    //private void onFeedResponse(JSONObject response){
+    private void onFeedResponse(Feed response){
         Log.d("Burgerator Top10Act","onFeedResponse(): " + response.toString());
 
         /////Initialize feed - populate views with burger data from response
-        BurgerFeed.instance().setFeed(response);
+        //BurgerFeed.instance().setFeed(response);
 
         //Create burger array
         ArrayList<Burger> burgers = new ArrayList<Burger>();
+        System.out.println(response.size());
         for(int i=0; i<10; i++)
-            burgers.add(BurgerFeed.instance().get(i));
+            burgers.add(response.get(i));
 
 
         mAdapter = (Top10Adapter) listView.getAdapter();

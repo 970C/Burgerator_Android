@@ -1,6 +1,7 @@
 package burgerator.control;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONObject;
 
@@ -11,7 +12,12 @@ import burgerator.util.*;
  * Created by Jonathan on 2/6/2016.
  * static class that routes all requests from UI
  */
-public class Controller {
+public class Controller implements Callback{
+
+    @Override
+    public void onSuccess(Object result) {
+
+    }
 
     private static final Controller CONTROLLER = new Controller();
 
@@ -29,38 +35,78 @@ public class Controller {
 
     }
 
-    public Controller instance(){
+    public static Controller instance(){
         return CONTROLLER;
     }
 
-    public void setBurgerFeed(JSONObject _json){
-        this.bFeed.addJSON(_json);
-    }
+    public void requestBurgerFeed(Context _c, final Callback callback){
 
-    public void setTopTenFeed(JSONObject _json){
-        this.bFeed.addJSON(_json);
-    }
-
-    public void setUser(){
-
-    }
-
-    public Feed getbFeed(Context _c){
+        // HTTP Request to get the burger feed
         burgerDB = new BurgerDB(_c);
+        //TODO replace static email with user email
+        burgerDB.getBurgerFeed(null, "harokevin@yahoo.com", "", "",
+                new BurgerDB.VolleyCallback() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        // add the JSONObject response (the feed in JSON form) to the bFeed
+                        bFeed.addJSON(result);
+                        //Pass the formatted feed in the callback
+                        callback.onSuccess(bFeed);
+                    }
+                });
+    }
+
+    public void requestTopTenFeed(Context _c, final Callback callback){
+        burgerDB = new BurgerDB(_c);
+        //TODO replace static email with user email
         burgerDB.getTopBurgers(null, "harokevin@yahoo.com", "",
                 new BurgerDB.VolleyCallback() {
                     @Override
                     public void onSuccess(JSONObject result) {
-                       // onFeedResponse(result);
+                        // add the JSONObject response (the feed in JSON form) to the bFeed
+                        //Pass the formatted feed in the callback
+                        ttFeed.addJSON(result);
+                        callback.onSuccess(ttFeed);
                     }
                 });
+    }
 
+    public Feed getbFeed(){
 
         return bFeed;
     }
 
     public Feed getTtFeed(){
+
         return ttFeed;
+    }
+
+    //User
+    public void requestUserAuth(String email, String pw, Context _c, final Callback callback){
+        burgerDB = new BurgerDB(_c);
+        burgerDB.emailLogin(null, email,
+                pw,
+                new BurgerDB.VolleyCallback() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        // add the JSONObject response (the feed in JSON form) to the bFeed
+                        //Pass the formatted feed in the callback
+                        Log.d("result: ", result.toString());
+                        user.setUser(result);
+                        callback.onSuccess(user);
+                    }
+                });
+    }
+
+    public User getUser(){
+        return user;
+    }
+
+    public boolean isAuthenticated(){
+        if(user.getResult().equalsIgnoreCase("1")) {
+            return true;
+        }
+        return false;
     }
 }
 

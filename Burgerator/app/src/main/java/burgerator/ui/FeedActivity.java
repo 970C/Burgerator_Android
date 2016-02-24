@@ -19,9 +19,12 @@ import com.example.luis.burgerator.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import burgerator.control.Controller;
 import burgerator.util.Burger;
 import burgerator.db.BurgerDB;
 import burgerator.util.BurgerFeed;
+import burgerator.util.Callback;
+import burgerator.util.Feed;
 import burgerator.util.ImageLoadTask;
 
 public class FeedActivity extends Activity {
@@ -115,6 +118,7 @@ public class FeedActivity extends Activity {
         super.onStart();
 
         // HTTP Request to get the burger feed
+        /*
         final BurgerDB feedRequest = new BurgerDB(getApplicationContext());
         feedRequest.getBurgerFeed(null, "harokevin@yahoo.com", "", "",
                 new BurgerDB.VolleyCallback() {
@@ -123,23 +127,35 @@ public class FeedActivity extends Activity {
                         onFeedResponse(result);
                     }
                 });
+        */
+        //make request to controller to call burgerdb for http req
+        Controller.instance().requestBurgerFeed(getApplicationContext(), new Callback() {
+            @Override
+            public void onSuccess(Object result) {
+                //on successful callback, call onfeedresponse and pass it our populated feed
+                onFeedResponse((Feed) result);
+           }
+        });
 
     }
 
     //called when the server returns the burger feed
-    private void onFeedResponse(JSONObject response){
+    // OLD private void onFeedResponse(JSONObject response){
+    private void onFeedResponse(Feed response){
         Log.d("Burgerator FeedActivity","onFeedResponse(): " + response.toString());
 
         try {
-            if(Integer.valueOf(response.getJSONObject("result").get("status").toString()) != 0){
+            //if(Integer.valueOf(response.getJSONObject("result").get("status").toString()) != 0){
+            if(response.size() > 0){
                 /////Initialize feed - populate views with burger data from response
-                BurgerFeed.instance().setFeed(response);
+                //BurgerFeed.instance().setFeed(response);
 
                 //Get current layout
                 RelativeLayout feedElement = (RelativeLayout)findViewById(R.id.container0);
 
                 //Get current burger
-                Burger burger = BurgerFeed.instance().get(0);
+                //Burger burger = BurgerFeed.instance().get(0);
+                Burger burger = response.get(0);
 
                 //Set user image/photo
                 ImageView userPhoto = (ImageView) feedElement.findViewById(R.id.imgv_user_image);
@@ -169,7 +185,8 @@ public class FeedActivity extends Activity {
 
                 //TODO: add pound it picture to imgbtn_pound_it
             }
-        } catch (JSONException e) {
+        } //catch (JSONException e) {
+            catch (NullPointerException e){
             e.printStackTrace();
         }
     }
