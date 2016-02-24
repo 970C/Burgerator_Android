@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.luis.burgerator.R;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -89,10 +90,31 @@ public class SearchAdapter extends ArrayAdapter{
 
             //Set content for containers' views
             String restrauntImgUrl = "";
+            String restaurantAddr = "";
+            double rating = 0.0;
             try {
+                //TODO: create a config for yelp keys like: image_url, name, display_address, etc
+                // set restaurant image
                 restrauntImgUrl = (String)((JSONObject)mRestaurants.get(position)).get("image_url");
                 Glide.with(mContext).load(restrauntImgUrl).into(restrauntImg);
-                //TODO: set actual restaurant data
+
+                // set restaurant name
+                restaurantNameTxt.setText((String)((JSONObject)mRestaurants.get(position)).get("name"));
+
+                // set restaurant address [street addr], [city], [state]
+                JSONObject locationData = (JSONObject)((JSONObject) mRestaurants.get(position)).get("location");
+                JSONArray displayAddressArray = (JSONArray)locationData.get("display_address");
+                restaurantAddr += displayAddressArray.getString(2);//gets street addr
+                restaurantAddr += ", ";
+                restaurantAddr += locationData.getString("city");
+                restaurantAddr += ", ";
+                restaurantAddr += locationData.getString("state_code");
+                restaurantAddrTxt.setText(restaurantAddr);
+
+                // set restaurant rating
+                rating = ((JSONObject)mRestaurants.get(position)).getDouble("rating")*2;
+                ratingTxt.setText( Double.toString(rating) );
+
             } catch (JSONException e) {
                 Log.e("SearchAdapter getView", e.toString());
             }

@@ -1,36 +1,21 @@
 package burgerator.util;
 
-//package burgeratorBackend;
-
-import android.util.Log;
-
 import org.json.JSONObject;
 
-
-
+/**
+ * Created by Jonathan on 2/22/2016.
+ */
 public class User {
-    //User class is a persistent wrapper for a jsonobject within a context of User
 
+    //container for JSON
     private JSONObject json;
 
-    //remove when controller ready
-    private static final User USER = new User();
-
+    //instantiate empty JSON to prevent null pointer exception
     public User(){
-
-        //this.json = new JSONObject();
-        /*try {
-            json.put("useremail", "not set");
-        } catch (JSONException e) {
-            Log.e("Burgerator","Cant put the useremail");
-        }*/
+        json = new JSONObject();
     }
 
-    public static User instance(){
-        return USER;
-    }
-
-
+    //assign a JSON object (user login response data)
     public void setUser(JSONObject j){
         this.json = j;
     }
@@ -40,14 +25,11 @@ public class User {
     //return a string value for a particular key if it exists
     private String getVal(String k){
         String result = "";
-        String l = "User: get " + k;
         try{
             result = json.getJSONObject("result").getJSONObject("content").getString(k);
-            //Log.getInstance().addLog(l + " success: " + result + "\n");
             //return result;
         }catch (Exception e){
             //Log.d("Burgerator getVal Exception", e.toString());
-            //Log.getInstance().addLog("error " + l + ", " + e + "\n");
         }
         return result;
     }
