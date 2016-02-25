@@ -56,25 +56,49 @@ public class ProfileActivity extends Activity {
         userName.setText(Controller.instance().getUser().getUserName());
 
         ImageView rankImage = (ImageView)findViewById(R.id.user_ranking);
-        String usersCurrentTitle = Controller.instance().getUser().getCount();
-        new ImageLoadTask(usersCurrentTitle, rankImage).execute();
+        String usersCurrentBurgerCount = Controller.instance().getUser().getCount();
+        int count = Integer.parseInt(usersCurrentBurgerCount);
+        for(int i=0; i < count; i++) {
+            if (count <= 3) {
+                ImageView logo = (ImageView) findViewById(R.id.user_ranking);
+                logo.setImageResource(R.drawable.burger_squire_icon);
+            } else if (count <= 8 && count > 3) {
+                ImageView logo = (ImageView) findViewById(R.id.user_ranking);
+                logo.setImageResource(R.drawable.burger_knight_icon);
+            } else if (count <= 18 && count > 8) {
+                ImageView logo = (ImageView) findViewById(R.id.user_ranking);
+                logo.setImageResource(R.drawable.burger_baron_icon);
+            } else if (count <= 26 && count > 18) {
+                //ImageView logo = (ImageView)findViewById(R.id.user_ranking);
+                //logo.setImageResource(R.drawable.burger_earl_icon);
+            } else if (count <= 40 && count > 26) {
+                //ImageView logo = (ImageView)findViewById(R.id.user_ranking);
+                //logo.setImageResource(R.drawable.burger_marquis_icon);
+            } else if (count <= 55 && count > 40) {
+                ImageView logo = (ImageView) findViewById(R.id.user_ranking);
+                logo.setImageResource(R.drawable.burger_duke_icon);
+            } else if (count <= 74 && count > 55) {
+                ImageView logo = (ImageView) findViewById(R.id.user_ranking);
+                logo.setImageResource(R.drawable.prince_of_burgers_icon);
+            } else if (count <= 84 && count > 74) {
+                //ImageView logo = (ImageView)findViewById(R.id.user_ranking);
+                //logo.setImageResource(R.drawable.burger_jake_icon);
+            } else if (count <= 100 && count > 84) {
+                ImageView logo = (ImageView) findViewById(R.id.user_ranking);
+                logo.setImageResource(R.drawable.king_of_burgers_icon);
+            } else if (count > 101) {
+                ImageView logo = (ImageView) findViewById(R.id.user_ranking);
+                logo.setImageResource(R.drawable.burger_emperor_icon);
+            }
+        }
 
-        TextView userTitle = (TextView)findViewById(R.id.rank_name);
+            TextView userTitle = (TextView)findViewById(R.id.rank_name);
         userTitle.setText(Controller.instance().getUser().getTitle());
 
         ImageView userPhoto = (ImageView)findViewById(R.id.imgv_user_image);
         String userPhotoUrl = Controller.instance().getUser().getPhoto();
         new ImageLoadTask(userPhotoUrl, userPhoto).execute();
 
-        //back button
-        ImageButton back = (ImageButton)findViewById(R.id.imgbtn_back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RateActivity.class);
-                startActivity(intent);
-            }
-        });
 
         //dialog box
         userPhoto.setOnClickListener(new View.OnClickListener() {
