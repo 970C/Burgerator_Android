@@ -49,18 +49,32 @@ public class ProfileActivity extends Activity {
         //Add the string to the banner
         TextView bannerBurgerFeed = (TextView)findViewById(R.id.profile_banner);
         bannerBurgerFeed.setText(getResources().getText(R.string.title_activity_profile));
-        bannerBurgerFeed.setTextSize((float)30.0);
+        bannerBurgerFeed.setTextSize((float) 30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
 
         TextView userName = (TextView)findViewById(R.id.user_name);
         userName.setText(Controller.instance().getUser().getUserName());
 
-        TextView userTitle = (TextView)findViewById(R.id.user_ranking);
+        ImageView rankImage = (ImageView)findViewById(R.id.user_ranking);
+        String usersCurrentTitle = Controller.instance().getUser().getCount();
+        new ImageLoadTask(usersCurrentTitle, rankImage).execute();
+
+        TextView userTitle = (TextView)findViewById(R.id.rank_name);
         userTitle.setText(Controller.instance().getUser().getTitle());
 
         ImageView userPhoto = (ImageView)findViewById(R.id.imgv_user_image);
         String userPhotoUrl = Controller.instance().getUser().getPhoto();
         new ImageLoadTask(userPhotoUrl, userPhoto).execute();
+
+        //back button
+        ImageButton back = (ImageButton)findViewById(R.id.imgbtn_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RateActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //dialog box
         userPhoto.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +103,16 @@ public class ProfileActivity extends Activity {
                 });
 
                 userPhotoDialog.show();
+            }
+        });
+
+        //ranking button
+        ImageButton rank = (ImageButton)findViewById(R.id.imgbtn_ranking);
+        rank.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RankingActivity.class);
+                startActivity(intent);
             }
         });
 
