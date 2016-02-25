@@ -7,8 +7,8 @@
     android:background="@drawable/background">
 
     <include
-        android:id="@+id/banner"
-        layout="@layout/banner"/>
+        android:id="@+id/ranking_banner"
+        layout="@layout/burger_ranking_banner"/>
 
     <include
         android:id="@+id/ranking"
@@ -18,7 +18,7 @@
         android:layout_height="100dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="70dp"/>
 
     <include
         android:id="@+id/rankings_to_go"
@@ -26,8 +26,6 @@
         android:layout_width="match_parent"
         android:layout_below="@+id/ranking"
         android:layout_height="500dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"/>
 
     <include layout="@layout/navigation_bar_container"/>

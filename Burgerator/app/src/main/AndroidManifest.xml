@@ -51,6 +51,10 @@
             android:windowSoftInputMode="stateHidden"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:name="burgerator.ui.RankingActivity"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
         <activity android:name="burgerator.ui.LoginActivity"
             android:exported="true"
             android:windowSoftInputMode="stateHidden"
