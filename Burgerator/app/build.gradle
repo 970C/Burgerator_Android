@@ -44,7 +44,6 @@ dependencies {
     }
     compile ('org.apache.httpcomponents:httpcore:4.4.1'){
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
-
     }
 
     //util/yelp: used to sort yelp JSON
