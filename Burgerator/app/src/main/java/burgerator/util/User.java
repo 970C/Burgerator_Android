@@ -64,6 +64,7 @@ public class User {
     public String getTitle(){
         return getVal("burgertitle");
     }
+    public String getCount() { return getVal("burgercount");}
     public int getSize(){
         return json.length();
     }
