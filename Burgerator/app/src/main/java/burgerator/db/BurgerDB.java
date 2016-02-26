@@ -99,8 +99,8 @@ public class BurgerDB {
         Map<String,String> params = new HashMap<String,String>();
         //TODO: Check userEmail, page, and global are safe to pass to the server
         params.put("useremail", userEmail);
-        //params.put("page", page);
-        //params.put("global", global);
+        params.put("page", page);
+        params.put("global", global);
 
         // Create request and its response
         CustomRequest request = new CustomRequest(

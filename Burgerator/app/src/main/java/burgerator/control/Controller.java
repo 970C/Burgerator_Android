@@ -44,7 +44,7 @@ public class Controller implements Callback{
         // HTTP Request to get the burger feed
         burgerDB = new BurgerDB(_c);
         //TODO replace static email with user email
-        burgerDB.getBurgerFeed(null, "harokevin@yahoo.com", "", "",
+        burgerDB.getBurgerFeed(null, "harokevin@yahoo.com", "1", "true",
                 new BurgerDB.VolleyCallback() {
                     @Override
                     public void onSuccess(JSONObject result) {
