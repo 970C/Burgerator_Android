@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background"
+    tools:context="burgerator.ui.PrepActivity">
+
+    <include android:id="@+id/red_banner"
+        layout="@layout/burger_ranking_banner"/>
+
+    <include android:id="@+id/prep"
+        layout="@layout/activity_prep_text_content"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_below="@+id/red_banner"/>
+
+    <include android:id="@+id/select_prep"
+        layout="@layout/activity_cheese_scroll_container"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/prep"
+        android:layout_height="250dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/submit_cheese"
+        android:background="@drawable/red_button"
+        android:layout_below="@+id/select_prep"
+        android:layout_marginRight="35dp"
+        android:layout_marginLeft="35dp"
+        android:text="@string/submit"
+        android:textColor="@color/White"/>
+
+    <include layout="@layout/navigation_bar_container"/>
+
+
+</RelativeLayout>

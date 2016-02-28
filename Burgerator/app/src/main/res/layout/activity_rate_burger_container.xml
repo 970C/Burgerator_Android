@@ -62,7 +62,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"/>
 
-        <Spinner
+        <Button
             android:layout_width="100dp"
             android:layout_height="75dp"
             android:id="@+id/spnr_cheese"
@@ -71,7 +71,7 @@
             android:layout_marginTop="5dp"
             android:layout_below="@id/imgbtn_snapshot"/>
 
-        <Spinner
+        <Button
             android:layout_width="100dp"
             android:layout_height="75dp"
             android:id="@+id/spnr_ratio"
@@ -81,12 +81,12 @@
             android:layout_below="@id/imgbtn_snapshot"
             android:layout_toRightOf="@+id/spnr_cheese"/>
 
-        <Spinner
+        <Button
             android:layout_width="100dp"
             android:layout_height="75dp"
             android:id="@+id/spnr_prep"
             android:background="@drawable/prep_button"
-            android:prompt="@string/prep"
+            android:text="@string/prep"
             android:textColor="@color/White"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"

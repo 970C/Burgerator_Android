@@ -34,6 +34,8 @@
     <string name="title_activity_restaurant_view">.restaurant view</string>
     <string name="title_activity_select_burger">.select burger</string>
     <string name="title_activity_select_restaurant">.select restaurant</string>
+    <string name="title_activity_cheese">.cheese</string>
+    <string name="title_activity_prep">.prep</string>
 
     <string name="in_dev">IN DEVELOPMENT</string>
 
@@ -52,5 +54,13 @@
     <string name="done">Done</string>
     <string name="dont_see_burger">Don\'t see your burger?</string>
     <string name="rankings_to_go">rankings to go</string>
+    <string name="cheese">What cheese did you order on your burger?</string>
+    <string name="submit">submit</string>
+    <string name="prep_activity">based on your preferences, how was your burger prepared?</string>
+
+    <string name="bun_ratio">burger to bun ratio</string>
+    <string name="bun_heavy">bun heavy</string>
+    <string name="balanced">balanced</string>
+    <string name="meat_heavy">meat heavy</string>
 
 </resources>

@@ -255,7 +255,14 @@ public class RateActivity extends Activity {
         /////SETTING UP SPINNERS
                 
             ////SETTING UP CHEESE SPINNER
-                Spinner mSpnrCheese = (Spinner) findViewById(R.id.spnr_cheese);
+                Button mSpnrCheese = (Button) findViewById(R.id.spnr_cheese);
+                mSpnrCheese.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), CheeseActivity.class);
+                        startActivity(intent);
+                    }
+                });
                 // Spinner Drop down elements
                 List<String> cheeses = new ArrayList <String>();
                 cheeses.add(" ");
@@ -272,26 +279,8 @@ public class RateActivity extends Activity {
                 cheeses.add("mozzarella");
                 cheeses.add("monterey jack");
 
-                // Creating adapter for spinner
-                ArrayAdapter<String> cheeseAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, cheeses);
-
-                // Drop down layout style - list view with radio button
-                cheeseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                // attaching data adapter to spinner
-                mSpnrCheese.setAdapter(cheeseAdapter);
-                mSpnrCheese.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        // On selecting a spinner item
-                        mSelectedCheese = parent.getItemAtPosition(position).toString();
-                        String item = parent.getItemAtPosition(position).toString();
-                    }
-                    public void onNothingSelected(AdapterView<?> arg0) {}
-                });
-
             ////SETTING UP RATIO SPINNER
-                mSpnrRatio = (Spinner) findViewById(R.id.spnr_ratio);
+                Button mSpnrRatio = (Button) findViewById(R.id.spnr_ratio);
                 List<String> ratios = new ArrayList <String>();
                 ratios.add(" ");
                 ratios.add("bun heavy");
@@ -304,7 +293,7 @@ public class RateActivity extends Activity {
                 ratioAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                 // attaching data adapter to spinner
-                mSpnrRatio.setAdapter(ratioAdapter);
+                /*mSpnrRatio.setAdapter(ratioAdapter);
                 mSpnrRatio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -314,9 +303,17 @@ public class RateActivity extends Activity {
                     }
                     public void onNothingSelected(AdapterView<?> arg0) {}
                 });
+                */
         
             ////SETTING UP PREP SPINNER
-                mSpnrPrep = (Spinner) findViewById(R.id.spnr_prep);
+                Button mSpnrPrep = (Button) findViewById(R.id.spnr_prep);
+                mSpnrPrep.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getApplicationContext(), PrepActivity.class);
+                        startActivity(intent);
+                    }
+                });
                 List<String> preps = new ArrayList <String>();
                 preps.add("prep?");
                 preps.add("under done");
@@ -329,7 +326,7 @@ public class RateActivity extends Activity {
                 prepAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                 // attaching data adapter to spinner
-                mSpnrPrep.setAdapter(prepAdapter);
+                /*mSpnrPrep.setAdapter(prepAdapter);
                 mSpnrPrep.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -341,6 +338,7 @@ public class RateActivity extends Activity {
                     public void onNothingSelected(AdapterView<?> arg0) {
                     }
                 });
+                */
 
         ////RADIO GROUP WYCBFTB
                 wycbftb = (RadioGroup)findViewById(R.id.radgrp_wycbftb);
