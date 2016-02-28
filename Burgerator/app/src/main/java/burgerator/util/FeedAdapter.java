@@ -24,7 +24,7 @@ import java.util.Objects;
  * Acts as an adapter for the ListView in Top10Activity.
  * Uses Layout: R.layout.activity_top10_burger_feed_container
  */
-public class Top10Adapter extends ArrayAdapter {
+public class FeedAdapter extends ArrayAdapter {
 
     private Context mContext;
     private LayoutInflater mInflater;
@@ -36,8 +36,8 @@ public class Top10Adapter extends ArrayAdapter {
      * @param context context from main view necessary to inflate ListView elements
      * @param burgers List of burgers to take data from
      */
-    public Top10Adapter(Context context, List<Burger> burgers) {
-        super(context, R.layout.activity_top10_burger_feed_container,burgers);
+    public FeedAdapter(Context context, List<Burger> burgers) {
+        super(context, R.layout.activity_feed_container,burgers);
 
         mContext = context;
         mInflater = LayoutInflater.from(context);
@@ -66,51 +66,39 @@ public class Top10Adapter extends ArrayAdapter {
 
         //Inflate XML to use in java
         if(convertView == null){
-            mInflater.inflate(R.layout.activity_top10_burger_feed_container,container,true);
+            mInflater.inflate(R.layout.activity_feed_container,container,true);
         }else {
             container = (RelativeLayout) convertView;
         }
 
         //Get containers' views
-        ImageButton burgerImg = (ImageButton)container.findViewById(R.id.imgv_burger_picture);
-        ImageView   rankImg   = (ImageView)container.findViewById(R.id.imgv_burger_ranking);
-        TextView    burgerTxt = (TextView)container.findViewById(R.id.burger_name);
+        ImageView   userImg   = (ImageView)container.findViewById(R.id.imgv_user_image);
+        ImageView   burgerImg   = (ImageView)container.findViewById(R.id.imgv_burger_picture);
         TextView    restaurantTxt = (TextView)container.findViewById(R.id.restaurant_name);
         TextView    restaurantAddrTxt = (TextView)container.findViewById(R.id.restaurant_address);
-        TextView    ratingTxt = (TextView)container.findViewById(R.id.rating_value);
+        TextView    burgerTxt = (TextView)container.findViewById(R.id.burger_name);
+        TextView    poundsTxt = (TextView)container.findViewById(R.id.amount_burger_pounded);
+        ImageButton poundImgBtn = (ImageButton)container.findViewById(R.id.imgbtn_pound_it);
+
 
         //Check if burger feed in empty
         if(mBurgers == null || mBurgers.size() == 0){
             //Set dummy content
+            Glide.with(mContext).load(R.mipmap.app_icon).into(userImg);
             Glide.with(mContext).load(R.mipmap.app_icon).into(burgerImg);
-            Glide.with(mContext).load(R.mipmap.app_icon).into(rankImg);
+            Glide.with(mContext).load(R.drawable.pound_button).into(poundImgBtn);
             restaurantTxt.setText("Loading...");
 
         }else{
             //Set real content
-
-            //TODO: Set rank image/photo
-            int rank = R.drawable.rank10;
-            switch (position){
-                case 0: rank = R.drawable.rank1;break;
-                case 1: rank = R.drawable.rank2;break;
-                case 2: rank = R.drawable.rank3;break;
-                case 3: rank = R.drawable.rank4;break;
-                case 4: rank = R.drawable.rank5;break;
-                case 5: rank = R.drawable.rank6;break;
-                case 6: rank = R.drawable.rank7;break;
-                case 7: rank = R.drawable.rank8;break;
-                case 8: rank = R.drawable.rank9;break;
-                case 9: rank = R.drawable.rank10;break;
-                default: rank = R.drawable.rank1;}
-
-
-            Glide.with(mContext).load(rank).into(rankImg);
+            Glide.with(mContext).load(mBurgers.get(position).getUserPhoto()).into(userImg);
             Glide.with(mContext).load(mBurgers.get(position).getImageURL()).into(burgerImg);
-            burgerTxt.setText(mBurgers.get(position).getBurgerName());
             restaurantTxt.setText(mBurgers.get(position).getRestaurantName());
             restaurantAddrTxt.setText(mBurgers.get(position).getRestaurantAddress());
-            ratingTxt.setText(mBurgers.get(position).getRating());
+            burgerTxt.setText(mBurgers.get(position).getBurgerName());
+            poundsTxt.setText(mBurgers.get(position).getPound());
+            //Glide.with(mContext).load(R.drawable.pound_button).into(poundImgBtn);
+            //TODO: set rating label and rating number(0-10)
         }
 
 
@@ -121,6 +109,12 @@ public class Top10Adapter extends ArrayAdapter {
                 Toast.makeText(mContext,"LSNR: Burger "+pos, Toast.LENGTH_SHORT).show();
             }
         });
+
+        //TODO: listener for pound it button
+            //be able to check (mBurgers.get(position).getPound()) for true or false
+            //users should only be able to pound once
+            //icon should change on pound
+        //TODO: Listener for restaurant/burgername/restaurantAddr/rating
 
         return container;
     }

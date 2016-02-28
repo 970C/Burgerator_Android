@@ -203,7 +203,7 @@ public class ProfileActivity extends Activity {
             }
         });
 
-        // Putting in an HTML Request to get recent rated burgers
+        // Putting in an HTTP Request to get recent rated burgers
         BurgerDB testRecentBurgers = new BurgerDB(getApplicationContext());
         //should return an object that contains:
         //      a list of burger objects, and the boolean to hasNextPage

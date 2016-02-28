@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -47,6 +50,7 @@ public class SearchActivity extends Activity {
     private SearchAdapter mAdapter;
     private List mRestaurants = new ArrayList<>();
     private YelpResponseCallbacks mCallbacks;
+    private EditText mSearch;
 
     private class YelpResponseCallbacks implements YelpCallback {
         @Override
@@ -134,6 +138,17 @@ public class SearchActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+        mSearch = (EditText)findViewById(R.id.et_search);
+        mSearch.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    Toast.makeText(getApplicationContext(),"YELP IS NOW SEARCHING", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     public class YelpRestaurant{
@@ -174,8 +189,6 @@ public class SearchActivity extends Activity {
         public BigDecimal latitude;
         public BigDecimal longitude;
     }
-
-
     public class YelpRestaurantRankComparator implements Comparator<YelpRestaurant> {
         @Override
         public int compare(YelpRestaurant lhs, YelpRestaurant rhs) {
@@ -186,31 +199,31 @@ public class SearchActivity extends Activity {
     public void onRestaurantListResponse(List<JSONObject> response) {
         Log.d("SearchActiivity oRLR", response.toString());
 
-        // Pass a fresh data set to mRestaurants
-        mRestaurants = response;
+        //// sort list of restaurants by rating
+                //JSONObjects -> YelpRestaurant objects
+                Gson gson = new Gson();
+                List<YelpRestaurant> restaurantList = new ArrayList<>();
+                for(JSONObject restaurant: response ) {
+                    restaurantList.add(gson.fromJson(restaurant.toString(), YelpRestaurant.class));
+                }
 
-        // sort list of restaurants by rating
-        Gson gson = new Gson();
-        List<YelpRestaurant> restaurantList = new ArrayList<>();
-        for(JSONObject restaurant: response ) {
-            restaurantList.add(gson.fromJson(restaurant.toString(), YelpRestaurant.class));
-        }
-        Collections.sort(restaurantList, Collections.reverseOrder(new YelpRestaurantRankComparator()));
+                //sort list of YelpRestaurants with YelpRestaurantRankComparator
+                Collections.sort(restaurantList, Collections.reverseOrder(new YelpRestaurantRankComparator()));
 
-        List<JSONObject> sortedRestaurants = new ArrayList<>();
+                //YelpRestaurant objects -> JSONObjects
+                List<JSONObject> sortedRestaurants = new ArrayList<>();
+                for(YelpRestaurant yR: restaurantList) {
+                    // YelpRestaurant -> JSON String
+                    String restaurant = gson.toJson(yR);
 
-        for(YelpRestaurant yR: restaurantList) {
-            // YelpRestaurant -> JSON String
-            String restaurant = gson.toJson(yR);
-
-            try {
-                // JSON String -> JSONObject
-                sortedRestaurants.add(new JSONObject(restaurant));
-            }catch(JSONException e){Log.e("SearchActivityy oRLR()",e.toString());}
-        }
-        mRestaurants = sortedRestaurants;
-        // Add restaurant list to persistant session object
-        Restaurants.instance().addList(mRestaurants);
+                    try {
+                        // JSON String -> JSONObject
+                        sortedRestaurants.add(new JSONObject(restaurant));
+                    }catch(JSONException e){Log.e("SearchActivityy oRLR()",e.toString());}
+                }
+                mRestaurants = sortedRestaurants;
+                // Add restaurant list to persistant session object
+                Restaurants.instance().addList(mRestaurants);
 
         // refresh the adapter
         mAdapter = (SearchAdapter) mListView.getAdapter();

@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.luis.burgerator.R;
 
+import com.facebook.FacebookSdk;
+
 import org.json.JSONObject;
 
 import burgerator.control.Controller;
@@ -56,8 +58,12 @@ public class LoginActivity extends Activity {
         //Add the string to the banner
         TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
         bannerBurgerFeed.setText(R.string.title_activity_burgerator);
-        bannerBurgerFeed.setTextSize((float)30.0);
+        bannerBurgerFeed.setTextSize((float) 30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
+
+        // Initialize the SDK before executing any other operations,
+        // especially, if you're using Facebook UI elements.
+        FacebookSdk.sdkInitialize(getApplicationContext());
 
     }
 

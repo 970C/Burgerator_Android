@@ -10,10 +10,12 @@
     android:layout_marginRight="5dp">
 
     <EditText
+        android:id="@+id/et_search"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp" />
+        android:layout_marginRight="5dp"
+        android:imeOptions="actionSearch"/>
 
 </RelativeLayout>
