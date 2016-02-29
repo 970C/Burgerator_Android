@@ -38,6 +38,15 @@ public class UserStorage {
         }
 
     }
+    public void setSharedPrefs(Context c, String _fName, String key, String val){
+        sharedPrefs = c.getSharedPreferences( _fName, Context.MODE_PRIVATE );
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+
+            editor.putString(key,val);
+            editor.commit();
+
+
+    }
 
     /**
      *

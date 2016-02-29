@@ -3,6 +3,7 @@ package burgerator.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -11,19 +12,33 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.luis.burgerator.R;
 
+
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 import org.json.JSONObject;
+
+import java.util.Arrays;
 
 import burgerator.control.Controller;
 import burgerator.db.BurgerDB;
 import burgerator.util.Callback;
 import burgerator.util.User;
 
-public class LoginActivity extends Activity {
+public class LoginActivity extends AppCompatActivity {
 
     private ImageView mJoinTheBurgerClub;
     private ImageButton mFacebookButton;
@@ -36,6 +51,14 @@ public class LoginActivity extends Activity {
 
     // HTTP request handler
     private BurgerDB mRequest;
+
+    private CallbackManager callbackManager;
+    private TextView info;
+    private ImageView profileImgView;
+    private LoginButton loginButton;
+    private AccessToken accessToken;
+    //private PrefUtil prefUtil;
+    //private IntentUtil intentUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +85,33 @@ public class LoginActivity extends Activity {
         bannerBurgerFeed.setGravity(Gravity.CENTER);
 
         // Initialize the SDK before executing any other operations,
-        // especially, if you're using Facebook UI elements.
         FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager = CallbackManager.Factory.create();
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        Log.d("FBSuccess", "FB Login success");
+                        //Log.d("token", accessToken.getToken().toString());
+                        AccessToken token = loginResult.getAccessToken();
+                        if (token != null) {
+                            Toast.makeText(LoginActivity.this, "Your FB token: " + token.getToken(), Toast.LENGTH_LONG).show();
+                            Log.d("FBlogin", token.getToken());
+                        }
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Log.d("FBcancel", "FB Login cancel");
+                        Toast.makeText(LoginActivity.this, "Login Cancel", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onError(FacebookException exception) {
+                        Log.d("FBError", "FB Login error");
+                        Toast.makeText(LoginActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
 
     }
 
@@ -73,17 +121,6 @@ public class LoginActivity extends Activity {
 
     public void emailLogin(View view){
         // takes in email address and password and checks with server
-
-        /*
-        mRequest.emailLogin(null, mEmailAddress.getText().toString(),
-                mPassword.getText().toString(),
-                new BurgerDB.VolleyCallback() {
-                    @Override
-                    public void onSuccess(JSONObject response) {
-                        onLoginResponse(response);
-                    }
-                });
-           */
 
         String e = mEmailAddress.getText().toString();
         String p = mPassword.getText().toString();
@@ -117,7 +154,12 @@ public class LoginActivity extends Activity {
     }
 
     public void facebookRegister(View view){
-        //TODO: opens a dialog to validate facebook
+
+        //callbackManager.onActivityResult(requestCode, resultCode, data);
+        Log.d("FBlogin", "FB Login ");
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+        //Log.d("FBlogin", AccessToken.getCurrentAccessToken().toString());
+
     }
 
     public void twitterRegister(View view){
@@ -126,5 +168,37 @@ public class LoginActivity extends Activity {
 
     public void emailRegister(View view){
         //TODO: sends to a new activity that allows the user to register
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+
+    //code from example - may remove in future
+    private String message(Profile profile) {
+        StringBuilder stringBuffer = new StringBuilder();
+        if (profile != null) {
+            stringBuffer.append("Welcome ").append(profile.getName());
+        }
+        return stringBuffer.toString();
+    }
+
+    //code from example - may remove in future
+    private void deleteAccessToken() {
+        AccessTokenTracker accessTokenTracker = new AccessTokenTracker() {
+            @Override
+            protected void onCurrentAccessTokenChanged(
+                    AccessToken oldAccessToken,
+                    AccessToken currentAccessToken) {
+
+                if (currentAccessToken == null){
+                    //User logged out
+                    //prefUtil.clearToken();
+                    //clearUserArea();
+                }
+            }
+        };
     }
 }
