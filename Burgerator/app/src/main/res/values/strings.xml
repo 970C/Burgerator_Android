@@ -63,6 +63,13 @@
     <string name="balanced">balanced</string>
     <string name="meat_heavy">meat heavy</string>
 
+    <string name="email_sigup">create an account</string>
+    <string name="user_email">email address</string>
+    <string name="first_name">first name</string>
+    <string name="last_name">last name</string>
+    <string name="password">password</string>
+    <string name="zip_code">zip code</string>
+
     <string name="facebook_app_id">186446715056507</string>
     <string name="title_activity_fb_test">FB_test</string>
 

@@ -1,6 +1,7 @@
 package burgerator.ui;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.PopupMenu;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
@@ -281,6 +283,23 @@ public class RateActivity extends Activity {
 
             ////SETTING UP RATIO SPINNER
                 Button mSpnrRatio = (Button) findViewById(R.id.spnr_ratio);
+                mSpnrRatio.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Dialog ratio = new Dialog(RateActivity.this);
+                        ratio.setContentView(R.layout.ratio_popover);
+
+                        Button bunHeavy = (Button) ratio.findViewById(R.id.img_bun_heavy);
+
+                        Button balanced = (Button) ratio.findViewById(R.id.img_balanced);
+
+                        Button meatHeavy = (Button) ratio.findViewById(R.id.img_meat_heavy);
+
+                        ratio.show();
+
+                    }
+                });
+
                 List<String> ratios = new ArrayList <String>();
                 ratios.add(" ");
                 ratios.add("bun heavy");
@@ -290,7 +309,7 @@ public class RateActivity extends Activity {
                 ArrayAdapter<String> ratioAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, ratios);
 
                 // Drop down layout style - list view with radio button
-                ratioAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                //ratioAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                 // attaching data adapter to spinner
                 /*mSpnrRatio.setAdapter(ratioAdapter);
@@ -323,7 +342,7 @@ public class RateActivity extends Activity {
                 ArrayAdapter<String> prepAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, preps);
 
                 // Drop down layout style - list view with radio button
-                prepAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                //prepAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                 // attaching data adapter to spinner
                 /*mSpnrPrep.setAdapter(prepAdapter);

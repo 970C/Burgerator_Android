@@ -15,16 +15,12 @@
         android:background="@drawable/spinner_select"
         android:layout_centerInParent="true"/>
 
-    <ScrollView
+    <ListView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/cheese_selection"
+        android:fillViewport="true">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center|center_vertical"
-            android:id="@+id/cheese_selection"/>
-
-    </ScrollView>
+    </ListView>
 
 </RelativeLayout>

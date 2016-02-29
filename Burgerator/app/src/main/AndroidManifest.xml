@@ -60,8 +60,12 @@
             android:name="burgerator.ui.PrepActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
-        <activity
-            android:name="burgerator.ui.LoginActivity"
+
+        <activity android:name="burgerator.ui.SearchActivityMapView"
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name="burgerator.ui.LoginActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden">
