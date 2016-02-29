@@ -30,7 +30,7 @@
         android:textColor="@color/black"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="170dp"
         android:layout_height="50dp"
         android:id="@+id/burger_name"
         android:layout_below="@+id/restaurant_name"
@@ -41,7 +41,7 @@
         android:textSize="20dp"/>
 
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="150dp"
         android:layout_height="25dp"
         android:id="@+id/restaurant_address"
         android:layout_below="@+id/burger_name"
@@ -50,6 +50,26 @@
         android:layout_marginLeft="15dp"
         android:textColor="@color/black"
         android:text="518 N Burger Lane"/>
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="50dp"
+        android:id="@+id/rating_value"
+        android:textAlignment="center"
+        android:layout_toRightOf="@id/burger_name"
+        android:layout_below="@+id/restaurant_name"
+        android:text="9"/>
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="25dp"
+        android:id="@+id/rating_text"
+        android:text="rating"
+        android:layout_toRightOf="@id/restaurant_address"
+        android:layout_below="@id/rating_value"
+        android:gravity="center"
+        android:textAlignment="gravity"
+        android:layout_alignParentRight="true"/>
 
     <ImageView
         android:layout_width="330dp"

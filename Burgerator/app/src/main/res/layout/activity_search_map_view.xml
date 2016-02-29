@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="burgerator.ui.SearchActivityMapView">
+
+    <!-- banner on each activity -->
+    <include
+        android:id="@+id/banner"
+        layout="@layout/search_banner"/>
+
+    <include layout="@layout/activity_search_container"
+        android:layout_width="355dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/banner"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <Button
+            android:layout_width="170dp"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_filter"
+            android:layout_weight="1"
+            android:background="@drawable/red_button"
+            android:text="@string/distance_button"
+            android:textColor="@color/White"/>
+
+        <Button
+            android:layout_width="170dp"
+            android:layout_height="match_parent"
+            android:id="@+id/btn_search_nearby"
+            android:layout_weight="1"
+            android:background="@drawable/rating_button"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/search_map_view"
+        android:id="@+id/searchListView"
+        android:layout_marginTop="190dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="70dp">
+    </ImageView>
+
+    <!-- navigation bar on each activity-->
+    <include layout="@layout/navigation_bar_container"/>
+
+
+</RelativeLayout>

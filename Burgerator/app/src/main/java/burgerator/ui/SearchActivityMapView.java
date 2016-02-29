@@ -1,13 +1,11 @@
 package burgerator.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
@@ -15,61 +13,40 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.luis.burgerator.R;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 import burgerator.util.Restaurants;
 import burgerator.util.SearchAdapter;
-import burgerator.util.Top10Adapter;
-import burgerator.yelp.YelpCallback;
 import burgerator.yelp.YelpRestaurantListRequest;
-import burgerator.yelp.YelpSingleRestaurantRequest;
 
-public class SearchActivity extends Activity {
-
-    private ListView mListView;
-    private SearchAdapter mAdapter;
-    private List mRestaurants = new ArrayList<>();
-    private YelpResponseCallbacks mCallbacks;
-    private EditText mSearch;
-
-    private class YelpResponseCallbacks implements YelpCallback {
-        @Override
-        public void onSuccess(JSONObject result) {onSingleRestaurantResponse(result);}
-        @Override
-        public void onSuccess(List<JSONObject> result) {onRestaurantListResponse(result);}
-    }
+/**
+ * Created by Luis on 2/28/2016.
+ */
+public class SearchActivityMapView extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_search_map_view);
 
         // Find the ListView
-        mListView = (ListView) findViewById(R.id.searchListView);
+        //mListView = (ListView) findViewById(R.id.searchListView);
 
         //Attach the adapter to the list view and requisition request
-        mCallbacks = new YelpResponseCallbacks();
+        /*mCallbacks = new YelpResponseCallbacks();
         new YelpRestaurantListRequest(mCallbacks).execute("Seattle, WA");
         ArrayList dummyBurgers = new ArrayList<>();
         mAdapter = new SearchAdapter(this, dummyBurgers );
@@ -79,21 +56,21 @@ public class SearchActivity extends Activity {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 Toast.makeText(SearchActivity.this, "List Item Clicked", Toast.LENGTH_LONG).show();
             }
-        });
+        });*/
 
         //Add the string to the banner
-        TextView bannerBurgerFeed = (TextView)findViewById(R.id.profile_banner);
+        TextView bannerBurgerFeed = (TextView) findViewById(R.id.profile_banner);
         bannerBurgerFeed.setText(R.string.find_a_burger);
-        bannerBurgerFeed.setTextSize((float)30.0);
+        bannerBurgerFeed.setTextSize((float) 30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
 
-        //map button
+        //list button
         ImageButton map = (ImageButton)findViewById(R.id.imgbtn_search);
-        map.setBackgroundResource(R.drawable.map_icon);
+        map.setBackgroundResource(R.drawable.list_view);
         map.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SearchActivityMapView.class);
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 startActivity(intent);
             }
         });
@@ -150,7 +127,7 @@ public class SearchActivity extends Activity {
                 startActivity(intent);
             }
         });
-
+/*
         mSearch = (EditText)findViewById(R.id.et_search);
         mSearch.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -212,30 +189,30 @@ public class SearchActivity extends Activity {
         Log.d("SearchActiivity oRLR", response.toString());
 
         //// sort list of restaurants by rating
-                //JSONObjects -> YelpRestaurant objects
-                Gson gson = new Gson();
-                List<YelpRestaurant> restaurantList = new ArrayList<>();
-                for(JSONObject restaurant: response ) {
-                    restaurantList.add(gson.fromJson(restaurant.toString(), YelpRestaurant.class));
-                }
+        //JSONObjects -> YelpRestaurant objects
+        Gson gson = new Gson();
+        List<YelpRestaurant> restaurantList = new ArrayList<>();
+        for(JSONObject restaurant: response ) {
+            restaurantList.add(gson.fromJson(restaurant.toString(), YelpRestaurant.class));
+        }
 
-                //sort list of YelpRestaurants with YelpRestaurantRankComparator
-                Collections.sort(restaurantList, Collections.reverseOrder(new YelpRestaurantRankComparator()));
+        //sort list of YelpRestaurants with YelpRestaurantRankComparator
+        Collections.sort(restaurantList, Collections.reverseOrder(new YelpRestaurantRankComparator()));
 
-                //YelpRestaurant objects -> JSONObjects
-                List<JSONObject> sortedRestaurants = new ArrayList<>();
-                for(YelpRestaurant yR: restaurantList) {
-                    // YelpRestaurant -> JSON String
-                    String restaurant = gson.toJson(yR);
+        //YelpRestaurant objects -> JSONObjects
+        List<JSONObject> sortedRestaurants = new ArrayList<>();
+        for(YelpRestaurant yR: restaurantList) {
+            // YelpRestaurant -> JSON String
+            String restaurant = gson.toJson(yR);
 
-                    try {
-                        // JSON String -> JSONObject
-                        sortedRestaurants.add(new JSONObject(restaurant));
-                    }catch(JSONException e){Log.e("SearchActivityy oRLR()",e.toString());}
-                }
-                mRestaurants = sortedRestaurants;
-                // Add restaurant list to persistant session object
-                Restaurants.instance().addList(mRestaurants);
+            try {
+                // JSON String -> JSONObject
+                sortedRestaurants.add(new JSONObject(restaurant));
+            }catch(JSONException e){Log.e("SearchActivityy oRLR()",e.toString());}
+        }
+        mRestaurants = sortedRestaurants;
+        // Add restaurant list to persistant session object
+        Restaurants.instance().addList(mRestaurants);
 
         // refresh the adapter
         mAdapter = (SearchAdapter) mListView.getAdapter();
@@ -246,5 +223,6 @@ public class SearchActivity extends Activity {
     public void onSingleRestaurantResponse(JSONObject response){
         Log.d("SearchActiivity oSRR", response.toString());
     }
-
+*/
+    }
 }

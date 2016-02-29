@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <include android:id="@+id/red_banner"
+        layout="@layout/burger_ranking_banner"/>
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/red_banner"
+        android:background="@drawable/burgerator_icon"
+        android:layout_centerInParent="true"
+        android:id="@+id/burger"/>
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="5dp"
+        android:layout_below="@+id/burger"
+        android:background="@drawable/divider"
+        android:layout_centerInParent="true"
+        android:id="@+id/divider"/>
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/divider"
+        android:background="@null"
+        android:text="@string/email_sigup"
+        android:textColor="@color/black"
+        android:layout_centerInParent="true"
+        android:id="@+id/email_text"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/email_text"
+        android:background="@drawable/email_button_border"
+        android:layout_centerInParent="true"
+        android:text="@string/email_sigup"
+        android:textColor="@color/black"
+        android:id="@+id/btn_email_button"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/btn_email_button"
+        android:background="@drawable/email_button_border"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:text="@string/first_name"
+        android:textColor="@color/black"
+        android:id="@+id/btn_first_name"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/btn_first_name"
+        android:background="@drawable/email_button_border"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:text="@string/last_name"
+        android:textColor="@color/black"
+        android:id="@+id/btn_last_name"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/btn_last_name"
+        android:background="@drawable/email_button_border"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:text="@string/password"
+        android:textColor="@color/black"
+        android:id="@+id/btn_password"/>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_below="@+id/btn_password"
+        android:background="@drawable/email_button_border"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="5dp"
+        android:text="@string/zip_code"
+        android:textColor="@color/black"
+        android:id="@+id/btn_zip_code"/>
+
+</RelativeLayout>
