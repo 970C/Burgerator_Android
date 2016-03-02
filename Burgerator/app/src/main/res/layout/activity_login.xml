@@ -33,43 +33,25 @@
             android:id="@+id/loginOptions"
             android:layout_below="@id/img_join_the_burger_club">
 
-            <LinearLayout
+
+            <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:orientation="horizontal"
-                android:id="@+id/socialLoginButtons"
-                android:weightSum="2">
+                android:id="@+id/btn_facebook_login"
+                android:onClick="facebookRegister"
+                android:background="@drawable/register_fb"
+                android:paddingRight="5dp" />
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:id="@+id/btn_facebook_login"
-                    android:layout_weight="1"
-                    android:onClick="facebookRegister"
-                    android:background="@drawable/register_fb"
-                    android:paddingRight="5dp"/>
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:id="@+id/btn_twitter_login"
-                    android:onClick="twitterRegister"
-                    android:layout_weight="1"
-                    android:layout_toRightOf="@id/btn_facebook_login"
-                    android:background="@drawable/register_tw"
-                    android:paddingLeft="5dp"/>
-
-
-            </LinearLayout>
 
             <ImageButton
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:id="@+id/emailRegister"
-                android:layout_below="@id/socialLoginButtons"
+                android:layout_below="@id/btn_facebook_login"
                 android:onClick="emailRegister"
                 android:background="@drawable/register_email"
-                android:paddingTop="10dp"/>
+                android:paddingTop="10dp"
+                android:layout_marginTop="5dp"/>
 
         </RelativeLayout>
 

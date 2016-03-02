@@ -82,11 +82,10 @@ public class SearchActivity extends Activity {
         });
 
         //Add the string to the banner
-        TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
-        //TODO bug - next line causes a crash - NPE
-        //bannerBurgerFeed.setText(R.string.find_a_burger);
-        //bannerBurgerFeed.setTextSize((float)30.0);
-        //bannerBurgerFeed.setGravity(Gravity.CENTER);
+        TextView bannerBurgerFeed = (TextView)findViewById(R.id.profile_banner);
+        bannerBurgerFeed.setText(R.string.find_a_burger);
+        bannerBurgerFeed.setTextSize((float)30.0);
+        bannerBurgerFeed.setGravity(Gravity.CENTER);
 
 
         //map button

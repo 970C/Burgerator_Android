@@ -63,7 +63,7 @@
         android:layout_marginLeft="5dp"/>
 
         <Button
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="75dp"
             android:id="@+id/spnr_cheese"
             android:background="@drawable/cheese_button"
@@ -72,7 +72,7 @@
             android:layout_below="@id/imgbtn_snapshot"/>
 
         <Button
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="75dp"
             android:id="@+id/spnr_ratio"
             android:background="@drawable/ratio_button"
@@ -80,18 +80,5 @@
             android:layout_marginTop="5dp"
             android:layout_below="@id/imgbtn_snapshot"
             android:layout_toRightOf="@+id/spnr_cheese"/>
-
-        <Button
-            android:layout_width="100dp"
-            android:layout_height="75dp"
-            android:id="@+id/spnr_prep"
-            android:background="@drawable/prep_button"
-            android:text="@string/prep"
-            android:textColor="@color/White"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_below="@id/imgbtn_snapshot"
-            android:layout_toRightOf="@+id/spnr_ratio"/>
 
 </RelativeLayout>
