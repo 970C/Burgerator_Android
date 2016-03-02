@@ -325,7 +325,7 @@ public class RateActivity extends Activity {
                 */
         
             ////SETTING UP PREP SPINNER
-                Button mSpnrPrep = (Button) findViewById(R.id.spnr_prep);
+                /*Button mSpnrPrep = (Button) findViewById(R.id.spnr_prep);
                 mSpnrPrep.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -339,7 +339,7 @@ public class RateActivity extends Activity {
                 preps.add("just right");
                 preps.add("over done");
                 // Creating adapter for spinner
-                ArrayAdapter<String> prepAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, preps);
+                ArrayAdapter<String> prepAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, preps);*/
 
                 // Drop down layout style - list view with radio button
                 //prepAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

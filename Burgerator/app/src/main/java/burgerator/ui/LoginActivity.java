@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
         //Initializeing Views
         mJoinTheBurgerClub = (ImageView)findViewById(R.id.img_join_the_burger_club);
         mFacebookButton  = (ImageButton) findViewById(R.id.btn_facebook_login);
-        mTwitterButton = (ImageButton) findViewById(R.id.btn_twitter_login);
+        //mTwitterButton = (ImageButton) findViewById(R.id.btn_twitter_login);
         mMemberLogin = (ImageView)findViewById(R.id.img_member_login);
         mEmailAddress = (EditText)findViewById(R.id.et_email_address);
         mPassword = (EditText)findViewById(R.id.et_password);
