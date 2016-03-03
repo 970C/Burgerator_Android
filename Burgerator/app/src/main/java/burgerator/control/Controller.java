@@ -29,6 +29,9 @@ public class Controller implements Callback{
 
     private User user = new User();
 
+    //local storage
+    private UserStorage stor = new UserStorage();
+
     private BurgerDB burgerDB;
 
     private Controller(){

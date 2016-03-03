@@ -11,17 +11,17 @@ import java.util.List;
  * Feed class for BurgerFeed and TopTenFeed
  *
  */
-public class Feed {
+public class Feed extends AbstractFeed<Burger> {
     //container for JSONObjects
-    private JSONObject json;
+    //private JSONObject json;
     //store individual burger JSONObjects in an array;
-    private List<Burger> burgers;
+    //private List<Burger> list;
 
     /**
      * Default constructor for Feed. Instantiates a new ArrayList<JSONObject>()
      */
     public Feed (){
-        this.burgers = new ArrayList<>();
+        list = new ArrayList<Burger>();
     }
 
     /**
@@ -29,7 +29,7 @@ public class Feed {
      * @param _obj is a JSONObject
      */
 
-    private void addBurgersToList(JSONObject _obj){
+    protected void addObjectsToList(JSONObject _obj){
 
         try{
             //accesses the burgers jsonarray and creates an array of Burger(s)
@@ -37,14 +37,14 @@ public class Feed {
             int size = json.getJSONArray("burger").length();
             int count = 0;
 
-            burgers = new ArrayList<>();
+            list = new ArrayList<>();
             JSONArray burgerArray = json.getJSONArray("burger");
             while (count < size) {
                 //creates a Burger JSONObject for each burger in the JSONArray - necessary for specific getters for burger
                 JSONObject burger = burgerArray.getJSONObject(count);
                 Burger b = new Burger();
                 b.setJSON(burger);
-                burgers.add(b);
+                list.add(b);
                 count++;
             }
         }catch (Exception e) {
@@ -52,53 +52,6 @@ public class Feed {
         }
     }
 
-    /**
-     * adds a new JSONObject to be parsed and added to the list of burgers
-     *@param _obj is a JSONObject
-     */
-    public void addJSON (JSONObject _obj){
-        try{
-            addBurgersToList(_obj);
-        }catch (Exception e) {
-            Log.d("addJSON ", e.getMessage());
-        }
-    }
-
-    /**
-     * Deprecated - included for compatibility, sets the JSONObject
-     * @param _obj is a JSONObject
-     */
-    public void setJSON (JSONObject _obj) {
-        try{
-            addBurgersToList(_obj);
-        }catch (Exception e) {
-            Log.d("setJSON", e.getMessage());
-        }
-    }
-
-    /**
-     * return a string value for a particular key if it exists
-     * @param k String key
-     * @return String result
-     */
-    private String getVal(String k){
-        String result = "";
-        try{
-            result = json.getString(k);
-        }catch (Exception e){
-            System.out.println(e);
-            //Log.getInstance().addLog("error " + l + ", " + e + "\n");
-        }
-        return result;
-    }
-
-    /**
-     * returns the size of the ArrayList
-     * @return size
-     */
-    public int size(){
-        return this.burgers.size();
-    }
 
     /**
      * returns a Burger b by index
@@ -106,15 +59,15 @@ public class Feed {
      * @return Burger b
      */
     public Burger get(int _index){
-        if (burgers.isEmpty()){
+        if (list.isEmpty()){
             return null;
         }else{
-            return burgers.get(_index);
+            return list.get(_index);
         }
     }
 
     public List<Burger> getAll(){
-        return this.burgers;
+        return list;
     }
 
 }

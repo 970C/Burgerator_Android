@@ -31,14 +31,18 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 import burgerator.control.Controller;
 import burgerator.db.BurgerDB;
 import burgerator.util.Callback;
 import burgerator.util.User;
+import burgerator.util.UserStorage;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -112,8 +116,30 @@ public class LoginActivity extends AppCompatActivity {
                                                 JSONObject object,
                                                 GraphResponse response) {
                                             // Application code
-                                            Log.d("GraphResponse", response.toString());
-                                            Log.d("Json", object.toString());
+                                            //Log.d("GraphResponse", response.toString());
+                                            String email;
+                                            try {
+                                                email = object.getString("email");
+                                                Log.d("Json", email);
+
+                                            }
+                                            catch (JSONException e){
+                                                Log.d("FB.graphR.callb.JSON e", e.getMessage());
+                                                email = "error";
+                                            }
+                                            UserStorage stor = new UserStorage();
+                                            Map<String, String> storVals = new HashMap<String, String>();
+                                            storVals.put("email", email);
+                                            storVals.put("fbtoken", accessToken.getToken());
+                                            stor.setSharedPrefs(getApplicationContext(), "FBUser", storVals);
+                                            //stor.setSharedPrefs(getApplicationContext(), "FBUser", "email", email);
+                                            //stor.setSharedPrefs(getApplicationContext(), "FBUser", "fbtoken", accessToken.getToken());
+
+                                            //String key = "email";
+
+                                            Log.d("getSharedPref email", stor.getSharedPrefs(getApplicationContext(), "FBUser").toString());
+                                            //Log.d("getSharedPref email", stor.getSharedPrefs(getApplicationContext(), "FBUser").get(key).toString());
+                                            //mRequest.socialLogin()
                                         }
                                     });
 
