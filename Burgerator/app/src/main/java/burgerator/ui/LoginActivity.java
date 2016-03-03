@@ -24,6 +24,8 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
@@ -78,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         //Initialize HTTP request handler
         mRequest = new BurgerDB(getApplicationContext());
 
+
         //Add the string to the banner
         TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
         bannerBurgerFeed.setText(R.string.title_activity_burgerator);
@@ -86,17 +89,38 @@ public class LoginActivity extends AppCompatActivity {
 
         // Initialize the SDK before executing any other operations,
         FacebookSdk.sdkInitialize(getApplicationContext());
+
+
+
         callbackManager = CallbackManager.Factory.create();
         LoginManager.getInstance().registerCallback(callbackManager,
                 new FacebookCallback<LoginResult>() {
                     @Override
                     public void onSuccess(LoginResult loginResult) {
                         Log.d("FBSuccess", "FB Login success");
-                        //Log.d("token", accessToken.getToken().toString());
-                        AccessToken token = loginResult.getAccessToken();
-                        if (token != null) {
-                            Toast.makeText(LoginActivity.this, "Your FB token: " + token.getToken(), Toast.LENGTH_LONG).show();
-                            Log.d("FBlogin", token.getToken());
+                        Log.d("FBloginResult", loginResult.toString());
+                        accessToken = loginResult.getAccessToken();
+                        if (accessToken != null) {
+                            Toast.makeText(LoginActivity.this, "Your FB token: " + accessToken.getToken(), Toast.LENGTH_LONG).show();
+                            Log.d("FBlogin", accessToken.getToken());
+
+                            GraphRequest request = GraphRequest.newMeRequest(
+                                    accessToken,
+                                    new GraphRequest.GraphJSONObjectCallback() {
+                                        @Override
+                                        public void onCompleted(
+                                                JSONObject object,
+                                                GraphResponse response) {
+                                            // Application code
+                                            Log.d("GraphResponse", response.toString());
+                                            Log.d("Json", object.toString());
+                                        }
+                                    });
+
+                            Bundle parameters = new Bundle();
+                            parameters.putString("fields", "id,name,email,gender");
+                            request.setParameters(parameters);
+                            request.executeAsync();
                         }
                     }
 
@@ -112,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
+
 
     }
 
@@ -157,7 +182,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //callbackManager.onActivityResult(requestCode, resultCode, data);
         Log.d("FBlogin", "FB Login ");
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"));
         //Log.d("FBlogin", AccessToken.getCurrentAccessToken().toString());
 
     }
