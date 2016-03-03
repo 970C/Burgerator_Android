@@ -1,8 +1,10 @@
 package burgerator.ui;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -17,6 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.luis.burgerator.R;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -28,35 +35,48 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+
 import burgerator.util.Restaurants;
 import burgerator.util.SearchAdapter;
+import burgerator.gms.GPSTracker;
+import burgerator.gms.LocationDistances;
+import burgerator.gms.LocationMarker;
+import burgerator.gms.MapPin;
 import burgerator.yelp.YelpRestaurantListRequest;
 
 /**
  * Created by Luis on 2/28/2016.
  */
-public class SearchActivityMapView extends Activity {
+public class SearchActivityMapView extends FragmentActivity implements OnMapReadyCallback {
+
+    private GPSTracker mLocation;
+    //Parameters for security authorization permissions.
+    private static final String[] INITIAL_PERMS={
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.READ_CONTACTS
+    };
+    private static final String[] CAMERA_PERMS={
+            Manifest.permission.CAMERA
+    };
+    private static final String[] CONTACTS_PERMS={
+            Manifest.permission.READ_CONTACTS
+    };
+    private static final String[] LOCATION_PERMS={
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_map_view);
 
-        // Find the ListView
-        //mListView = (ListView) findViewById(R.id.searchListView);
 
-        //Attach the adapter to the list view and requisition request
-        /*mCallbacks = new YelpResponseCallbacks();
-        new YelpRestaurantListRequest(mCallbacks).execute("Seattle, WA");
-        ArrayList dummyBurgers = new ArrayList<>();
-        mAdapter = new SearchAdapter(this, dummyBurgers );
-        mListView.setAdapter(mAdapter);
+        mLocation = new GPSTracker(SearchActivityMapView.this);
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                Toast.makeText(SearchActivity.this, "List Item Clicked", Toast.LENGTH_LONG).show();
-            }
-        });*/
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
 
         //Add the string to the banner
         TextView bannerBurgerFeed = (TextView) findViewById(R.id.profile_banner);
@@ -127,102 +147,94 @@ public class SearchActivityMapView extends Activity {
                 startActivity(intent);
             }
         });
-/*
-        mSearch = (EditText)findViewById(R.id.et_search);
-        mSearch.setOnEditorActionListener(new EditText.OnEditorActionListener() {
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    Toast.makeText(getApplicationContext(),"YELP IS NOW SEARCHING", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                return false;
-            }
-        });
     }
 
-    public class YelpRestaurant{
-        public boolean is_claimed;
-        public Double rating;
-        public String mobile_url;
-        public String rating_img_url;
-        public int review_count;
-        public String name;
-        public String rating_img_url_small;
-        public String url;
-        public List<List<String>> categories;
-        public long menu_date_updated;
-        public String phone;
-        public String snippet_text;
-        public String image_url;
-        public String snippet_image_url;
-        public String display_phone;
-        public String rating_img_url_large;
-        public String menu_provider;
-        public String id;
-        public boolean is_closed;
-        public YelpLocation location;
-    }
-    public class YelpLocation{
-        public String cross_streets;
-        public String city;
-        public List<String> display_address;
-        public Double geo_accuracy;
-        public List<String> neighborhoods;
-        public String postal_code;
-        public String country_code;
-        public List<String> address;
-        public YelpCoordinate coordinate;
-        public String state_code;
-    }
-    public class YelpCoordinate{
-        public BigDecimal latitude;
-        public BigDecimal longitude;
-    }
-    public class YelpRestaurantRankComparator implements Comparator<YelpRestaurant> {
-        @Override
-        public int compare(YelpRestaurant lhs, YelpRestaurant rhs) {
-            return lhs.rating.compareTo(rhs.rating);
-        }
-    }
+    /**
+     * Manipulates the map once available.
+     * This callback is triggered when the map is ready to be used.
+     * On Map Ready, enter google map coordinates and title, receive markers of locations on google map.
+     *
+     * If Google Play services is not installed on the device, the user will be prompted to install
+     * it inside the SupportMapFragment. This method will only be triggered once the user has
+     * installed Google Play services and returned to the app.
+     */
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
 
-    public void onRestaurantListResponse(List<JSONObject> response) {
-        Log.d("SearchActiivity oRLR", response.toString());
 
-        //// sort list of restaurants by rating
-        //JSONObjects -> YelpRestaurant objects
-        Gson gson = new Gson();
-        List<YelpRestaurant> restaurantList = new ArrayList<>();
-        for(JSONObject restaurant: response ) {
-            restaurantList.add(gson.fromJson(restaurant.toString(), YelpRestaurant.class));
+        LocationMarker lm = new LocationMarker();
+        List<MapPin> pins = new ArrayList<>();
+
+        //dummy data: x and y coordinates and a title for each location
+        String[] place = {"McDonalds", "WingCentral", "CampusUTotem", "SURC", "Jack in the Box"};
+        double[] xcoords =  {46.980284, 46.981162, 47.000451, 47.002964, 47};
+        double[] ycoords =   {-120.544566, -120.547410, -120.535812, -120.537797, -120.5445};
+
+        //initialize dummy data arrays
+        ArrayList<Double> xList = new ArrayList<>();
+        ArrayList<Double> yList = new ArrayList<>();
+        for(int i = 0; i<xcoords.length; i++){
+            xList.add(i, xcoords[i]);
+            yList.add(i, ycoords[i]);
         }
 
-        //sort list of YelpRestaurants with YelpRestaurantRankComparator
-        Collections.sort(restaurantList, Collections.reverseOrder(new YelpRestaurantRankComparator()));
+        /**
+         *LocationDistance class is initialized and variables are set with
+         * xList and yList. The farthestLatSort method is initialized and returns
+         * box coordinates which is then condensed to a LatLngBounds instance.
+         */
+        LocationDistances ylocDis = new LocationDistances(yList);
+        LocationDistances xlocDis = new LocationDistances(xList);
 
-        //YelpRestaurant objects -> JSONObjects
-        List<JSONObject> sortedRestaurants = new ArrayList<>();
-        for(YelpRestaurant yR: restaurantList) {
-            // YelpRestaurant -> JSON String
-            String restaurant = gson.toJson(yR);
+        double[] xvalues = xlocDis.farthestLatSort(0);
+        double east = xlocDis.eastGet();
+        double west = xlocDis.westGet();
 
-            try {
-                // JSON String -> JSONObject
-                sortedRestaurants.add(new JSONObject(restaurant));
-            }catch(JSONException e){Log.e("SearchActivityy oRLR()",e.toString());}
+        double[] yvalues = ylocDis.farthestLatSort(1);
+        double north =  ylocDis.northGet();
+        double south = ylocDis.southGet();
+
+        LatLng ffirstPoint = new LatLng(xvalues[0], yvalues[0]);
+        LatLng ssecondPoint = new LatLng(xvalues[1], yvalues[1]);
+
+        LatLngBounds ppointBounds = new LatLngBounds(ffirstPoint, ssecondPoint);
+
+        //initialize an array of MapPins
+        for(int i = 0; i<place.length; i++){
+            pins.add(i, new MapPin(place[i], xcoords[i], ycoords[i]));
         }
-        mRestaurants = sortedRestaurants;
-        // Add restaurant list to persistant session object
-        Restaurants.instance().addList(mRestaurants);
 
-        // refresh the adapter
-        mAdapter = (SearchAdapter) mListView.getAdapter();
-        mAdapter.clear();
-        mAdapter.addAll(mRestaurants);
-        mAdapter.notifyDataSetChanged();
-    }
-    public void onSingleRestaurantResponse(JSONObject response){
-        Log.d("SearchActiivity oSRR", response.toString());
-    }
-*/
+        lm.addMultiLoc(pins);
+
+
+        mLocation = new GPSTracker(SearchActivityMapView.this);
+        lm.addLoc(new MapPin("Seattle", 47.6097, -122.3331));
+        lm.addLoc(new MapPin("I AM HERE", mLocation.getLatitude(), mLocation.getLongitude()));
+
+
+
+        /**
+         * Return coordinates are then used to calculate the distance within the view, the view
+         * is then set to the appropriate setting such that all coordinates are in reasonable view.
+         */
+
+        LocationDistances distCurrentLocation = new LocationDistances();
+
+        for(int i = 0; i < xList.size(); i++) {
+
+            double locDis = distCurrentLocation.distanceBetweenTwoPoints(mLocation.getLatitude(), xcoords[i], mLocation.getLongitude(), ycoords[i]);
+            System.out.println("Distance to restruant: " + place[i] + " " + locDis + "miles");
+
+        }
+
+        System.out.println("east: " + east + "west: " + west + "north: " + north + "south: " + south);
+
+        LocationDistances distView = new LocationDistances();
+        double sSize = distView.distanceOfView(east, west, north, south);
+
+        System.out.println("Integer: " + distView.setZoom(sSize));
+
+        lm.generateMap(googleMap, ppointBounds, distView.setZoom(sSize));
+        System.out.println("Distance is: " + sSize);
     }
 }
