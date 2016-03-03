@@ -59,6 +59,7 @@ public class RateActivity extends Activity {
     // result for taking a picture
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
+    static final int REQUEST_GET_CHEESE = 2;
 
     // path for burger photo
     private String mBurgerPhotoPath;
@@ -266,7 +267,7 @@ public class RateActivity extends Activity {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), CheeseActivity.class);
-                        startActivityForResult(intent, 1);
+                        startActivityForResult(intent, REQUEST_GET_CHEESE);
                     }
                 });
 
@@ -441,7 +442,7 @@ public class RateActivity extends Activity {
         }
 
         //get cheese string from string activity
-        if(requestCode == 1) {
+        if(requestCode == REQUEST_GET_CHEESE && resultCode == RESULT_OK) {
             if(resultCode == Activity.RESULT_OK) {
                 mSpnrCheese.setText(data.getStringExtra("result"));
             }

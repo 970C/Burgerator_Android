@@ -38,6 +38,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import burgerator.util.LoadingDialog;
 import burgerator.util.Restaurants;
 import burgerator.util.SearchAdapter;
 import burgerator.util.Top10Adapter;
@@ -52,6 +53,7 @@ public class SearchActivity extends Activity {
     private List mRestaurants = new ArrayList<>();
     private YelpResponseCallbacks mCallbacks;
     private EditText mSearch;
+    private LoadingDialog mLoadingDialog;
 
     private class YelpResponseCallbacks implements YelpCallback {
         @Override
@@ -65,12 +67,15 @@ public class SearchActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        mLoadingDialog = new LoadingDialog(this);
+        mLoadingDialog.start();
+
         // Find the ListView
         mListView = (ListView) findViewById(R.id.searchListView);
 
         //Attach the adapter to the list view and requisition request
         mCallbacks = new YelpResponseCallbacks();
-        new YelpRestaurantListRequest(mCallbacks).execute("Seattle, WA");
+        new YelpRestaurantListRequest(mCallbacks).execute("Ellensburg, WA");
         ArrayList dummyBurgers = new ArrayList<>();
         mAdapter = new SearchAdapter(this, dummyBurgers );
         mListView.setAdapter(mAdapter);
@@ -243,6 +248,8 @@ public class SearchActivity extends Activity {
         mAdapter.clear();
         mAdapter.addAll(mRestaurants);
         mAdapter.notifyDataSetChanged();
+
+        mLoadingDialog.stop();
     }
     public void onSingleRestaurantResponse(JSONObject response){
         Log.d("SearchActiivity oSRR", response.toString());

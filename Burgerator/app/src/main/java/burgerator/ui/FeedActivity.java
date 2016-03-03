@@ -31,17 +31,22 @@ import burgerator.util.Callback;
 import burgerator.util.Feed;
 import burgerator.util.FeedAdapter;
 import burgerator.util.ImageLoadTask;
+import burgerator.util.LoadingDialog;
 import burgerator.util.Top10Adapter;
 
 public class FeedActivity extends Activity {
 
     private ListView mListView;
     private FeedAdapter mAdapter;
+    private LoadingDialog mLoadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
+
+        mLoadingDialog = new LoadingDialog(this);
+        mLoadingDialog.start();
 
         // Find the ListView
         mListView = (ListView) findViewById(R.id.feedListView);
@@ -154,6 +159,8 @@ public class FeedActivity extends Activity {
                 mAdapter.clear();
                 mAdapter.addAll(feedElements);
                 mAdapter.notifyDataSetChanged();
+
+                mLoadingDialog.stop();
             }
         }catch (NullPointerException e){
             e.printStackTrace();

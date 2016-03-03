@@ -29,17 +29,22 @@ import burgerator.util.BurgerFeed;
 import burgerator.util.Callback;
 import burgerator.util.Feed;
 import burgerator.util.ImageLoadTask;
+import burgerator.util.LoadingDialog;
 import burgerator.util.Top10Adapter;
 
 public class Top10Activity extends Activity {
 
     private ListView listView;
     private Top10Adapter mAdapter;
+    private LoadingDialog mLoadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top10);
+
+        mLoadingDialog = new LoadingDialog(this);
+        mLoadingDialog.start();
 
         // Find the ListView
         listView = (ListView) findViewById(R.id.top10ListView);
@@ -216,7 +221,7 @@ public class Top10Activity extends Activity {
                 //Set restaurant address
                 TextView restaurantAddress = (TextView) feedElement.findViewById(R.id.restaurant_address);
                 restaurantAddress.setText(burger.getRestaurantAddress());*/
-
+        mLoadingDialog.stop();
     }
 }
 

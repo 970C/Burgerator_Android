@@ -1,6 +1,7 @@
 package burgerator.gms;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by alec on 2/25/16.*/
@@ -15,15 +16,15 @@ public class LocationDistances {
     private double west;
     private double north;
     private double south;
-    private ArrayList<Double> a = new ArrayList<Double>();
-    private ArrayList<Double> b = new ArrayList<Double>();
+    private List<Double> a = new ArrayList<Double>();
+    private List<Double> b = new ArrayList<Double>();
 
     //LatLngBounds bounds = new LatLngBounds();
 
     LocationMarker locMark = new LocationMarker();
 
     public LocationDistances(){}
-    public LocationDistances(ArrayList<Double> Vertex) {
+    public LocationDistances(List<Double> Vertex) {
         a = Vertex;
     }
 

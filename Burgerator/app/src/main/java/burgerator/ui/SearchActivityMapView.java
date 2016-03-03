@@ -178,13 +178,28 @@ public class SearchActivityMapView extends FragmentActivity implements OnMapRead
             yList.add(i, ycoords[i]);
         }
 
+        List<JSONObject> restaurants = new ArrayList<>(); //fill with yelp data
+        List<String> restaurantName = new ArrayList<>();
+        List<Double> restaurantXCoordinates = new ArrayList<>();
+        List<Double> restaurantYCoordinates = new ArrayList<>();
+        try {
+            for (JSONObject restaurant : restaurants) {
+                restaurantName.add(restaurant.getString("name"));
+                restaurantXCoordinates.add(restaurant.getJSONObject("location").getJSONObject("coordinate").getDouble("latitude"));
+                restaurantYCoordinates.add(restaurant.getJSONObject("location").getJSONObject("coordinate").getDouble("longitude"));
+            }
+        }catch(JSONException e){Log.e("SearchActivityMapView OnMapReady()", e.toString());}
+
         /**
          *LocationDistance class is initialized and variables are set with
          * xList and yList. The farthestLatSort method is initialized and returns
          * box coordinates which is then condensed to a LatLngBounds instance.
          */
+        //ALECS
         LocationDistances ylocDis = new LocationDistances(yList);
         LocationDistances xlocDis = new LocationDistances(xList);
+        /*LocationDistances ylocDis = new LocationDistances(restaurantYCoordinates);
+        LocationDistances xlocDis = new LocationDistances(restaurantXCoordinates);*/
 
         double[] xvalues = xlocDis.farthestLatSort(0);
         double east = xlocDis.eastGet();
@@ -208,7 +223,7 @@ public class SearchActivityMapView extends FragmentActivity implements OnMapRead
 
 
         mLocation = new GPSTracker(SearchActivityMapView.this);
-        lm.addLoc(new MapPin("Seattle", 47.6097, -122.3331));
+        //lm.addLoc(new MapPin("Seattle", 47.6097, -122.3331));
         lm.addLoc(new MapPin("I AM HERE", mLocation.getLatitude(), mLocation.getLongitude()));
 
 
@@ -218,7 +233,7 @@ public class SearchActivityMapView extends FragmentActivity implements OnMapRead
          * is then set to the appropriate setting such that all coordinates are in reasonable view.
          */
 
-        LocationDistances distCurrentLocation = new LocationDistances();
+        /*LocationDistances distCurrentLocation = new LocationDistances();
 
         for(int i = 0; i < xList.size(); i++) {
 
@@ -227,14 +242,14 @@ public class SearchActivityMapView extends FragmentActivity implements OnMapRead
 
         }
 
-        System.out.println("east: " + east + "west: " + west + "north: " + north + "south: " + south);
+        System.out.println("east: " + east + "west: " + west + "north: " + north + "south: " + south);*/
 
         LocationDistances distView = new LocationDistances();
         double sSize = distView.distanceOfView(east, west, north, south);
 
-        System.out.println("Integer: " + distView.setZoom(sSize));
+        //System.out.println("Integer: " + distView.setZoom(sSize));
 
         lm.generateMap(googleMap, ppointBounds, distView.setZoom(sSize));
-        System.out.println("Distance is: " + sSize);
+        //System.out.println("Distance is: " + sSize);
     }
 }

@@ -166,6 +166,21 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //TODO: Jon - TESTED AND WORKING(kevin)
+        //test call to social login - if you see this code block DELETE ME!
+        mRequest.socialLogin("harokevin@yahoo.com", "", new BurgerDB.VolleyCallback() {
+            @Override
+            public void onSuccess(JSONObject result) {
+                Log.d("Testing socLogin.php:", result.toString());
+                //...
+            }
+        });
+    }
+
     public void forgottenPassword(View view){
         //TODO: take in the user email  and pass it to the server
     }

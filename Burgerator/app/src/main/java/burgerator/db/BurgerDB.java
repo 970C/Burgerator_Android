@@ -260,7 +260,7 @@ public class BurgerDB {
         //TODO: Check userEmail, and userToken are safe to pass to the server
         params.put("useremail", userEmail);
         params.put("fbtoken", userToken);
-        
+
         // Create request and its response
         CustomRequest request = new CustomRequest(
                 Request.Method.POST, mEndpoint+endpointFile, params,
