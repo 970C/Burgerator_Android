@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.SeekBar;
@@ -69,6 +70,8 @@ public class RateActivity extends Activity {
     //WOULD YOU COME BACK FOR THE BURGER
     private RadioGroup wycbftb;
     private String mSelectedWycbftb = "";
+    private RadioButton up;
+    private RadioButton down;
 
     //Comments on burgers
     private EditText mComments;
@@ -325,29 +328,7 @@ public class RateActivity extends Activity {
                     public void onNothingSelected(AdapterView<?> arg0) {}
                 });
                 */
-        
-            ////SETTING UP PREP SPINNER
-                /*Button mSpnrPrep = (Button) findViewById(R.id.spnr_prep);
-<<<<<<< HEAD
-               // mSpnrPrep.setOnClickListener(new View.OnClickListener() {
-=======
-                mSpnrPrep.setOnClickListener(new View.OnClickListener() {
->>>>>>> origin/master
-                    @Override
-                    public void onClick(View v) {
-                 //       Intent intent = new Intent(getApplicationContext(), PrepActivity.class);
-                   //     startActivity(intent);
-                    //}
-                });
-                List<String> preps = new ArrayList <String>();
-                preps.add("prep?");
-                preps.add("under done");
-                preps.add("just right");
-                preps.add("over done");
-                // Creating adapter for spinner
 
-                ArrayAdapter<String> prepAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, preps);
-                */
 
                 // Drop down layout style - list view with radio button
                 //prepAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -369,13 +350,17 @@ public class RateActivity extends Activity {
 
         ////RADIO GROUP WYCBFTB
                 wycbftb = (RadioGroup)findViewById(R.id.radgrp_wycbftb);
+                up = (RadioButton)findViewById(R.id.radbtn_thumbs_up);
+                down = (RadioButton)findViewById(R.id.radbtn_thumbs_down);
                 wycbftb.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        if(checkedId == R.id.radbtn_thumbs_up){
+                        if (checkedId == R.id.radbtn_thumbs_up) {
                             mSelectedWycbftb = "10";    //Thumbs up is 10 in iOS db
-                        }else if(checkedId == R.id.radbtn_thumbs_down){
+                            up.setButtonDrawable(R.drawable.thumbs_up_red);
+                        } else if (checkedId == R.id.radbtn_thumbs_down) {
                             mSelectedWycbftb = "0";     //Thumbs down is 0 in iOS db
+                            down.setButtonDrawable(R.drawable.thumbs_down_red);
                         }
                     }
                 });

@@ -15,7 +15,7 @@
         layout="@layout/activity_settings_container"
         android:layout_below="@+id/settings_banner"
         android:layout_width="match_parent"
-        android:layout_height="480dp"
+        android:layout_height="470dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp" />

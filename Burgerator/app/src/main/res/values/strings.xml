@@ -44,6 +44,7 @@
     <string name="open_camera">Open Camera</string>
     <string name="cancel">Cancel</string>
 
+    <string name="user_info">user info</string>
     <string name="connect_to_facebook">connect facebook</string>
     <string name="connect_to_twitter">connect twitter</string>
     <string name="find_a_bug">find a bug in burgerator?</string>
