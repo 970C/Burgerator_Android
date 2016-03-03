@@ -11,8 +11,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.luis.burgerator.R;
 
@@ -25,6 +27,9 @@ import java.util.List;
 public class CheeseActivity extends Activity {
 
     private String mSelectedCheese = "";
+    private ListView cheese;
+    private ArrayAdapter<String> listAdapter;
+    private String object;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +87,7 @@ public class CheeseActivity extends Activity {
 
         // button to go to burger_rating
         Button burgerRatingButton = (Button) findViewById(R.id.btn_rate_activity);
-        burgerFeedButton.setBackgroundResource(R.mipmap.rate_button_on);
+        burgerRatingButton.setBackgroundResource(R.mipmap.rate_button_on);
         burgerRatingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,20 +117,46 @@ public class CheeseActivity extends Activity {
             }
         });
 
-        List<String> cheeses = new ArrayList<String>();
-        cheeses.add(" ");
-        cheeses.add("no cheese");
-        cheeses.add("american");
-        cheeses.add("cheddar");
-        cheeses.add("pepper jack");
-        cheeses.add("blue");
-        cheeses.add("swiss");
-        cheeses.add("gouda");
-        cheeses.add("other");
-        cheeses.add("provolone");
-        cheeses.add("goat");
-        cheeses.add("mozzarella");
-        cheeses.add("monterey jack");
+        cheese = (ListView) findViewById(R.id.cheese_selection);
 
+        ArrayList<String> cheeseList = new ArrayList<String>();
+        cheeseList.add("no cheese");
+        cheeseList.add("american");
+        cheeseList.add("cheddar");
+        cheeseList.add("pepper jack");
+        cheeseList.add("blue");
+        cheeseList.add("swiss");
+        cheeseList.add("gouda");
+        cheeseList.add("other");
+        cheeseList.add("provolone");
+        cheeseList.add("goat");
+        cheeseList.add("mozzarella");
+        cheeseList.add("monterey jack");
+
+        listAdapter = new ArrayAdapter<String>(this, R.layout.cheese_text_view,R.id.cheese_text_view, cheeseList);
+
+        cheese.setAdapter(listAdapter);
+
+        cheese.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                object = (String) cheese.getItemAtPosition(position);
+            }
+        });
+
+        //selected cheese text box
+        TextView mTextView = (TextView)findViewById(R.id.cheese_selected);
+        mTextView.setText(object);
+
+        Button submit = (Button)findViewById(R.id.submit_cheese);
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.putExtra("result", object);
+                setResult(Activity.RESULT_OK, intent);
+                finish();
+            }
+        });
     }
 }

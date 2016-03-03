@@ -54,7 +54,7 @@
     <string name="done">Done</string>
     <string name="dont_see_burger">Don\'t see your burger?</string>
     <string name="rankings_to_go">rankings to go</string>
-    <string name="cheese">What cheese did you order on your burger?</string>
+    <string name="what_kind_of_cheese">What cheese did you order on your burger?</string>
     <string name="submit">submit</string>
     <string name="prep_activity">based on your preferences, how was your burger prepared?</string>
 
@@ -69,6 +69,8 @@
     <string name="last_name">last name</string>
     <string name="password">password</string>
     <string name="zip_code">zip code</string>
+
+    <string name="cheese_button">cheese?</string>
 
     <string name="facebook_app_id">186446715056507</string>
     <string name="title_activity_fb_test">FB_test</string>

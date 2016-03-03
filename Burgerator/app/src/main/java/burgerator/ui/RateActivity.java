@@ -63,7 +63,7 @@ public class RateActivity extends Activity {
     private String mBurgerPhotoPath;
 
     //Spinners - prep is for show; it is never taken into the db
-    private Spinner mSpnrCheese,mSpnrRatio,mSpnrPrep;
+    private Button mSpnrCheese,mSpnrRatio,mSpnrPrep;
     private String mSelectedCheese = "",mSelectedRatio = "",mSelcetedPrep = "";
 
     //WOULD YOU COME BACK FOR THE BURGER
@@ -257,16 +257,18 @@ public class RateActivity extends Activity {
         /////SETTING UP SPINNERS
                 
             ////SETTING UP CHEESE SPINNER
-                Button mSpnrCheese = (Button) findViewById(R.id.spnr_cheese);
+                mSpnrCheese = (Button) findViewById(R.id.spnr_cheese);
+                mSpnrCheese.setText(R.string.cheese_button);
                 mSpnrCheese.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getApplicationContext(), CheeseActivity.class);
-                        startActivity(intent);
+                        startActivityForResult(intent, 1);
                     }
                 });
+
                 // Spinner Drop down elements
-                List<String> cheeses = new ArrayList <String>();
+               /* List<String> cheeses = new ArrayList <String>();
                 cheeses.add(" ");
                 cheeses.add("no cheese");
                 cheeses.add("american");
@@ -279,7 +281,7 @@ public class RateActivity extends Activity {
                 cheeses.add("provolone");
                 cheeses.add("goat");
                 cheeses.add("mozzarella");
-                cheeses.add("monterey jack");
+                cheeses.add("monterey jack");*/
 
             ////SETTING UP RATIO SPINNER
                 Button mSpnrRatio = (Button) findViewById(R.id.spnr_ratio);
@@ -325,13 +327,13 @@ public class RateActivity extends Activity {
                 */
         
             ////SETTING UP PREP SPINNER
-                Button mSpnrPrep = (Button) findViewById(R.id.spnr_prep);
-                mSpnrPrep.setOnClickListener(new View.OnClickListener() {
+                /*Button mSpnrPrep = (Button) findViewById(R.id.spnr_prep);
+               // mSpnrPrep.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), PrepActivity.class);
-                        startActivity(intent);
-                    }
+                 //       Intent intent = new Intent(getApplicationContext(), PrepActivity.class);
+                   //     startActivity(intent);
+                    //}
                 });
                 List<String> preps = new ArrayList <String>();
                 preps.add("prep?");
@@ -340,7 +342,7 @@ public class RateActivity extends Activity {
                 preps.add("over done");
                 // Creating adapter for spinner
                 ArrayAdapter<String> prepAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, preps);
-
+                */
                 // Drop down layout style - list view with radio button
                 //prepAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
@@ -447,6 +449,12 @@ public class RateActivity extends Activity {
                     burgerImage.setImageBitmap(bmBurgerImage);
         }
 
+        //get cheese string from string activity
+        if(requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK) {
+                mSpnrCheese.setText(data.getStringExtra("result"));
+            }
+        }
     }
 
     private File createImageFile() throws IOException {

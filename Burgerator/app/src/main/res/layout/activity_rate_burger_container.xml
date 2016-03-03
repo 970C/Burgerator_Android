@@ -63,21 +63,23 @@
         android:layout_marginLeft="5dp"/>
 
         <Button
-            android:layout_width="150dp"
+            android:layout_width="153dp"
             android:layout_height="75dp"
             android:id="@+id/spnr_cheese"
-            android:background="@drawable/cheese_button"
+            android:background="@drawable/red_button"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-            android:layout_below="@id/imgbtn_snapshot"/>
+            android:layout_below="@id/imgbtn_snapshot"
+            android:textColor="@color/White"/>
 
         <Button
-            android:layout_width="150dp"
+            android:layout_width="153dp"
             android:layout_height="75dp"
             android:id="@+id/spnr_ratio"
             android:background="@drawable/ratio_button"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
             android:layout_below="@id/imgbtn_snapshot"
             android:layout_toRightOf="@+id/spnr_cheese"/>
 
