@@ -279,4 +279,34 @@ public class BurgerDB {
         mRequestQueue.add(request);
     }
 
+    public void emailRegister(String userEmail, String firstName, String lastName, String password, String zip, final VolleyCallback callback){
+        String endpointFile = "/register.php";
+
+        // Request parameters(body of request)
+        Map<String,String> params = new HashMap<String,String>();
+        //TODO: Check userEmail, and userToken are safe to pass to the server
+        params.put("username", firstName+" "+lastName);
+        params.put("useremail", userEmail);
+        params.put("userpassword", password);
+        params.put("userzip", password);
+        //params.put("userlocation", password); //empty in ios. okay not to pass
+
+        // Create request and its response
+        CustomRequest request = new CustomRequest(
+                Request.Method.POST, mEndpoint+endpointFile, params,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // return an object that contains the user information
+                        Log.d("BurgerDbLog", response.toString());
+
+                        callback.onSuccess(response);
+                    }
+                },
+                mErrListener);  //end of request arguments
+
+        // Add the request to the request queue to be executed
+        mRequestQueue.add(request);
+    }
+
 }

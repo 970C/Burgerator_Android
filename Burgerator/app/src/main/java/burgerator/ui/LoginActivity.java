@@ -141,13 +141,10 @@ public class LoginActivity extends AppCompatActivity {
                                             //Log.d("getSharedPref email", stor.getSharedPrefs(getApplicationContext(), "FBUser").get(key).toString());
                                             //mRequest.socialLogin()
 
-                                            //TODO: Jon - TESTED AND WORKING(kevin)
-                                            //test call to social login - if you see this code block DELETE ME!
-                                            mRequest.socialLogin("harokevin@yahoo.com", "", new BurgerDB.VolleyCallback() {
+
+                                            Controller.instance().requestSocialLogin(getApplicationContext(),email, accessToken.getToken(), new Callback(){
                                                 @Override
-                                                public void onSuccess(JSONObject result) {
-                                                    Log.d("Testing socLogin.php:", result.toString());
-                                                    Controller.instance().setUser(result);
+                                                public void onSuccess(Object result) {
                                                     onLoginResponse(Controller.instance().getUser());
                                                 }
                                             });
@@ -229,7 +226,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void emailRegister(View view){
-        //TODO: sends to a new activity that allows the user to register
+        //sends to a new activity that allows the user to register
+        Intent registerByEmail = new Intent(this,LoginEmailRegisterActivity.class);
+        startActivity(registerByEmail);
     }
 
     @Override
