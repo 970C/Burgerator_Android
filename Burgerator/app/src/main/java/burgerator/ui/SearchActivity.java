@@ -190,6 +190,8 @@ public class SearchActivity extends Activity {
         public String id;
         public boolean is_closed;
         public YelpLocation location;
+
+
     }
     public class YelpLocation{
         public String cross_streets;

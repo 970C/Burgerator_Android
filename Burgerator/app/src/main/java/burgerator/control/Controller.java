@@ -105,6 +105,10 @@ public class Controller implements Callback{
         return user;
     }
 
+    public void setUser(JSONObject _obj){
+        user.setUser(_obj);
+    }
+
     public boolean isAuthenticated(){
         if(user.getResult().equalsIgnoreCase("1")) {
             return true;

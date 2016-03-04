@@ -53,8 +53,8 @@ public class RankingActivity extends Activity {
         String usersCurrentTitle = Controller.instance().getUser().getTitle();
         TextView rankText = (TextView)findViewById(R.id.current_rank);
         rankText.setText(usersCurrentTitle);
-        String usersCurrentBurgerCount = Controller.instance().getUser().getCount();
-        int count = Integer.parseInt(usersCurrentBurgerCount);
+        int usersCurrentBurgerCount = Controller.instance().getUser().getCount();
+        int count = usersCurrentBurgerCount;
         for(int i=0; i < count; i++) {
             if(count <= 3) {
                 ImageView squire = (ImageView) findViewById(R.id.img_burger_squire);

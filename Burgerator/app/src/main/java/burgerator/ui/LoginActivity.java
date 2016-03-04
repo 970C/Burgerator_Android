@@ -140,6 +140,17 @@ public class LoginActivity extends AppCompatActivity {
                                             Log.d("getSharedPref email", stor.getSharedPrefs(getApplicationContext(), "FBUser").toString());
                                             //Log.d("getSharedPref email", stor.getSharedPrefs(getApplicationContext(), "FBUser").get(key).toString());
                                             //mRequest.socialLogin()
+
+                                            //TODO: Jon - TESTED AND WORKING(kevin)
+                                            //test call to social login - if you see this code block DELETE ME!
+                                            mRequest.socialLogin("harokevin@yahoo.com", "", new BurgerDB.VolleyCallback() {
+                                                @Override
+                                                public void onSuccess(JSONObject result) {
+                                                    Log.d("Testing socLogin.php:", result.toString());
+                                                    Controller.instance().setUser(result);
+                                                    onLoginResponse(Controller.instance().getUser());
+                                                }
+                                            });
                                         }
                                     });
 
@@ -164,21 +175,6 @@ public class LoginActivity extends AppCompatActivity {
                 });
 
 
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        //TODO: Jon - TESTED AND WORKING(kevin)
-        //test call to social login - if you see this code block DELETE ME!
-        mRequest.socialLogin("harokevin@yahoo.com", "", new BurgerDB.VolleyCallback() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                Log.d("Testing socLogin.php:", result.toString());
-                //...
-            }
-        });
     }
 
     public void forgottenPassword(View view){

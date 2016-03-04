@@ -56,8 +56,8 @@ public class ProfileActivity extends Activity {
         userName.setText(Controller.instance().getUser().getUserName());
 
         ImageView rankImage = (ImageView)findViewById(R.id.user_ranking);
-        String usersCurrentBurgerCount = Controller.instance().getUser().getCount();
-        int count = Integer.parseInt(usersCurrentBurgerCount);
+        int usersCurrentBurgerCount = Controller.instance().getUser().getCount();
+        int count = usersCurrentBurgerCount;
         for(int i=0; i < count; i++) {
             if (count <= 3) {
                 ImageView logo = (ImageView) findViewById(R.id.user_ranking);

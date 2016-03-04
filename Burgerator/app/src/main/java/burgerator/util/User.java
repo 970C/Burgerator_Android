@@ -1,5 +1,8 @@
 package burgerator.util;
 
+import android.util.Log;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -64,7 +67,15 @@ public class User {
     public String getTitle(){
         return getVal("burgertitle");
     }
-    public String getCount() { return getVal("burgercount");}
+    public int getCount() {
+        int count;
+        try{
+            count = Integer.parseInt(getVal("burgercount"));
+        }catch (Exception e){
+            Log.d("User.getcount", e.getMessage());
+            count = 0;
+        }
+        return count;}
     public int getSize(){
         return json.length();
     }
