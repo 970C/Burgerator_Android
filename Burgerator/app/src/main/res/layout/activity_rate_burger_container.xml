@@ -57,10 +57,13 @@
         android:id="@+id/imgbtn_snapshot"
         android:layout_below="@id/imgv_restaurant_thumbnail"
         android:onClick="onTakePicture"
-        android:scaleType="fitXY"
-        android:background="@drawable/burger_snap_shot"
+        android:src="@drawable/burger_snap_shot"
         android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"/>
+        android:layout_marginLeft="5dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:padding="0dp" />
 
         <Button
             android:layout_width="153dp"
