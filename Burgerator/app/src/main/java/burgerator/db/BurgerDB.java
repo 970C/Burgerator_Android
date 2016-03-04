@@ -288,7 +288,7 @@ public class BurgerDB {
         params.put("username", firstName+" "+lastName);
         params.put("useremail", userEmail);
         params.put("userpassword", password);
-        params.put("userzip", password);
+        params.put("userzip", zip);
         //params.put("userlocation", password); //empty in ios. okay not to pass
 
         // Create request and its response

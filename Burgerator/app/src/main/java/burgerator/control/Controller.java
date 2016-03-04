@@ -77,13 +77,11 @@ public class Controller implements Callback{
     public void requestSocialLogin(Context _c, String email, String token, final Callback callback){
         //TODO: sanitate and validate the input
         burgerDB = new BurgerDB(_c);
-        //test call to social login
-        //TODO: take out hard coded harokevin@yahoo.com and empty token
-        burgerDB.socialLogin("harokevin@yahoo.com", "", new BurgerDB.VolleyCallback() {
+        burgerDB.socialLogin(email, token, new BurgerDB.VolleyCallback() {
             @Override
             public void onSuccess(JSONObject result) {
                 Log.d("Controller.requestSocialLogin()", result.toString());
-                Controller.instance().setUser(result);
+                user.setUser(result);
                 callback.onSuccess(result);
             }
         });
@@ -95,14 +93,15 @@ public class Controller implements Callback{
                                      String zip, final Callback callback ){
         //TODO: sanitate and validate the input
         burgerDB = new BurgerDB(_c);
-        burgerDB.socialLogin("harokevin@yahoo.com", "", new BurgerDB.VolleyCallback() {
-            @Override
-            public void onSuccess(JSONObject result) {
-                Log.d("Controller.requestSocialLogin()", result.toString());
-                Controller.instance().setUser(result);
-                callback.onSuccess(result);
-            }
-        });
+        burgerDB.emailRegister(userEmail, firstName,lastName, password, zip,
+                new BurgerDB.VolleyCallback() {
+                    @Override
+                    public void onSuccess(JSONObject result) {
+                        Log.d("Controller.requestSocialLogin()", result.toString());
+                        user.setUser(result);
+                        callback.onSuccess(result);
+                    }
+                });
     }
 
     public Feed getbFeed(){

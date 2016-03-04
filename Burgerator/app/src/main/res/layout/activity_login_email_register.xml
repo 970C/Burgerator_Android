@@ -24,7 +24,7 @@
         android:layout_centerInParent="true"
         android:id="@+id/divider"/>
 
-    <EditText
+    <TextView
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@+id/divider"
@@ -35,24 +35,24 @@
         android:textColor="@color/black"
         android:singleLine="true"
         android:layout_centerInParent="true"
-        android:id="@+id/et_email"/>
+        android:id="@+id/tv_email"/>
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_below="@+id/et_email"
+        android:layout_below="@+id/tv_email"
         android:background="@drawable/email_button_border"
         android:layout_centerInParent="true"
         android:hint="@string/user_email"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:singleLine="true"
-        android:id="@+id/et_email_button"/>
+        android:id="@+id/et_email"/>
 
     <EditText
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:layout_below="@+id/et_email_button"
+        android:layout_below="@+id/et_email"
         android:background="@drawable/email_button_border"
         android:layout_centerInParent="true"
         android:layout_marginTop="5dp"
