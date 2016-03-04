@@ -105,7 +105,7 @@ public class ProfileActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                Dialog userPhotoDialog = new Dialog(ProfileActivity.this);
+                final Dialog userPhotoDialog = new Dialog(ProfileActivity.this);
                 userPhotoDialog.setContentView(R.layout.user_profile_pic_dialog_box);
                 userPhotoDialog.setCancelable(true);
 
@@ -122,10 +122,11 @@ public class ProfileActivity extends Activity {
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        finish();
+                        userPhotoDialog.dismiss();
                     }
                 });
 
+                userPhotoDialog.setCanceledOnTouchOutside(true);
                 userPhotoDialog.show();
             }
         });

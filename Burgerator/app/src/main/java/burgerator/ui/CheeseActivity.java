@@ -30,6 +30,7 @@ public class CheeseActivity extends Activity {
     private ListView cheese;
     private ArrayAdapter<String> listAdapter;
     private String object;
+    private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,7 +146,7 @@ public class CheeseActivity extends Activity {
         });
 
         //selected cheese text box
-        TextView mTextView = (TextView)findViewById(R.id.cheese_selected);
+        mTextView = (TextView)findViewById(R.id.cheese_selected);
         mTextView.setText(object);
 
         Button submit = (Button)findViewById(R.id.submit_cheese);

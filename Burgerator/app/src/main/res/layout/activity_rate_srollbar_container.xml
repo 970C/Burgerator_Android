@@ -3,45 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
+    android:layout_height="match_parent">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:id="@+id/tv_taste" android:text="@string/taste" />
 
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:id="@+id/seekbtn_taste"
-        android:background="@drawable/scroll_view_test"
-        android:thumb="@drawable/rating_slider_thumb"
-        android:progressDrawable="@color/maroon"
-        android:paddingTop="20dp"
-        android:paddingBottom="15dp"
-        android:thumbOffset="1dp"
-        android:minHeight="10dp"
-        android:maxHeight="10dp"/>
+    <include layout="@layout/seek_bar_taste"/>
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:id="@+id/tv_toppings" android:text="@string/toppings" />
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:id="@+id/seekbtn_toppings"
-        android:background="@drawable/scroll_view_test"
-        android:thumb="@drawable/rating_slider_thumb"
-        android:progressDrawable="@color/maroon"
-        android:paddingTop="20dp"
-        android:paddingBottom="15dp"
-        android:thumbOffset="1dp"
-        android:minHeight="10dp"
-        android:maxHeight="10dp"/>
+
+    <include layout="@layout/seek_bar_toppings"/>
 
 
 
@@ -49,18 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="20dp"
         android:id="@+id/tv_bun" android:text="@string/bun" />
-    <SeekBar
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:id="@+id/seekbtn_bun"
-        android:background="@drawable/scroll_view_test"
-        android:thumb="@drawable/rating_slider_thumb"
-        android:progressDrawable="@color/maroon"
-        android:paddingTop="20dp"
-        android:paddingBottom="15dp"
-        android:thumbOffset="1dp"
-        android:minHeight="10dp"
-        android:maxHeight="10dp"/>
+
+    <include layout="@layout/seek_bar_bun"/>
 
 
 </LinearLayout>

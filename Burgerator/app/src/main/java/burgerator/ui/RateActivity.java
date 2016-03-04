@@ -111,7 +111,7 @@ public class RateActivity extends Activity {
 
                 //seekBar
                 tasteSeekBar = (SeekBar) findViewById(R.id.seekbtn_taste);
-                toppingSeekBar = (SeekBar) findViewById(R.id.seekbtn_toppings);
+                toppingSeekBar = (SeekBar) findViewById(R.id.seekbtn_topping);
                 bunSeekBar = (SeekBar) findViewById(R.id.seekbtn_bun);
 
                 //Add the string to the banner
@@ -204,9 +204,11 @@ public class RateActivity extends Activity {
                 //seekbar intervals
                 tasteSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                     @Override
-                    public void onStopTrackingTouch(SeekBar tasteSeekBar) {}
+                    public void onStopTrackingTouch(SeekBar tasteSeekBar) {
+                    }
                     @Override
                     public void onStartTrackingTouch(SeekBar tasteSeekBar) {
+                        tasteSeekBar.bringToFront();
                     }
 
                     @Override
@@ -243,12 +245,13 @@ public class RateActivity extends Activity {
                     @Override
                     public void onStopTrackingTouch(SeekBar bunSeekBar) {}
                     @Override
-                    public void onStartTrackingTouch(SeekBar bunSeekBar) {}
+                    public void onStartTrackingTouch(SeekBar bunSeekBar) {
+                    }
 
                     @Override
                     public void onProgressChanged(SeekBar bunSeekBar, int progress, boolean fromUser) {
                         int increment = 1;
-                        bunSeekBar.setMax(8);
+                        bunSeekBar.setMax(10);
                         progress = ((int)Math.round(progress/increment))*increment;
                         bunSeekBar.setProgress(progress);
 
@@ -288,31 +291,55 @@ public class RateActivity extends Activity {
                 cheeses.add("monterey jack");*/
 
             ////SETTING UP RATIO SPINNER
-                Button mSpnrRatio = (Button) findViewById(R.id.spnr_ratio);
+                mSpnrRatio = (Button) findViewById(R.id.spnr_ratio);
+                mSpnrRatio.setText(R.string.ratio_button);
                 mSpnrRatio.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Dialog ratio = new Dialog(RateActivity.this);
+                        final Dialog ratio = new Dialog(RateActivity.this);
                         ratio.setContentView(R.layout.ratio_popover);
 
                         Button bunHeavy = (Button) ratio.findViewById(R.id.img_bun_heavy);
+                        bunHeavy.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mSpnrRatio.setText(R.string.bun_heavy);
+                                ratio.dismiss();
+                            }
+                        });
 
                         Button balanced = (Button) ratio.findViewById(R.id.img_balanced);
+                        balanced.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mSpnrRatio.setText(R.string.balanced);
+                                ratio.dismiss();
+                            }
+                        });
 
                         Button meatHeavy = (Button) ratio.findViewById(R.id.img_meat_heavy);
+                        meatHeavy.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                mSpnrRatio.setText(R.string.meat_heavy);
+                                ratio.dismiss();
+                            }
+                        });
 
+                        ratio.setCanceledOnTouchOutside(true);
                         ratio.show();
 
                     }
                 });
 
-                List<String> ratios = new ArrayList <String>();
+                /*List<String> ratios = new ArrayList <String>();
                 ratios.add(" ");
                 ratios.add("bun heavy");
                 ratios.add("balanced");
-                ratios.add("meat heavy");
+                ratios.add("meat heavy");*/
+
                 // Creating adapter for spinner
-                ArrayAdapter<String> ratioAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, ratios);
+                //ArrayAdapter<String> ratioAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, ratios);
 
                 // Drop down layout style - list view with radio button
                 //ratioAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

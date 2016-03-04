@@ -72,6 +72,7 @@
     <string name="zip_code">zip code</string>
 
     <string name="cheese_button">cheese?</string>
+    <string name="ratio_button">ratio?</string>
 
     <string name="facebook_app_id">186446715056507</string>
     <string name="title_activity_fb_test">FB_test</string>
