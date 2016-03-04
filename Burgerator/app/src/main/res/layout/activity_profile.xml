@@ -25,17 +25,6 @@
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"/>
 
-    <!-- filters on profile activity -->
-        <include
-            android:id="@+id/filters"
-            layout="@layout/activity_profile_sortby_container"
-            android:layout_width="350dp"
-            android:layout_height="50dp"
-            android:layout_below="@+id/profile"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"/>
-
     <!-- list of users burgers on profile activity -->
       <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -43,10 +32,10 @@
         android:layout_height="290dp"
         android:id="@+id/profileScrollView"
         android:fillViewport="true"
-        android:layout_below="@+id/filters"
+        android:layout_below="@+id/profile"
           android:layout_marginLeft="10dp"
           android:layout_marginRight="10dp"
-          android:layout_marginTop="5dp">
+          android:layout_marginTop="10dp">
 
       </ScrollView>
 

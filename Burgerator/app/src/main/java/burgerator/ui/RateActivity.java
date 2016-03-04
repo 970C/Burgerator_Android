@@ -51,7 +51,8 @@ public class RateActivity extends Activity {
 
     //Seekbars for taste toppings and bun
     private SeekBar tasteSeekBar,toppingSeekBar,bunSeekBar;
-    private String mRateTaste = "", mRateToppings = "", mRateBun = "";
+    private String mRateTaste, mRateToppings, mRateBun;
+    private TextView tasteDescription, bunDescription, toppingsDescription;
 
     // HTTP request handler
     private BurgerDB mRequest;
@@ -114,6 +115,11 @@ public class RateActivity extends Activity {
                 toppingSeekBar = (SeekBar) findViewById(R.id.seekbtn_topping);
                 bunSeekBar = (SeekBar) findViewById(R.id.seekbtn_bun);
 
+                //text description
+                tasteDescription = (TextView)findViewById(R.id.taste_description);
+                toppingsDescription = (TextView)findViewById(R.id.toppings_description);
+                bunDescription = (TextView)findViewById(R.id.bun_description);
+
                 //Add the string to the banner
                 TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
                 bannerBurgerFeed.setText(R.string.title_activity_burger_rating);
@@ -164,7 +170,7 @@ public class RateActivity extends Activity {
                 });
 
                 // button to go to profile
-                Button profileButton = (Button) findViewById(R.id.btn_profile_activity);
+                final Button profileButton = (Button) findViewById(R.id.btn_profile_activity);
                 profileButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -208,18 +214,41 @@ public class RateActivity extends Activity {
                     }
                     @Override
                     public void onStartTrackingTouch(SeekBar tasteSeekBar) {
-                        tasteSeekBar.bringToFront();
                     }
 
                     @Override
                     public void onProgressChanged(SeekBar tasteSeekBar, int progress, boolean fromUser) {
                         int increment = 1;
-                        tasteSeekBar.setMax(8);
+                        tasteSeekBar.setMax(10);
                         progress = Math.round(progress / increment) * increment;
                         tasteSeekBar.setProgress(progress);
 
                         //Update value for burgerator object
-                        mRateTaste = String.valueOf(progress);
+                        //tasteDescription.setText("" + progress);
+                        switch (progress) {
+                            case 1: tasteDescription.setText("rather eat dirt  " + progress);
+                                break;
+                            case 2: tasteDescription.setText("very bad  " + progress);
+                                break;
+                            case 3: tasteDescription.setText("doesn't do it  " + progress);
+                                break;
+                            case 4: tasteDescription.setText("sub-par  " + progress);
+                                break;
+                            case 5: tasteDescription.setText("just awsome  " + progress);
+                                break;
+                            case 6: tasteDescription.setText("pretty good  " + progress);
+                                break;
+                            case 7: tasteDescription.setText("darn good  " + progress);
+                                break;
+                            case 8: tasteDescription.setText("grade 'a'  " + progress);
+                                break;
+                            case 9: tasteDescription.setText("mouth party  " + progress);
+                                break;
+                            case 10: tasteDescription.setText("religious  " + progress);
+                                break;
+                            default: tasteDescription.setText(" ");
+                                break;
+                        }
                     }
                 });
 
@@ -232,12 +261,37 @@ public class RateActivity extends Activity {
                     @Override
                     public void onProgressChanged(SeekBar toppingSeekBar, int progress, boolean fromUser) {
                         int increment = 1;
-                        toppingSeekBar.setMax(8);
+                        toppingSeekBar.setMax(10);
                         progress = Math.round(progress/increment) *increment;
                         toppingSeekBar.setProgress(progress);
 
                         //Update value for burgerator object
-                        mRateToppings = String.valueOf(progress);
+                        //toppingsDescription.setText(" "+ progress);
+                        switch (progress) {
+                            case 1: toppingsDescription.setText("rotten  " + progress);
+                                break;
+                            case 2: toppingsDescription.setText("gross  " + progress);
+                                break;
+                            case 3: toppingsDescription.setText("missed it  " + progress);
+                                break;
+                            case 4: toppingsDescription.setText("nothin' special  " + progress);
+                                break;
+                            case 5: toppingsDescription.setText("same old  " + progress);
+                                break;
+                            case 6: toppingsDescription.setText("fresh  " + progress);
+                                break;
+                            case 7: toppingsDescription.setText("tasty  " + progress);
+                                break;
+                            case 8: toppingsDescription.setText("awsome  " +progress);
+                                break;
+                            case 9: toppingsDescription.setText("next level  " + progress);
+                                break;
+                            case 10: toppingsDescription.setText("mind blowing  " + progress);
+                                break;
+                            default: toppingsDescription.setText("meat & bun  " );
+                                break;
+
+                        }
                     }
                 });
 
@@ -256,7 +310,31 @@ public class RateActivity extends Activity {
                         bunSeekBar.setProgress(progress);
 
                         //Update value for burgerator object
-                        mRateBun = String.valueOf(progress);
+                        //bunDescription.setText("" + progress);
+                        switch (progress) {
+                            case 1: bunDescription.setText("fail  " +progress);
+                                break;
+                            case 2: bunDescription.setText("just ain't right  "+ progress);
+                                break;
+                            case 3: bunDescription.setText("bad fit  " + progress);
+                                break;
+                            case 4: bunDescription.setText("not quite right  " + progress);
+                                break;
+                            case 5: bunDescription.setText("standard  " + progress);
+                                break;
+                            case 6: bunDescription.setText("pretty good  " + progress);
+                                break;
+                            case 7: bunDescription.setText("great bun  " + progress);
+                                break;
+                            case 8: bunDescription.setText("love it..  " + progress);
+                                break;
+                            case 9: bunDescription.setText("like a glove  " + progress);
+                                break;
+                            case 10: bunDescription.setText("yoga pants  " + progress);
+                                break;
+                            default: bunDescription.setText("went bunless  ");
+                                break;
+                        }
                     }
                 });
 

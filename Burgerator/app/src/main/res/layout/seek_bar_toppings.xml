@@ -22,4 +22,12 @@
         android:progressDrawable="@drawable/red_progress_bar"
         android:maxHeight="10dp"/>
 
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/toppings_description"
+        android:textColor="@color/black"
+        android:textAlignment="center"/>
+
 </RelativeLayout>
