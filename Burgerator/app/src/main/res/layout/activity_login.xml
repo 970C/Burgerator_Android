@@ -20,22 +20,23 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@id/banner"
+            android:layout_height="wrap_content"
             android:id="@+id/img_join_the_burger_club"
             android:src="@mipmap/app_icon"/>
 
 
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:id="@+id/loginOptions"
-            android:layout_below="@id/img_join_the_burger_club">
+            android:layout_below="@id/img_join_the_burger_club"
+            android:gravity="center_horizontal">
 
 
             <ImageButton
-                android:layout_width="match_parent"
+                android:layout_width="216dp"
                 android:layout_height="50dp"
                 android:id="@+id/btn_facebook_login"
                 android:onClick="facebookRegister"
@@ -44,52 +45,57 @@
 
 
             <ImageButton
-                android:layout_width="match_parent"
+                android:layout_width="216dp"
                 android:layout_height="50dp"
                 android:id="@+id/emailRegister"
-                android:layout_below="@id/btn_facebook_login"
                 android:onClick="emailRegister"
                 android:background="@drawable/register_email"
-                android:paddingTop="10dp"
                 android:layout_marginTop="5dp"/>
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_below="@id/loginOptions"
-            android:id="@+id/img_member_login"/>
+            android:id="@+id/img_member_login" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/et_email_address"
-            android:layout_below="@id/img_member_login"
-            android:text="harokevin@yahoo.com"/>
+            android:text="harokevin@yahoo.com"
+            android:textSize="14dp"
+            android:textIsSelectable="false"
+            android:gravity="center_vertical" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/et_password"
-            android:layout_below="@id/et_email_address"
-            android:text="password"/>
+            android:text="password"
+            android:gravity="center_vertical"
+            android:textSize="14dp" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/link_forgotten_password"
-            android:layout_below="@id/et_password"
             android:onClick="forgottenPassword"
-            android:text="forgot password?"/>
+            android:text="forgot password?"
+            android:textSize="16dp"
+            android:background="@drawable/login_button_border"
+            android:textColor="#ffffff" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/btn_login"
-            android:layout_below="@id/link_forgotten_password"
             android:onClick="emailLogin"
-            android:text="login : let's do this!"/>
+            android:text="login : let's do this!"
+            android:textSize="16dp"
+            android:background="@drawable/login_button_border"
+            android:layout_marginTop="10dp"
+            android:textColor="#ffffff" />
 
 
 

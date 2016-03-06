@@ -9,88 +9,134 @@
     android:layout_marginRight="5dp"
     android:layout_marginTop="5dp">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:gravity="top"
-            android:id="@+id/imgv_burger_ranking"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingTop="5dp">
 
-        <TextView
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:id="@+id/restaurant_name"
-            android:gravity="top"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="15dp"
-            android:textColor="@color/black"
-            android:layout_toRightOf="@+id/imgv_burger_ranking"/>
+            android:layout_height="120dp">
 
-        <RelativeLayout
+            <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="top"
+                    android:id="@+id/imgv_burger_ranking"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:id="@+id/restaurant_name"
+                        android:gravity="top"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="15dp"
+                        android:textColor="@color/black"
+                        android:layout_toRightOf="@+id/imgv_burger_ranking"/>
+
+                <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/restaurant_name"
+                        android:layout_marginRight="20dp"
+                        android:id="@+id/top_10_container_header"
+                        android:layout_toRightOf="@id/imgv_burger_ranking">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:id="@+id/burger_name"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginLeft="15dp"
+                                android:textColor="@color/black"
+                                android:gravity="left"
+                                android:text="BURGER NAME"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:id="@+id/restaurant_address"
+                                android:layout_marginRight="5dp"
+                                android:layout_marginLeft="15dp"
+                                android:textColor="@color/black"
+                                android:layout_below="@+id/burger_name"
+                                android:gravity="left"
+                                android:text="RESTAURANT NAME"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:id="@+id/rating_value"
+                                android:gravity="right"
+                                android:textAlignment="gravity"
+                                android:layout_alignParentRight="true"
+                                android:layout_toRightOf="@id/burger_name"
+                                android:text="RatNum"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="25dp"
+                                android:id="@+id/rating_text"
+                                android:text="rating"
+                                android:layout_toRightOf="@id/restaurant_address"
+                                android:layout_below="@id/rating_value"
+                                android:gravity="right"
+                                android:textAlignment="gravity"
+                                android:layout_alignParentRight="true"/>
+
+                    </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/restaurant_name"
-            android:layout_marginRight="20dp"
-            android:id="@+id/top_10_container_header"
-            android:layout_toRightOf="@id/imgv_burger_ranking">
+            android:background="#000000">
 
-                <TextView
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical|center_horizontal">
+
+                <ImageView
                     android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:id="@+id/burger_name"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="15dp"
-                    android:textColor="@color/black"
-                    android:gravity="left"
-                    android:text="BURGER NAME"
-                    />
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView"
+                    android:background="@drawable/spiffygif"
+                    android:layout_alignWithParentIfMissing="false"
+                    android:layout_alignParentLeft="false"
+                    android:layout_alignParentBottom="false"
+                    android:layout_centerInParent="true" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:id="@+id/restaurant_address"
-                    android:layout_marginRight="5dp"
-                    android:layout_marginLeft="15dp"
-                    android:textColor="@color/black"
-                    android:layout_below="@+id/burger_name"
-                    android:gravity="left"
-                    android:text="RESTAURANT NAME"/>
+                <ImageButton
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"
+                        android:id="@+id/imgv_burger_picture"
+                        android:layout_centerInParent="true"
+                    android:layout_below="@+id/imgv_burger_ranking"
+                        android:onClick="onTop10BurgerClick"
+                        android:descendantFocusability="blocksDescendants"
+                    android:adjustViewBounds="false"
+                    android:scaleType="center" />
+            </RelativeLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:id="@+id/rating_value"
-                    android:gravity="right"
-                    android:textAlignment="gravity"
-                    android:layout_alignParentRight="true"
-                    android:layout_toRightOf="@id/burger_name"
-                    android:text="RatNum"/>
+        </LinearLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="25dp"
-                    android:id="@+id/rating_text"
-                    android:text="rating"
-                    android:layout_toRightOf="@id/restaurant_address"
-                    android:layout_below="@id/rating_value"
-                    android:gravity="right"
-                    android:textAlignment="gravity"
-                    android:layout_alignParentRight="true"/>
-
-        </RelativeLayout>
-
-        <ImageButton
-            android:layout_width="330dp"
-            android:layout_height="400dp"
-            android:id="@+id/imgv_burger_picture"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp"
-            android:layout_below="@+id/imgv_burger_ranking"
-            android:onClick="onTop10BurgerClick"
-            android:descendantFocusability="blocksDescendants"/>
+    </LinearLayout>
 
 
 </RelativeLayout>
