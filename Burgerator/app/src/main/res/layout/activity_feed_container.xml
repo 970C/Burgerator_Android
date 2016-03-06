@@ -7,7 +7,9 @@
     android:background="@drawable/burger_feed_border"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
-    android:layout_marginTop="5dp">
+    android:layout_marginTop="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp">
 
     <ImageView
         android:layout_width="100dp"
@@ -72,35 +74,47 @@
         android:layout_alignParentRight="true"/>
 
     <ImageView
-        android:layout_width="330dp"
-        android:layout_height="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="390dp"
         android:id="@+id/imgv_burger_picture"
         android:layout_below="@+id/imgv_user_image"
         android:layout_centerInParent="true"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp"/>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:background="#000000" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="30dp"
+        android:layout_height="40dp"
         android:layout_marginTop="5dp"
         android:orientation="horizontal"
-        android:layout_below="@+id/imgv_burger_picture">
+        android:layout_below="@+id/imgv_burger_picture"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentEnd="false"
+        android:gravity="right">
 
         <TextView
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/amount_burger_pounded"
             android:layout_marginLeft="10dp"
             android:textColor="@color/black"
-            android:text="5 persons pounded it"/>
+            android:text="5 persons pounded it"
+            android:layout_gravity="center_vertical|right"
+            android:singleLine="false"
+            android:textAlignment="center"
+            android:gravity="center_vertical" />
 
         <ImageButton
             android:layout_width="115dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:id="@+id/imgbtn_pound_it"
             android:background="@drawable/pound_button"
-            android:layout_gravity="center"/>
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="20dp" />
 
     </LinearLayout>
 

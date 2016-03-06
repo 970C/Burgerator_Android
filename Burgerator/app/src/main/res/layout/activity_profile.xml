@@ -10,34 +10,41 @@
     android:scaleType="centerCrop">
 
     <!-- banner on each activity -->
-    <include
-        android:id="@+id/banner"
-        layout="@layout/profile_banner"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="80dp">
 
-    <!-- profile on profile activity -->
+        <include
+            android:id="@+id/banner"
+            layout="@layout/profile_banner"/>
+
         <include
             android:id="@+id/profile"
             layout="@layout/activity_profile_user_container"
             android:layout_width="match_parent"
-            android:layout_below="@+id/banner"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
             android:layout_marginTop="5dp"/>
 
-    <!-- list of users burgers on profile activity -->
-      <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="290dp"
-        android:id="@+id/profileScrollView"
-        android:fillViewport="true"
-        android:layout_below="@+id/profile"
-          android:layout_marginLeft="10dp"
-          android:layout_marginRight="10dp"
-          android:layout_marginTop="10dp">
+        <ScrollView
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="fill_parent"
+          android:layout_height="290dp"
+          android:id="@+id/profileScrollView"
+          android:fillViewport="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
 
-      </ScrollView>
+        </ScrollView>
+    </LinearLayout>
+
+    <!-- profile on profile activity -->
+
+    <!-- list of users burgers on profile activity -->
 
     <!-- navigation bar on each activity-->
         <include

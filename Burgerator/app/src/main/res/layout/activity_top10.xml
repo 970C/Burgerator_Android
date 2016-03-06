@@ -9,19 +9,27 @@
     android:scaleType="centerCrop">
 
     <!-- banner on each activity -->
-    <include layout="@layout/banner"
-            android:id="@+id/banner"/>
-
-    <ListView
-        android:layout_below="@id/banner"
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="475dp"
-        android:id="@+id/top10ListView"
-        android:fillViewport="true"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp">
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="80dp">
 
-    </ListView>
+        <include layout="@layout/banner"
+                android:id="@+id/banner"/>
+
+        <ListView
+            android:layout_below="@id/banner"
+            android:layout_width="match_parent"
+            android:layout_height="475dp"
+            android:id="@+id/top10ListView"
+            android:fillViewport="true"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp">
+
+        </ListView>
+    </LinearLayout>
 
     <!-- navigation bar on each activity-->
     <include layout="@layout/navigation_bar_container"/>

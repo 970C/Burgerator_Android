@@ -3,35 +3,54 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
     android:orientation="vertical"
     tools:context="burgerator.ui.SearchActivity"
     android:background="@drawable/background">
 
     <!-- banner on each activity -->
-    <include
-        android:id="@+id/banner"
-        layout="@layout/search_banner"/>
-
-    <include layout="@layout/activity_search_container"
-        android:layout_width="355dp"
-        android:layout_height="60dp"
-        android:layout_below="@+id/banner"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="5dp"/>
-
-    <ListView
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="fill_parent"
-        android:id="@+id/searchListView"
-        android:fillViewport="true"
-        android:layout_marginTop="140dp"
-        android:layout_marginBottom="70dp">
-    </ListView>
+        android:layout_marginBottom="75dp">
+
+        <include
+            android:id="@+id/banner"
+            layout="@layout/search_banner"/>
+
+        <include layout="@layout/activity_search_container"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/banner"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"/>
+
+        <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/searchListView"
+            android:fillViewport="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
+        </ListView>
+    </LinearLayout>
 
     <!-- navigation bar on each activity-->
-    <include layout="@layout/navigation_bar_container"/>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <include layout="@layout/navigation_bar_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/searchListView"
+            android:layout_alignParentBottom="true" />
+    </LinearLayout>
 
 </RelativeLayout>
