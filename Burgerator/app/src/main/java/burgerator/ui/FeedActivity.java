@@ -3,6 +3,7 @@ package burgerator.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -44,6 +45,7 @@ public class FeedActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed);
+        final Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
 
         mLoadingDialog = new LoadingDialog(this);
         mLoadingDialog.start();
@@ -61,6 +63,7 @@ public class FeedActivity extends Activity {
         bannerBurgerFeed.setText(R.string.title_activity_burger_feed);
         bannerBurgerFeed.setTextSize((float)30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
+        bannerBurgerFeed.setTypeface(eastwood);
 
 
         // Initializes button views and their onClickListeners

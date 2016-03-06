@@ -3,6 +3,7 @@ package burgerator.ui;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
@@ -70,6 +71,8 @@ public class SearchActivityMapView extends FragmentActivity implements OnMapRead
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_map_view);
 
+        Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
+
 
         mLocation = new GPSTracker(SearchActivityMapView.this);
 
@@ -83,6 +86,7 @@ public class SearchActivityMapView extends FragmentActivity implements OnMapRead
         bannerBurgerFeed.setText(R.string.find_a_burger);
         bannerBurgerFeed.setTextSize((float) 30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
+        bannerBurgerFeed.setTypeface(eastwood);
 
         //list button
         ImageButton map = (ImageButton)findViewById(R.id.imgbtn_search);

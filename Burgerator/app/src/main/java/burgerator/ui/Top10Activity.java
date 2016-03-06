@@ -2,6 +2,7 @@ package burgerator.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,6 +44,8 @@ public class Top10Activity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_top10);
 
+        Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
+
         mLoadingDialog = new LoadingDialog(this);
         mLoadingDialog.start();
 
@@ -59,6 +62,7 @@ public class Top10Activity extends Activity {
         bannerBurgerFeed.setText(R.string.title_activity_top_burgers);
         bannerBurgerFeed.setTextSize((float)30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
+        bannerBurgerFeed.setTypeface(eastwood);
 
         // Initializes button views and their onClickListeners
         // button to go to findABurger

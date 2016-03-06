@@ -22,6 +22,7 @@ android {
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/LICENSE'
     }
+    sourceSets { main { assets.srcDirs = ['src/main/assets', 'src/main/assets/fonts'] } }
 }
 
 dependencies {
@@ -29,22 +30,20 @@ dependencies {
     testCompile 'junit:junit:4.12'
 
     //db: CRUD operations to the db API
-    
 
     //util: Glide Image Loading
-    
+
     //yelp: TwoStepOAuth, YelpAPI
-    compile ('org.apache.httpcomponents:httpmime:4.3' ){
+    compile('org.apache.httpcomponents:httpmime:4.3') {
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
-    compile ('org.apache.httpcomponents:httpcore:4.4.1' ){
+    compile('org.apache.httpcomponents:httpcore:4.4.1') {
         exclude group: 'org.apache.httpcomponents', module: 'httpclient'
     }
 
     //util/yelp: used to sort yelp JSON
-    
+
     //facebook login: import com.facebook.FacebookSdk
-    
 
 
     compile 'com.android.support:appcompat-v7:23.2.0'

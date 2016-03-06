@@ -3,6 +3,7 @@ package burgerator.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -67,6 +68,8 @@ public class SearchActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
+
         mLoadingDialog = new LoadingDialog(this);
         mLoadingDialog.start();
 
@@ -91,6 +94,7 @@ public class SearchActivity extends Activity {
         bannerBurgerFeed.setText(R.string.find_a_burger);
         bannerBurgerFeed.setTextSize((float)30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
+        bannerBurgerFeed.setTypeface(eastwood);
 
 
         //map button
@@ -158,6 +162,7 @@ public class SearchActivity extends Activity {
         });
 
         mSearch = (EditText)findViewById(R.id.et_search);
+        mSearch.setTypeface(eastwood);
         mSearch.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {

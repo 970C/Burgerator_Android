@@ -3,6 +3,7 @@ package burgerator.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.luis.burgerator.R;
 
+import java.lang.reflect.Type;
+
 /**
  * Created by Luis on 2/15/2016.
  */
@@ -20,6 +23,8 @@ public class SelectBurgerActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
 
         /*This indented block should come before the onClick listeners before
         the onClick listeners wont trigger.*/
@@ -44,6 +49,7 @@ public class SelectBurgerActivity extends Activity {
         TextView bannerBurgerFeed = (TextView)findViewById(R.id.restaurant_view_banner);
         bannerBurgerFeed.setText(R.string.title_activity_select_burger);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
+        bannerBurgerFeed.setTypeface(eastwood);
 
 
         // Initializes button views and their onClickListeners

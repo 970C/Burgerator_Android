@@ -3,6 +3,7 @@ package burgerator.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -34,12 +35,17 @@ public class LoginEmailRegisterActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_email_register);
+        Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
 
         //initialize views
         mEmail = (EditText)findViewById(R.id.et_email);
+        mEmail.setTypeface(eastwood);
         mFirstName = (EditText)findViewById(R.id.et_first_name);
+        mFirstName.setTypeface(eastwood);
         mLastName = (EditText)findViewById(R.id.et_last_name);
+        mLastName.setTypeface(eastwood);
         mPassword = (EditText)findViewById(R.id.et_password);
+        mPassword.setTypeface(eastwood);
         mZipCode = (EditText)findViewById(R.id.et_zip_code);
 
         mZipCode.setOnEditorActionListener(new EditText.OnEditorActionListener() {

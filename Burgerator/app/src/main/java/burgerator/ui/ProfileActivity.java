@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -27,6 +28,7 @@ public class ProfileActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
 
         /*This indented block should come before the onClick listeners before
         the onClick listeners wont trigger.*/
@@ -51,11 +53,14 @@ public class ProfileActivity extends Activity {
         bannerBurgerFeed.setText(getResources().getText(R.string.title_activity_profile));
         bannerBurgerFeed.setTextSize((float) 30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
+        bannerBurgerFeed.setTypeface(eastwood);
 
         TextView userName = (TextView)findViewById(R.id.user_name);
         userName.setText(Controller.instance().getUser().getUserName());
+        userName.setTypeface(eastwood);
 
-        ImageView rankImage = (ImageView)findViewById(R.id.user_ranking);
+        TextView userRank = (TextView)findViewById(R.id.rank_name);
+        userRank.setTypeface(eastwood);
         int usersCurrentBurgerCount = Controller.instance().getUser().getCount();
         int count = usersCurrentBurgerCount;
         for(int i=0; i < count; i++) {
@@ -92,8 +97,8 @@ public class ProfileActivity extends Activity {
             }
         }
 
-            TextView userTitle = (TextView)findViewById(R.id.rank_name);
-        userTitle.setText(Controller.instance().getUser().getTitle());
+        //TextView userTitle = (TextView)findViewById(R.id.rank_name);
+        //userTitle.setText(Controller.instance().getUser().getTitle());
 
         ImageView userPhoto = (ImageView)findViewById(R.id.imgv_user_image);
         String userPhotoUrl = Controller.instance().getUser().getPhoto();

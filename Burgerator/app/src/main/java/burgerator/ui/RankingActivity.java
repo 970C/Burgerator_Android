@@ -3,6 +3,7 @@ package burgerator.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -25,6 +26,8 @@ public class RankingActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
+
         /*This indented block should come before the onClick listeners before
         the onClick listeners wont trigger.*/
         // Adding custom elements to a ScrollView
@@ -38,6 +41,7 @@ public class RankingActivity extends Activity {
         TextView bannerBurgerFeed = (TextView)findViewById(R.id.rank_banner);
         bannerBurgerFeed.setText(R.string.title_activity_ranking);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
+        bannerBurgerFeed.setTypeface(eastwood);
 
         //back button
         ImageButton back = (ImageButton)findViewById(R.id.imgbtn_back);
@@ -53,6 +57,7 @@ public class RankingActivity extends Activity {
         String usersCurrentTitle = Controller.instance().getUser().getTitle();
         TextView rankText = (TextView)findViewById(R.id.current_rank);
         rankText.setText(usersCurrentTitle);
+        rankText.setTypeface(eastwood);
         int usersCurrentBurgerCount = Controller.instance().getUser().getCount();
         int count = usersCurrentBurgerCount;
         for(int i=0; i < count; i++) {

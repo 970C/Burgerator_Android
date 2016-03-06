@@ -3,6 +3,7 @@ package burgerator.ui;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -36,6 +37,9 @@ public class CheeseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //font
+        final Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
+
         /*This indented block should come before the onClick listeners before
         the onClick listeners wont trigger.*/
         // Adding custom elements to a ScrollView
@@ -53,6 +57,7 @@ public class CheeseActivity extends Activity {
         bannerBurgerFeed.setText(R.string.title_activity_cheese);
         bannerBurgerFeed.setTextSize((float) 30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
+        bannerBurgerFeed.setTypeface(eastwood);
 
         //back button
         ImageButton back = (ImageButton)findViewById(R.id.imgbtn_back);
@@ -150,6 +155,7 @@ public class CheeseActivity extends Activity {
         mTextView.setText(object);
 
         Button submit = (Button)findViewById(R.id.submit_cheese);
+        submit.setTypeface(eastwood);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -159,5 +165,8 @@ public class CheeseActivity extends Activity {
                 finish();
             }
         });
+
+        TextView text = (TextView)findViewById(R.id.cheese_text);
+        text.setTypeface(eastwood);
     }
 }

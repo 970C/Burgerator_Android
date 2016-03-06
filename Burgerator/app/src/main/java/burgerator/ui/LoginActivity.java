@@ -2,6 +2,7 @@ package burgerator.ui;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -70,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        final Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
 
         //Initializeing Views
         mJoinTheBurgerClub = (ImageView)findViewById(R.id.img_join_the_burger_club);
@@ -77,9 +79,13 @@ public class LoginActivity extends AppCompatActivity {
         //mTwitterButton = (ImageButton) findViewById(R.id.btn_twitter_login);
         mMemberLogin = (ImageView)findViewById(R.id.img_member_login);
         mEmailAddress = (EditText)findViewById(R.id.et_email_address);
+        mEmailAddress.setTypeface(eastwood);
         mPassword = (EditText)findViewById(R.id.et_password);
+        mPassword.setTypeface(eastwood);
         mForgottenPasswordButton = (Button)findViewById(R.id.link_forgotten_password);
+        mForgottenPasswordButton.setTypeface(eastwood);
         mLoginButton = (Button)findViewById(R.id.btn_login);
+        mLoginButton.setTypeface(eastwood);
 
         //Initialize HTTP request handler
         mRequest = new BurgerDB(getApplicationContext());
@@ -90,6 +96,7 @@ public class LoginActivity extends AppCompatActivity {
         bannerBurgerFeed.setText(R.string.title_activity_burgerator);
         bannerBurgerFeed.setTextSize((float) 30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
+        bannerBurgerFeed.setTypeface(eastwood);
 
         // Initialize the SDK before executing any other operations,
         FacebookSdk.sdkInitialize(getApplicationContext());
@@ -142,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
                                             //mRequest.socialLogin()
 
 
-                                            Controller.instance().requestSocialLogin(getApplicationContext(),email, accessToken.getToken(), new Callback(){
+                                            Controller.instance().requestSocialLogin(getApplicationContext(), email, accessToken.getToken(), new Callback() {
                                                 @Override
                                                 public void onSuccess(Object result) {
                                                     onLoginResponse(Controller.instance().getUser());

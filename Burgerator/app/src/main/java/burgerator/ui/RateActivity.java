@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
@@ -88,6 +89,9 @@ public class RateActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //font
+        final Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
+
         /*This indented block should come before the onClick listeners before
         the onClick listeners wont trigger.*/
         /* Setting up the activity's views */
@@ -97,6 +101,10 @@ public class RateActivity extends Activity {
                 // Adding custom elements to a ScrollView
                 LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View v = inflater.inflate(R.layout.activity_rate, null);
+                /*FontsOverride.setDefaultFont(getApplicationContext(), "DEFAULT", "fonts/Eastwood.ttf");
+                FontsOverride.setDefaultFont(getApplicationContext(), "MONOSPACE", "fonts/Eastwood.ttf");
+                FontsOverride.setDefaultFont(getApplicationContext(), "SERIF", "fonts/Eastwood.ttf");
+                FontsOverride.setDefaultFont(getApplicationContext(), "SANS_SERIF", "fonts/Eastwood.ttf");*/
 
                 // Find the ScrollView
                 ScrollView sv = (ScrollView) v.findViewById(R.id.restaurantScrollView);
@@ -116,15 +124,25 @@ public class RateActivity extends Activity {
                 bunSeekBar = (SeekBar) findViewById(R.id.seekbtn_bun);
 
                 //text description
+                TextView taste = (TextView)findViewById(R.id.tv_taste);
+                taste.setTypeface(eastwood);
                 tasteDescription = (TextView)findViewById(R.id.taste_description);
+                tasteDescription.setTypeface(eastwood);
+                TextView toppings = (TextView)findViewById(R.id.tv_toppings);
+                toppings.setTypeface(eastwood);
                 toppingsDescription = (TextView)findViewById(R.id.toppings_description);
+                toppingsDescription.setTypeface(eastwood);
+                TextView description = (TextView)findViewById(R.id.tv_bun);
+                description.setTypeface(eastwood);
                 bunDescription = (TextView)findViewById(R.id.bun_description);
+                bunDescription.setTypeface(eastwood);
 
                 //Add the string to the banner
                 TextView bannerBurgerFeed = (TextView)findViewById(R.id.et_banner);
                 bannerBurgerFeed.setText(R.string.title_activity_burger_rating);
-                bannerBurgerFeed.setTextSize((float)30.0);
+                bannerBurgerFeed.setTextSize((float) 30.0);
                 bannerBurgerFeed.setGravity(Gravity.CENTER);
+                bannerBurgerFeed.setTypeface(eastwood);
 
                 // Initializes button views and their onClickListeners
                 // button to go to findABurger
@@ -190,6 +208,7 @@ public class RateActivity extends Activity {
                 });
 
                 btnSelectYourRestaurant = (Button) findViewById(R.id.et_restaurant_name);
+                btnSelectYourRestaurant.setTypeface(eastwood);
                 btnSelectYourRestaurant.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -199,6 +218,7 @@ public class RateActivity extends Activity {
                 });
 
                 btnPickYourRestaurant = (Button) findViewById(R.id.et_pick_your_restaurant);
+                btnPickYourRestaurant.setTypeface(eastwood);
                 btnPickYourRestaurant.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -343,6 +363,7 @@ public class RateActivity extends Activity {
                 
             ////SETTING UP CHEESE SPINNER
                 mSpnrCheese = (Button) findViewById(R.id.spnr_cheese);
+                mSpnrCheese.setTypeface(eastwood);
                 mSpnrCheese.setText(R.string.cheese_button);
                 mSpnrCheese.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -370,6 +391,7 @@ public class RateActivity extends Activity {
 
             ////SETTING UP RATIO SPINNER
                 mSpnrRatio = (Button) findViewById(R.id.spnr_ratio);
+                mSpnrRatio.setTypeface(eastwood);
                 mSpnrRatio.setText(R.string.ratio_button);
                 mSpnrRatio.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -381,6 +403,7 @@ public class RateActivity extends Activity {
                         bunHeavy.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                mSpnrRatio.setTypeface(eastwood);
                                 mSpnrRatio.setText(R.string.bun_heavy);
                                 ratio.dismiss();
                             }
@@ -390,6 +413,7 @@ public class RateActivity extends Activity {
                         balanced.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                mSpnrRatio.setTypeface(eastwood);
                                 mSpnrRatio.setText(R.string.balanced);
                                 ratio.dismiss();
                             }
@@ -399,6 +423,7 @@ public class RateActivity extends Activity {
                         meatHeavy.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
+                                mSpnrRatio.setTypeface(eastwood);
                                 mSpnrRatio.setText(R.string.meat_heavy);
                                 ratio.dismiss();
                             }
@@ -454,7 +479,9 @@ public class RateActivity extends Activity {
                 });
                 */
 
-        ////RADIO GROUP WYCBFTB
+        ////RADIO GROUP WYCBFTB and text
+                TextView wycbftbText = (TextView)findViewById(R.id.tv_come_back);
+                wycbftbText.setTypeface(eastwood);
                 wycbftb = (RadioGroup)findViewById(R.id.radgrp_wycbftb);
                 up = (RadioButton)findViewById(R.id.radbtn_thumbs_up);
                 down = (RadioButton)findViewById(R.id.radbtn_thumbs_down);
@@ -473,12 +500,17 @@ public class RateActivity extends Activity {
 
         ////Comments on Burger -> in method onRatingSubmit
         mComments = (EditText) findViewById(R.id.et_comments);
+        mComments.setTypeface(eastwood);
         mComments.setOnClickListener(new EditText.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mComments.setTypeface(eastwood);
                 mComments.setText("");
             }
         });
+
+        Button submit = (Button)findViewById(R.id.btn_submit);
+        submit.setTypeface(eastwood);
     }
 
     public void onTakePicture(View view){
@@ -506,6 +538,7 @@ public class RateActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        final Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
 
         //When the user is done taking the photo
         if(requestCode == REQUEST_TAKE_PHOTO && resultCode == RESULT_OK){
@@ -549,6 +582,7 @@ public class RateActivity extends Activity {
         //get cheese string from string activity
         if(requestCode == REQUEST_GET_CHEESE && resultCode == RESULT_OK) {
             if(resultCode == Activity.RESULT_OK) {
+                mSpnrCheese.setTypeface(eastwood);
                 mSpnrCheese.setText(data.getStringExtra("result"));
             }
         }
