@@ -61,7 +61,9 @@
                     android:id="@+id/tv_burger_squire"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:textAlignment="center"
+                    android:gravity="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -82,7 +84,9 @@
                     android:id="@+id/tv_burger_knight"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:textAlignment="center"
+                    android:gravity="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -103,7 +107,9 @@
                     android:id="@+id/tv_burger_baron"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:textAlignment="center"
+                    android:gravity="center" />
             </LinearLayout>
 
         </LinearLayout>
@@ -131,7 +137,9 @@
                     android:id="@+id/tv_burger_earl"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:textAlignment="center"
+                    android:gravity="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -152,7 +160,9 @@
                     android:id="@+id/tv_burger_marquis"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:textAlignment="center"
+                    android:gravity="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -173,7 +183,9 @@
                     android:id="@+id/tv_burger_duke"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:textAlignment="center"
+                    android:gravity="center" />
             </LinearLayout>
 
         </LinearLayout>
@@ -201,7 +213,9 @@
                     android:id="@+id/tv_burger_prince"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:textAlignment="center"
+                    android:gravity="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -222,7 +236,9 @@
                     android:id="@+id/tv_burger_jake"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:textAlignment="center"
+                    android:gravity="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -243,7 +259,9 @@
                     android:id="@+id/tv_burger_king"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:textAlignment="center"
+                    android:gravity="center" />
             </LinearLayout>
 
         </LinearLayout>
@@ -271,7 +289,9 @@
                     android:id="@+id/tv_burger_emperor"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:textSize="14dp" />
+                    android:textSize="14dp"
+                    android:textAlignment="center"
+                    android:gravity="center" />
             </LinearLayout>
 
         </LinearLayout>
