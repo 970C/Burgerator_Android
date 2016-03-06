@@ -491,9 +491,11 @@ public class RateActivity extends Activity {
                         if (checkedId == R.id.radbtn_thumbs_up) {
                             mSelectedWycbftb = "10";    //Thumbs up is 10 in iOS db
                             up.setButtonDrawable(R.drawable.thumbs_up_red);
+                            down.setButtonDrawable(R.drawable.thumbs_down_black);
                         } else if (checkedId == R.id.radbtn_thumbs_down) {
                             mSelectedWycbftb = "0";     //Thumbs down is 0 in iOS db
                             down.setButtonDrawable(R.drawable.thumbs_down_red);
+                            up.setButtonDrawable(R.drawable.thumbs_up_black);
                         }
                     }
                 });
