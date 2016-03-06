@@ -3,7 +3,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="540dp"
+    android:layout_height="530dp"
     android:background="@drawable/burger_feed_border"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
@@ -12,7 +12,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="fill_parent"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:paddingTop="5dp">
@@ -42,49 +42,60 @@
                         android:gravity="top"
                         android:layout_marginTop="10dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="5dp"
                         android:textColor="@color/black"
-                        android:layout_toRightOf="@+id/imgv_burger_ranking"/>
+                        android:layout_toRightOf="@+id/imgv_burger_ranking"
+                    android:textSize="14dp"
+                    android:text="foo" />
+
+                <ImageView
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:id="@+id/imageView2"
+                    android:background="#000000" />
 
                 <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/restaurant_name"
-                        android:layout_marginRight="20dp"
+                        android:layout_marginRight="10dp"
                         android:id="@+id/top_10_container_header"
-                        android:layout_toRightOf="@id/imgv_burger_ranking">
+                        android:layout_toRightOf="@id/imgv_burger_ranking"
+                    android:layout_marginTop="10dp">
 
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="50dp"
+                                android:layout_height="40dp"
                                 android:id="@+id/burger_name"
                                 android:layout_marginRight="5dp"
-                                android:layout_marginLeft="15dp"
+                                android:layout_marginLeft="5dp"
                                 android:textColor="@color/black"
                                 android:gravity="left"
                                 android:text="BURGER NAME"
-                                />
+                                android:textSize="16dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="25dp"
                                 android:id="@+id/restaurant_address"
                                 android:layout_marginRight="5dp"
-                                android:layout_marginLeft="15dp"
+                                android:layout_marginLeft="5dp"
                                 android:textColor="@color/black"
                                 android:layout_below="@+id/burger_name"
                                 android:gravity="left"
-                                android:text="RESTAURANT NAME"/>
+                                android:text="RESTAURANT NAME"
+                                android:textSize="12dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
-                                android:layout_height="50dp"
+                                android:layout_height="40dp"
                                 android:id="@+id/rating_value"
                                 android:gravity="right"
                                 android:textAlignment="gravity"
                                 android:layout_alignParentRight="true"
                                 android:layout_toRightOf="@id/burger_name"
-                                android:text="RatNum"/>
+                                android:text="RatNum"
+                                android:textSize="16dp" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -95,7 +106,8 @@
                                 android:layout_below="@id/rating_value"
                                 android:gravity="right"
                                 android:textAlignment="gravity"
-                                android:layout_alignParentRight="true"/>
+                                android:layout_alignParentRight="true"
+                                android:textSize="12dp" />
 
                     </RelativeLayout>
             </LinearLayout>
@@ -105,12 +117,15 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#000000">
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_vertical|center_horizontal">
+                android:gravity="center_vertical|center_horizontal"
+                android:background="#000000">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -131,7 +146,8 @@
                         android:onClick="onTop10BurgerClick"
                         android:descendantFocusability="blocksDescendants"
                     android:adjustViewBounds="false"
-                    android:scaleType="center" />
+                    android:scaleType="center"
+                    android:background="#00000000" />
             </RelativeLayout>
 
         </LinearLayout>

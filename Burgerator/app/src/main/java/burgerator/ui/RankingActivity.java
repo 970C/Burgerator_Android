@@ -107,14 +107,14 @@ public class RankingActivity extends Activity {
                 ImageView baron = (ImageView)findViewById(R.id.img_burger_baron);
                 baron.setImageResource(R.drawable.burger_baron_icon);
 
-                //ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
-                //earl.setImageResource(R.drawable.burger_earl_icon);
+                ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
+                earl.setImageResource(R.drawable.burger_earl_icon);
 
                 ImageView temp = (ImageView)findViewById(R.id.img_burger_marquis);
                 temp.setImageResource(R.drawable.temp_rank_icon);
 
-                //ImageView logo = (ImageView)findViewById(R.id.imgv_user_ranking);
-                //logo.setImageResource(R.drawable.burger_earl_icon);
+                ImageView logo = (ImageView)findViewById(R.id.imgv_user_ranking);
+                logo.setImageResource(R.drawable.burger_earl_icon);
             }else if(count <= 40 && count > 26) {
                 ImageView squire = (ImageView) findViewById(R.id.img_burger_squire);
                 squire.setImageResource(R.drawable.burger_squire_icon);
@@ -125,17 +125,17 @@ public class RankingActivity extends Activity {
                 ImageView baron = (ImageView)findViewById(R.id.img_burger_baron);
                 baron.setImageResource(R.drawable.burger_baron_icon);
 
-                //ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
-                //earl.setImageResource(R.drawable.burger_earl__icon);
+                ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
+                earl.setImageResource(R.drawable.burger_earl_icon);
 
-                //ImageView marquis = (ImageView)findViewById(R.id.img_burger_marquis);
-                //marquis.setImageResource(R.drawable.burger_marquis_icon);
+                ImageView marquis = (ImageView)findViewById(R.id.img_burger_marquis);
+                marquis.setImageResource(R.drawable.burger_marquis_icon);
 
                 ImageView temp = (ImageView)findViewById(R.id.img_burger_duke);
                 temp.setImageResource(R.drawable.temp_rank_icon);
 
-                //ImageView logo = (ImageView)findViewById(R.id.imgv_user_ranking);
-                //logo.setImageResource(R.drawable.burger_marquis_icon);
+                ImageView logo = (ImageView)findViewById(R.id.imgv_user_ranking);
+                logo.setImageResource(R.drawable.burger_marquis_icon);
             }else if(count <= 55 && count > 40) {
                 ImageView squire = (ImageView) findViewById(R.id.img_burger_squire);
                 squire.setImageResource(R.drawable.burger_squire_icon);
@@ -146,11 +146,11 @@ public class RankingActivity extends Activity {
                 ImageView baron = (ImageView)findViewById(R.id.img_burger_baron);
                 baron.setImageResource(R.drawable.burger_baron_icon);
 
-                //ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
-                //earl.setImageResource(R.drawable.burger_earl_icon);
+                ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
+                earl.setImageResource(R.drawable.burger_earl_icon);
 
-                //ImageView marquis = (ImageView)findViewById(R.id.img_burger_marquis);
-                //marquis.setImageResource(R.drawable.burger_marquis_icon);
+                ImageView marquis = (ImageView)findViewById(R.id.img_burger_marquis);
+                marquis.setImageResource(R.drawable.burger_marquis_icon);
 
                 ImageView duke = (ImageView)findViewById(R.id.img_burger_duke);
                 duke.setImageResource(R.drawable.burger_duke_icon);
@@ -170,11 +170,11 @@ public class RankingActivity extends Activity {
                 ImageView baron = (ImageView)findViewById(R.id.img_burger_baron);
                 baron.setImageResource(R.drawable.burger_baron_icon);
 
-                //ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
-                //earl.setImageResource(R.drawable.burger_earl_icon);
+                ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
+                earl.setImageResource(R.drawable.burger_earl_icon);
 
-                //ImageView marquis = (ImageView)findViewById(R.id.img_burger_marquis);
-                //marquis.setImageResource(R.drawable.burger_marquis_icon);
+                ImageView marquis = (ImageView)findViewById(R.id.img_burger_marquis);
+                marquis.setImageResource(R.drawable.burger_marquis_icon);
 
                 ImageView duke = (ImageView)findViewById(R.id.img_burger_duke);
                 duke.setImageResource(R.drawable.burger_duke_icon);
@@ -197,11 +197,11 @@ public class RankingActivity extends Activity {
                 ImageView baron = (ImageView)findViewById(R.id.img_burger_baron);
                 baron.setImageResource(R.drawable.burger_baron_icon);
 
-                //ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
-                //earl.setImageResource(R.drawable.burger_earl_icon);
+                ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
+                earl.setImageResource(R.drawable.burger_earl_icon);
 
-                //ImageView marquis = (ImageView)findViewById(R.id.img_burger_marquis);
-                //marquis.setImageResource(R.drawable.burger_marquis_icon);
+                ImageView marquis = (ImageView)findViewById(R.id.img_burger_marquis);
+                marquis.setImageResource(R.drawable.burger_marquis_icon);
 
                 ImageView duke = (ImageView)findViewById(R.id.img_burger_duke);
                 duke.setImageResource(R.drawable.burger_duke_icon);
@@ -209,14 +209,14 @@ public class RankingActivity extends Activity {
                 ImageView prince = (ImageView)findViewById(R.id.img_burger_prince);
                 prince.setImageResource(R.drawable.prince_of_burgers_icon);
 
-                //ImageView jake = (ImageView)findViewById(R.id.img_burger_jake);
-                //jake.setImageResource(R.drawable.burger_jake_icon);
+                ImageView jake = (ImageView)findViewById(R.id.img_burger_jake);
+                jake.setImageResource(R.drawable.burger_jake_icon);
 
                 ImageView temp = (ImageView)findViewById(R.id.img_burger_king);
                 temp.setImageResource(R.drawable.temp_rank_icon);
 
-                //ImageView logo = (ImageView)findViewById(R.id.imgv_user_ranking);
-                //logo.setImageResource(R.drawable.burger_jake_icon);
+                ImageView logo = (ImageView)findViewById(R.id.imgv_user_ranking);
+                logo.setImageResource(R.drawable.burger_jake_icon);
             }else if(count <= 100 && count > 84) {
                 ImageView squire = (ImageView) findViewById(R.id.img_burger_squire);
                 squire.setImageResource(R.drawable.burger_squire_icon);
@@ -227,11 +227,11 @@ public class RankingActivity extends Activity {
                 ImageView baron = (ImageView)findViewById(R.id.img_burger_baron);
                 baron.setImageResource(R.drawable.burger_baron_icon);
 
-                //ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
-                //earl.setImageResource(R.drawable.burger_earl_icon);
+                ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
+                earl.setImageResource(R.drawable.burger_earl_icon);
 
-                //ImageView marquis = (ImageView)findViewById(R.id.img_burger_marquis);
-                //marquis.setImageResource(R.drawable.burger_marquis_icon);
+                ImageView marquis = (ImageView)findViewById(R.id.img_burger_marquis);
+                marquis.setImageResource(R.drawable.burger_marquis_icon);
 
                 ImageView duke = (ImageView)findViewById(R.id.img_burger_duke);
                 duke.setImageResource(R.drawable.burger_duke_icon);
@@ -239,8 +239,8 @@ public class RankingActivity extends Activity {
                 ImageView prince = (ImageView)findViewById(R.id.img_burger_prince);
                 prince.setImageResource(R.drawable.prince_of_burgers_icon);
 
-                //ImageView jake = (ImageView)findViewById(R.id.img_burger_jake);
-                //jake.setImageResource(R.drawable.burger_jake_icon);
+                ImageView jake = (ImageView)findViewById(R.id.img_burger_jake);
+                jake.setImageResource(R.drawable.burger_jake_icon);
 
                 ImageView king = (ImageView)findViewById(R.id.img_burger_king);
                 king.setImageResource(R.drawable.king_of_burgers_icon);
@@ -260,11 +260,11 @@ public class RankingActivity extends Activity {
                 ImageView baron = (ImageView)findViewById(R.id.img_burger_baron);
                 baron.setImageResource(R.drawable.burger_baron_icon);
 
-                //ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
-                //earl.setImageResource(R.drawable.burger_earl_icon);
+                ImageView earl = (ImageView)findViewById(R.id.img_burger_earl);
+                earl.setImageResource(R.drawable.burger_earl_icon);
 
-                //ImageView marquis = (ImageView)findViewById(R.id.img_burger_marquis);
-                //marquis.setImageResource(R.drawable.burger_marquis_icon);
+                ImageView marquis = (ImageView)findViewById(R.id.img_burger_marquis);
+                marquis.setImageResource(R.drawable.burger_marquis_icon);
 
                 ImageView duke = (ImageView)findViewById(R.id.img_burger_duke);
                 duke.setImageResource(R.drawable.burger_duke_icon);
@@ -272,8 +272,8 @@ public class RankingActivity extends Activity {
                 ImageView prince = (ImageView)findViewById(R.id.img_burger_prince);
                 prince.setImageResource(R.drawable.prince_of_burgers_icon);
 
-                //ImageView jake = (ImageView)findViewById(R.id.img_burger_jake);
-                //jake.setImageResource(R.drawable.burger_jake_icon);
+                ImageView jake = (ImageView)findViewById(R.id.img_burger_jake);
+                jake.setImageResource(R.drawable.burger_jake_icon);
 
                 ImageView king = (ImageView)findViewById(R.id.img_burger_king);
                 king.setImageResource(R.drawable.king_of_burgers_icon);
