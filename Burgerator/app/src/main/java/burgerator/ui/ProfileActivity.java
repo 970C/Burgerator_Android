@@ -67,33 +67,43 @@ public class ProfileActivity extends Activity {
             if (count <= 3) {
                 ImageView logo = (ImageView) findViewById(R.id.user_ranking);
                 logo.setImageResource(R.drawable.burger_squire_icon);
+                userRank.setText("burger squire");
             } else if (count <= 8 && count > 3) {
                 ImageView logo = (ImageView) findViewById(R.id.user_ranking);
                 logo.setImageResource(R.drawable.burger_knight_icon);
+                userRank.setText("burger knight");
             } else if (count <= 18 && count > 8) {
                 ImageView logo = (ImageView) findViewById(R.id.user_ranking);
                 logo.setImageResource(R.drawable.burger_baron_icon);
+                userRank.setText("burger baron");
             } else if (count <= 26 && count > 18) {
-                //ImageView logo = (ImageView)findViewById(R.id.user_ranking);
-                //logo.setImageResource(R.drawable.burger_earl_icon);
+                ImageView logo = (ImageView)findViewById(R.id.user_ranking);
+                logo.setImageResource(R.drawable.burger_earl_icon);
+                userRank.setText("burger earl");
             } else if (count <= 40 && count > 26) {
-                //ImageView logo = (ImageView)findViewById(R.id.user_ranking);
-                //logo.setImageResource(R.drawable.burger_marquis_icon);
+                ImageView logo = (ImageView)findViewById(R.id.user_ranking);
+                logo.setImageResource(R.drawable.burger_marquis_icon);
+                userRank.setText("burger marquis");
             } else if (count <= 55 && count > 40) {
                 ImageView logo = (ImageView) findViewById(R.id.user_ranking);
                 logo.setImageResource(R.drawable.burger_duke_icon);
+                userRank.setText("burger duke");
             } else if (count <= 74 && count > 55) {
                 ImageView logo = (ImageView) findViewById(R.id.user_ranking);
                 logo.setImageResource(R.drawable.prince_of_burgers_icon);
+                userRank.setText("prince of all burgers");
             } else if (count <= 84 && count > 74) {
-                //ImageView logo = (ImageView)findViewById(R.id.user_ranking);
-                //logo.setImageResource(R.drawable.burger_jake_icon);
+                ImageView logo = (ImageView)findViewById(R.id.user_ranking);
+                logo.setImageResource(R.drawable.burger_jake_icon);
+                userRank.setText("burger jake");
             } else if (count <= 100 && count > 84) {
                 ImageView logo = (ImageView) findViewById(R.id.user_ranking);
                 logo.setImageResource(R.drawable.king_of_burgers_icon);
+                userRank.setText("king of all burgers");
             } else if (count > 101) {
                 ImageView logo = (ImageView) findViewById(R.id.user_ranking);
                 logo.setImageResource(R.drawable.burger_emperor_icon);
+                userRank.setText("burger emperor");
             }
         }
 

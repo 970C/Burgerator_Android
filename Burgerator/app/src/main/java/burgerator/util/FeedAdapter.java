@@ -77,16 +77,20 @@ public class FeedAdapter extends ArrayAdapter {
         TextView    restaurantTxt = (TextView)container.findViewById(R.id.restaurant_name);
         TextView    restaurantAddrTxt = (TextView)container.findViewById(R.id.restaurant_address);
         TextView    burgerTxt = (TextView)container.findViewById(R.id.burger_name);
+        /* Pound feature: Removed until fully implemented
+
         TextView    poundsTxt = (TextView)container.findViewById(R.id.amount_burger_pounded);
         ImageButton poundImgBtn = (ImageButton)container.findViewById(R.id.imgbtn_pound_it);
-
+        */
 
         //Check if burger feed in empty
         if(mBurgers == null || mBurgers.size() == 0){
             //Set dummy content
             Glide.with(mContext).load(R.mipmap.app_icon).into(userImg);
             Glide.with(mContext).load(R.mipmap.app_icon).into(burgerImg);
+            /* Pound feature: Removed until fully implemented
             Glide.with(mContext).load(R.drawable.pound_button).into(poundImgBtn);
+            */
             restaurantTxt.setText("Loading...");
 
         }else{
@@ -96,7 +100,9 @@ public class FeedAdapter extends ArrayAdapter {
             restaurantTxt.setText(mBurgers.get(position).getRestaurantName());
             restaurantAddrTxt.setText(mBurgers.get(position).getRestaurantAddress());
             burgerTxt.setText(mBurgers.get(position).getBurgerName());
+            /* Pound feature: Removed until fully implemented
             poundsTxt.setText(mBurgers.get(position).getPound());
+            */
             //Glide.with(mContext).load(R.drawable.pound_button).into(poundImgBtn);
             //TODO: set rating label and rating number(0-10)
         }
