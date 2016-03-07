@@ -2,6 +2,7 @@ package burgerator.gms;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -24,7 +25,7 @@ public class LocationMarker {
     }
 
 
-    public void generateMap(GoogleMap gMap, LatLngBounds pointBounds, int setZoom){
+    public void generateMap(GoogleMap gMap, LatLngBounds pointBounds, float setZoom){
         Iterator itr = locs.iterator();
 
         while(itr.hasNext()){
@@ -36,6 +37,7 @@ public class LocationMarker {
             //  int zoomValue = pointBounds.;
             //System.out.println("ZoomValue: " + zoomValue);
             gMap.moveCamera(CameraUpdateFactory.newLatLngBounds(pointBounds, 100, 100, 0));
+            //gMap.moveCamera(CameraUpdateFactory.newCameraPosition(CameraPosition.fromLatLngZoom(<some lat & long>, setZoom)));
             //gMap.moveCamera(CameraUpdateFactory.zoomTo(setZoom));
 
             //newLatLngZoom(coordinates,));//newLatLngBounds(pointBounds,5,5,1));

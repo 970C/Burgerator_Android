@@ -1,5 +1,9 @@
 package burgerator.util;
 
+import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.*;
 
@@ -26,6 +30,19 @@ public class Restaurants {
 
     public List getList(){
         return r;
+    }
+
+    public List getCoordsList(){
+        JSONObject json;
+        Iterator<JSONObject> itr = r.iterator();
+        while (itr.hasNext()){
+            try {
+                Log.d("rest.getCoords", itr.next().getJSONObject("location").getJSONObject("coordinate").toString());
+            }catch(JSONException e){
+                Log.d("rest.getCoords", e.getMessage());
+            }
+        }
+        return new ArrayList();
     }
 
 }

@@ -252,6 +252,9 @@ public class SearchActivity extends Activity {
                 mRestaurants = sortedRestaurants;
                 // Add restaurant list to persistant session object
                 Restaurants.instance().addList(mRestaurants);
+                //Log.d("SrchActv.reataurants", "sanity");
+                Log.d("SrchActv.reataurants", Restaurants.instance().getList().toString());
+                Restaurants.instance().getCoordsList();
 
         // refresh the adapter
         mAdapter = (SearchAdapter) mListView.getAdapter();

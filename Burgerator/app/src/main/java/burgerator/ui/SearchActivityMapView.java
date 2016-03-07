@@ -183,6 +183,7 @@ public class SearchActivityMapView extends FragmentActivity implements OnMapRead
         }
 
         List<JSONObject> restaurants = new ArrayList<>(); //fill with yelp data
+        restaurants = Restaurants.instance().getList();
         List<String> restaurantName = new ArrayList<>();
         List<Double> restaurantXCoordinates = new ArrayList<>();
         List<Double> restaurantYCoordinates = new ArrayList<>();
@@ -192,7 +193,7 @@ public class SearchActivityMapView extends FragmentActivity implements OnMapRead
                 restaurantXCoordinates.add(restaurant.getJSONObject("location").getJSONObject("coordinate").getDouble("latitude"));
                 restaurantYCoordinates.add(restaurant.getJSONObject("location").getJSONObject("coordinate").getDouble("longitude"));
             }
-        }catch(JSONException e){Log.e("SearchActivityMapView OnMapReady()", e.toString());}
+        }catch(JSONException e){Log.d("SearchActivityMapView", e.getMessage());}
 
         /**
          *LocationDistance class is initialized and variables are set with
@@ -200,27 +201,29 @@ public class SearchActivityMapView extends FragmentActivity implements OnMapRead
          * box coordinates which is then condensed to a LatLngBounds instance.
          */
         //ALECS
-        LocationDistances ylocDis = new LocationDistances(yList);
-        LocationDistances xlocDis = new LocationDistances(xList);
-        /*LocationDistances ylocDis = new LocationDistances(restaurantYCoordinates);
-        LocationDistances xlocDis = new LocationDistances(restaurantXCoordinates);*/
+        //LocationDistances ylocDis = new LocationDistances(yList);
+        //LocationDistances xlocDis = new LocationDistances(xList);
+        LocationDistances ylocDis = new LocationDistances(restaurantYCoordinates);
+        LocationDistances xlocDis = new LocationDistances(restaurantXCoordinates);
 
-        double[] xvalues = xlocDis.farthestLatSort(0);
-        double east = xlocDis.eastGet();
-        double west = xlocDis.westGet();
 
-        double[] yvalues = ylocDis.farthestLatSort(1);
-        double north =  ylocDis.northGet();
-        double south = ylocDis.southGet();
+            double[] xvalues = xlocDis.farthestLatSort(0);
+            double east = xlocDis.eastGet();
+            double west = xlocDis.westGet();
 
-        LatLng ffirstPoint = new LatLng(xvalues[0], yvalues[0]);
-        LatLng ssecondPoint = new LatLng(xvalues[1], yvalues[1]);
+            double[] yvalues = ylocDis.farthestLatSort(1);
+            double north = ylocDis.northGet();
+            double south = ylocDis.southGet();
 
-        LatLngBounds ppointBounds = new LatLngBounds(ffirstPoint, ssecondPoint);
+            LatLng ffirstPoint = new LatLng(xvalues[0], yvalues[0]);
+            LatLng ssecondPoint = new LatLng(xvalues[1], yvalues[1]);
+
+            LatLngBounds ppointBounds = new LatLngBounds(ffirstPoint, ssecondPoint);
+
 
         //initialize an array of MapPins
         for(int i = 0; i<place.length; i++){
-            pins.add(i, new MapPin(place[i], xcoords[i], ycoords[i]));
+            pins.add(i, new MapPin(restaurantName.get(i), restaurantXCoordinates.get(i), restaurantYCoordinates.get(i)));
         }
 
         lm.addMultiLoc(pins);
