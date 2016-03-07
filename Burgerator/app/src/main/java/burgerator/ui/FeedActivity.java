@@ -52,6 +52,7 @@ public class FeedActivity extends Activity {
 
         // Find the ListView
         mListView = (ListView) findViewById(R.id.feedListView);
+        mListView.setVerticalScrollBarEnabled(false);
 
         //Attach the adaper to the list view -> in: OnFeedResponse()
         ArrayList dummyBurgers = new ArrayList<>();

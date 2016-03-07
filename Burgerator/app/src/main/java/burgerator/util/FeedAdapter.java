@@ -37,7 +37,7 @@ public class FeedAdapter extends ArrayAdapter {
      * @param burgers List of burgers to take data from
      */
     public FeedAdapter(Context context, List<Burger> burgers) {
-        super(context, R.layout.activity_feed_container,burgers);
+        super(context, R.layout.activity_feed_container, burgers);
 
         mContext = context;
         mInflater = LayoutInflater.from(context);
