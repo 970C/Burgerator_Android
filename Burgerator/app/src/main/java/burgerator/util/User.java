@@ -55,9 +55,7 @@ public class User {
     public String getUserlocation(){
         return getVal("userlocation");
     }
-    public String getZip(){
-        return getVal("userzip");
-    }
+    public String getZip(){return getVal("userzip");}
     public String getPhoto(){
         return getVal("userphoto");
     }

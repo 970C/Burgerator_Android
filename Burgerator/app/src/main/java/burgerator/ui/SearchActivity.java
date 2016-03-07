@@ -1,14 +1,13 @@
 package burgerator.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
@@ -16,36 +15,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.luis.burgerator.R;
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
-import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import burgerator.control.Controller;
+import burgerator.gms.GPSTracker;
+import burgerator.util.Callback;
 import burgerator.util.LoadingDialog;
 import burgerator.util.Restaurants;
 import burgerator.util.SearchAdapter;
-import burgerator.util.Top10Adapter;
 import burgerator.yelp.YelpCallback;
-import burgerator.yelp.YelpRestaurantListRequest;
-import burgerator.yelp.YelpSingleRestaurantRequest;
 
 public class SearchActivity extends Activity {
 
@@ -55,6 +46,7 @@ public class SearchActivity extends Activity {
     private YelpResponseCallbacks mCallbacks;
     private EditText mSearch;
     private LoadingDialog mLoadingDialog;
+    private GPSTracker mLocation;
 
     private class YelpResponseCallbacks implements YelpCallback {
         @Override
@@ -76,9 +68,35 @@ public class SearchActivity extends Activity {
         // Find the ListView
         mListView = (ListView) findViewById(R.id.searchListView);
 
-        //Attach the adapter to the list view and requisition request
-        mCallbacks = new YelpResponseCallbacks();
-        new YelpRestaurantListRequest(mCallbacks).execute("Ellensburg, WA");
+        //and requisition request for yelp restaurants
+        mLocation =  new GPSTracker(getApplicationContext());
+        Location currentLocation = mLocation.getLocation();
+        String defaultLocation = "Ellensburg, WA";
+        mLoadingDialog.start();
+        if(currentLocation != null){
+            Controller.instance().requestYelpRestaurantList(
+                    currentLocation,
+                    new Callback() {
+                        @Override
+                        public void onSuccess(Object result) {
+                            onRestaurantListResponse((List<JSONObject>) result);
+                        }
+                    }
+            );
+        }else{
+            Controller.instance().requestYelpRestaurantList(
+                    defaultLocation,
+                    new Callback() {
+                        @Override
+                        public void onSuccess(Object result) {
+                            onRestaurantListResponse((List<JSONObject>) result);
+                        }
+                    }
+            );
+        }
+
+
+        //Attach the adapter to the list view
         ArrayList dummyBurgers = new ArrayList<>();
         mAdapter = new SearchAdapter(this, dummyBurgers );
         mListView.setAdapter(mAdapter);
@@ -166,9 +184,19 @@ public class SearchActivity extends Activity {
         mSearch.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    Toast.makeText(getApplicationContext(),"YELP IS NOW SEARCHING", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(),"YELP IS NOW SEARCHING", Toast.LENGTH_SHORT).show();
 
 
+                    Controller.instance().requestYelpRestaurantList(
+                            mSearch.getText().toString(),
+                            new Callback() {
+                                @Override
+                                public void onSuccess(Object result) {
+                                    onRestaurantListResponse((List<JSONObject>) result);
+                                    mLoadingDialog.start();
+                                }
+                            }
+                    );
 
                     return true;
                 }

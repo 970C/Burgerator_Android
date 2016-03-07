@@ -1,23 +1,16 @@
 package burgerator.ui;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.luis.burgerator.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -25,25 +18,18 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 
-import burgerator.util.Restaurants;
-import burgerator.util.SearchAdapter;
 import burgerator.gms.GPSTracker;
 import burgerator.gms.LocationDistances;
 import burgerator.gms.LocationMarker;
 import burgerator.gms.MapPin;
-import burgerator.yelp.YelpRestaurantListRequest;
 
 /**
  * Created by Luis on 2/28/2016.

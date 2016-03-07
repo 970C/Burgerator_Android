@@ -1,5 +1,6 @@
 package burgerator.yelp;
 
+import android.location.Location;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -208,4 +209,26 @@ public class YelpAPI {
 
     return getRestaurants(searchResponseJSON);
   }
+
+  /**
+   * Queries the Search API using an existing YelpAPI service instance and a gps location
+   *
+   * @param yelpApi YelpAPI service instance
+   * @param location A Location object that represents a gps location. example: 47.0051047,120.5412578
+   * @return A list of restaurants represented as JSONObjects
+   */
+  public List<JSONObject> getRestaurantsByGPS(YelpAPI yelpApi, Location location){
+
+    OAuthRequest request = createOAuthRequest(SEARCH_PATH);
+    request.addQuerystringParameter("term", DEFAULT_TERM);
+    String currentGPSLocation =   String.format("%f",location.getLatitude())+","+
+                                  String.format("%f",location.getLongitude());
+    request.addQuerystringParameter("ll", currentGPSLocation);  //ex: 37.77493,-122.419415
+    request.addQuerystringParameter("limit", String.valueOf(SEARCH_LIMIT));
+    String searchResponseJSON = sendRequestAndGetResponse(request);
+
+    return getRestaurants(searchResponseJSON);
+  }
+
+
 }

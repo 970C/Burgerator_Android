@@ -5,18 +5,20 @@ import android.os.AsyncTask;
 import java.util.ArrayList;
 import java.util.List;
 
+import burgerator.util.Callback;
+
 /**
  * Created by Kevin on 2/12/2016.
  */
-public class YelpRestaurantListRequest extends AsyncTask<String,Void,List> {
+public class YelpRestaurantListStringRequest extends AsyncTask<String,Void,List> {
 
 
     private List mRestaurants;
-    private YelpCallback mCallback;
+    private Callback mCallback;
     private YelpAPI mYelpApiInstance;
     private String mLocation;
 
-    public YelpRestaurantListRequest(YelpCallback callback){
+    public YelpRestaurantListStringRequest(Callback callback){
         mRestaurants = new ArrayList();
         mCallback = callback;
     }
@@ -33,11 +35,11 @@ public class YelpRestaurantListRequest extends AsyncTask<String,Void,List> {
         if(params.length > 0)
             mLocation = params[0];
         else
-            throw new IllegalArgumentException("YelpRestaurantListRequest has no input parameters");
+            throw new IllegalArgumentException("YelpRestaurantListStringRequest has no input parameters");
 
         // Creates a YelpAPI object that gets a list of restaurants
         mYelpApiInstance = new YelpAPI();
-        mRestaurants = mYelpApiInstance.getRestaurants(mYelpApiInstance,mLocation);
+        mRestaurants = mYelpApiInstance.getRestaurants(mYelpApiInstance, mLocation);
 
         //Return restaurants
         return mRestaurants;

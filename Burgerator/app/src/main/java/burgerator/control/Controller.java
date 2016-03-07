@@ -1,12 +1,15 @@
 package burgerator.control;
 
 import android.content.Context;
+import android.location.Location;
 import android.util.Log;
 
 import org.json.JSONObject;
 
 import burgerator.db.BurgerDB;
 import burgerator.util.*;
+import burgerator.yelp.YelpRestaurantListGpsRequest;
+import burgerator.yelp.YelpRestaurantListStringRequest;
 
 /**
  * Created by Jonathan on 2/6/2016.
@@ -93,7 +96,7 @@ public class Controller implements Callback{
                                      String zip, final Callback callback ){
         //TODO: sanitate and validate the input
         burgerDB = new BurgerDB(_c);
-        burgerDB.emailRegister(userEmail, firstName,lastName, password, zip,
+        burgerDB.emailRegister(userEmail, firstName, lastName, password, zip,
                 new BurgerDB.VolleyCallback() {
                     @Override
                     public void onSuccess(JSONObject result) {
@@ -131,6 +134,7 @@ public class Controller implements Callback{
                 });
     }
 
+
     public User getUser(){
         return user;
     }
@@ -146,5 +150,25 @@ public class Controller implements Callback{
         return false;
     }
 
+    /**
+     * Put in a request to yelp api to return a list of burger restaurants given a location
+     * @param locationToQuery A location object to pass to yelp to find burgers
+     * @param _c A callback function to return request data to
+     * @return a list of restaurants encoded as json objects returned by callback
+     */
+    public void requestYelpRestaurantList(Location locationToQuery, final Callback _c ){
+        new YelpRestaurantListGpsRequest(_c).execute(locationToQuery);
+    }
+
+    /**
+     * Put in a request to yelp api to return a list of burger restaurants given a location
+     * @param locationToQuery A location represented as a string to pass to yelp to find burgers
+     *          ex: "Ellensburg, Wa", "98926"
+     * @param _c A callback function to return request data to
+     * @return a list of restaurants encoded as json objects returned by callback
+     */
+    public void requestYelpRestaurantList(String locationToQuery, final Callback _c ){
+        new YelpRestaurantListStringRequest(_c).execute(locationToQuery);
+    }
 }
 
