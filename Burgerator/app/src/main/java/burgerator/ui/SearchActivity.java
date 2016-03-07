@@ -67,6 +67,7 @@ public class SearchActivity extends Activity {
 
         // Find the ListView
         mListView = (ListView) findViewById(R.id.searchListView);
+        mListView.setVerticalScrollBarEnabled(false);
 
         //and requisition request for yelp restaurants
         mLocation =  new GPSTracker(getApplicationContext());
