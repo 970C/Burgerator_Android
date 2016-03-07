@@ -118,7 +118,7 @@ public class Top10Adapter extends ArrayAdapter {
         burgerImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext,"LSNR: Burger "+pos, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(mContext,"LSNR: Burger "+pos, Toast.LENGTH_SHORT).show();
             }
         });
 

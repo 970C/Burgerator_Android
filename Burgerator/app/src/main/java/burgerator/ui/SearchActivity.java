@@ -85,7 +85,7 @@ public class SearchActivity extends Activity {
 
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                Toast.makeText(SearchActivity.this, "List Item Clicked", Toast.LENGTH_LONG).show();
+                //Toast.makeText(SearchActivity.this, "List Item Clicked", Toast.LENGTH_LONG).show();
             }
         });
 
