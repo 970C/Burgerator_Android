@@ -47,7 +47,8 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:singleLine="true"
-        android:id="@+id/et_email"/>
+        android:id="@+id/et_email"
+        android:inputType="textEmailAddress"/>
 
     <EditText
         android:layout_width="300dp"
@@ -100,6 +101,7 @@
         android:textColor="@color/black"
         android:id="@+id/et_zip_code"
         android:singleLine="true"
-        android:imeOptions="actionGo"/>
+        android:imeOptions="actionGo"
+        android:inputType="number"/>
 
 </RelativeLayout>

@@ -39,6 +39,7 @@ public class SettingsActivity extends Activity {
         //Add the string to the banner
         TextView bannerBurgerFeed = (TextView)findViewById(R.id.setting_banner);
         bannerBurgerFeed.setText(getResources().getText(R.string.title_activity_setting));
+        bannerBurgerFeed.setTextSize((float) 30.0);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
         bannerBurgerFeed.setTypeface(eastwood);
 
