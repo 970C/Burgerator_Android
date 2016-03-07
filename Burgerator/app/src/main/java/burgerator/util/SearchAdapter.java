@@ -78,6 +78,7 @@ public class SearchAdapter extends ArrayAdapter{
         TextView    restaurantNameTxt = (TextView)container.findViewById(R.id.tv_restaurant_name);
         TextView    restaurantAddrTxt = (TextView)container.findViewById(R.id.restaurant_address);
         TextView    ratingTxt = (TextView)container.findViewById(R.id.rating_value);
+        TextView    rankTxt = (TextView)container.findViewById(R.id.tv_num_in_list);
 
         //Check if burger feed in empty
         if(mRestaurants == null || mRestaurants.size() == 0){
@@ -104,16 +105,19 @@ public class SearchAdapter extends ArrayAdapter{
                 // set restaurant address [street addr], [city], [state]
                 JSONObject locationData = (JSONObject)((JSONObject) mRestaurants.get(position)).get("location");
                 JSONArray displayAddressArray = (JSONArray)locationData.get("display_address");
-                restaurantAddr += displayAddressArray.getString(2);//gets street addr
+                restaurantAddr += displayAddressArray.getString(0);//gets street addr
                 restaurantAddr += ", ";
                 restaurantAddr += locationData.getString("city");
-                restaurantAddr += ", ";
+                restaurantAddr += " ";
                 restaurantAddr += locationData.getString("state_code");
                 restaurantAddrTxt.setText(restaurantAddr);
 
                 // set restaurant rating
                 rating = ((JSONObject)mRestaurants.get(position)).getDouble("rating")*2;
-                ratingTxt.setText( Double.toString(rating) );
+                ratingTxt.setText( String.format("%.1f",rating) );
+
+                //position in list
+                rankTxt.setText((position+1)+".");
 
             } catch (JSONException e) {
                 Log.e("SearchAdapter getView", e.toString());

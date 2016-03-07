@@ -167,6 +167,9 @@ public class SearchActivity extends Activity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     Toast.makeText(getApplicationContext(),"YELP IS NOW SEARCHING", Toast.LENGTH_SHORT).show();
+
+
+
                     return true;
                 }
                 return false;
