@@ -1,6 +1,7 @@
 package burgerator.ui;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -60,6 +61,8 @@ public class SelectBurgerActivity extends Activity {
         bannerBurgerFeed.setGravity(Gravity.CENTER);
         bannerBurgerFeed.setTypeface(eastwood);
 
+        onNewBurger();
+
         mReturn = new Intent();
         ImageButton back = (ImageButton)findViewById(R.id.imgbtn_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -73,5 +76,13 @@ public class SelectBurgerActivity extends Activity {
                 finish();
             }
         });
+    }
+
+    public void onNewBurger(){
+        final Dialog newBurgerDialog = new Dialog(SelectBurgerActivity.this);
+        newBurgerDialog.setContentView(R.layout.activity_select_burger_new_burger);
+        newBurgerDialog.setCancelable(true);
+        newBurgerDialog.setCanceledOnTouchOutside(false);
+        newBurgerDialog.show();
     }
 }
