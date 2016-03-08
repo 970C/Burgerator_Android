@@ -119,30 +119,30 @@ public class ProfileActivity extends Activity {
         userPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                final Dialog userPhotoDialog = new Dialog(ProfileActivity.this);
-                userPhotoDialog.setContentView(R.layout.user_profile_pic_dialog_box);
-                userPhotoDialog.setCancelable(true);
-
-                //set up text
-                TextView dialogTitle = (TextView) userPhotoDialog.findViewById(R.id.burgerator_dialog_box_title);
-
-                //set up buttons
-                Button photoButton = (Button) userPhotoDialog.findViewById(R.id.imgbtn_open_photo);
-
-                Button cameraButton = (Button) userPhotoDialog.findViewById(R.id.imgbtn_open_camera);
-
-                //set up cancel button
-                Button cancelButton = (Button) userPhotoDialog.findViewById(R.id.imgbtn_cancel);
-                cancelButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        userPhotoDialog.dismiss();
-                    }
-                });
-
-                userPhotoDialog.setCanceledOnTouchOutside(true);
-                userPhotoDialog.show();
+        //Todo: uncomment the creation of this dialog
+//                final Dialog userPhotoDialog = new Dialog(ProfileActivity.this);
+//                userPhotoDialog.setContentView(R.layout.user_profile_pic_dialog_box);
+//                userPhotoDialog.setCancelable(true);
+//
+//                //set up text
+//                TextView dialogTitle = (TextView) userPhotoDialog.findViewById(R.id.burgerator_dialog_box_title);
+//
+//                //set up buttons
+//                Button photoButton = (Button) userPhotoDialog.findViewById(R.id.imgbtn_open_photo);
+//
+//                Button cameraButton = (Button) userPhotoDialog.findViewById(R.id.imgbtn_open_camera);
+//
+//                //set up cancel button
+//                Button cancelButton = (Button) userPhotoDialog.findViewById(R.id.imgbtn_cancel);
+//                cancelButton.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        userPhotoDialog.dismiss();
+//                    }
+//                });
+//
+//                userPhotoDialog.setCanceledOnTouchOutside(true);
+//                userPhotoDialog.show();
             }
         });
 
@@ -233,7 +233,7 @@ public class ProfileActivity extends Activity {
     }
 
     public void onRecentBurgersResponse(JSONObject response){
-        Log.d("Burgerator ProfileActivity","onRecentBurgersResponse(): " + response.toString());
+        Log.d("ProfileActivity","onRecentBurgersResponse(): " + response.toString());
 
         //TODO: populate views with burger data from response
     }
