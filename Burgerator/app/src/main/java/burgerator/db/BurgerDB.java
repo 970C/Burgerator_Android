@@ -16,6 +16,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import burgerator.util.Callback;
+
 /**
  * Interacts with the database API at http://default-environment-rp6pp3mmgc.elasticbeanstalk.com
  */
@@ -309,4 +311,35 @@ public class BurgerDB {
         mRequestQueue.add(request);
     }
 
+
+    /**
+     * Puts in a request to get the list of burgers accociated with a yelp id
+     *
+     */
+    public void getBurgersFromRestaurant(String yelpRestaurantId, final Callback callback){
+        String endpointFile = "/getrate.php";
+
+        // Request parameters(body of request)
+        Map<String,String> params = new HashMap<String,String>();
+        //TODO: Check userEmail, and userToken are safe to pass to the server
+        params.put("restaurantId", yelpRestaurantId);
+        params.put("page", "1");    //TODO: fix so that it gets all the burgers from every restaurant
+
+        // Create request and its response
+        CustomRequest request = new CustomRequest(
+                Request.Method.POST, mEndpoint+endpointFile, params,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // return an object that contains the user information
+                        Log.d("BurgerDbLog", response.toString());
+
+                        callback.onSuccess(response);
+                    }
+                },
+                mErrListener);  //end of request arguments
+
+        // Add the request to the request queue to be executed
+        mRequestQueue.add(request);
+    }
 }

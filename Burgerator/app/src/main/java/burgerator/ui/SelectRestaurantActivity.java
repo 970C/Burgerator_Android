@@ -95,7 +95,10 @@ public class SelectRestaurantActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(getApplicationContext(), "List Item "+position+" Clicked", Toast.LENGTH_LONG).show();
                 JSONObject resultRestaurant =  (JSONObject)mRestaurants.get(position);
-                startActivity(new Intent(getApplicationContext(),SelectBurgerActivity.class));
+                mReturn.putExtra("result", resultRestaurant.toString());
+                Intent getBurger = new Intent(getApplicationContext(), SelectBurgerActivity.class);
+                getBurger.putExtra("result", resultRestaurant.toString());
+                startActivityForResult(getBurger, RateActivity.REQUEST_GET_BURGER);
             }
         });
 
@@ -172,4 +175,13 @@ public class SelectRestaurantActivity extends Activity {
         mLoadingDialog.stop();
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RateActivity.REQUEST_GET_BURGER && resultCode == RESULT_OK){
+            //TODO:return the result from burger back to rate activity
+        }
+    }
 }

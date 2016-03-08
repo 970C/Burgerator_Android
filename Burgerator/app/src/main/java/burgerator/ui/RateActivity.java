@@ -63,6 +63,7 @@ public class RateActivity extends Activity {
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_GET_CHEESE = 2;
     static final int REQUEST_GET_RESTAURANT = 3;
+    static final int REQUEST_GET_BURGER = 4;
 
 
     // path for burger photo
@@ -234,6 +235,7 @@ public class RateActivity extends Activity {
                         tasteSeekBar.setMax(10);
                         progress = Math.round(progress / increment) * increment;
                         tasteSeekBar.setProgress(progress);
+                        mRateTaste = String.valueOf(progress);
 
                         //Update value for burgerator object
                         //tasteDescription.setText("" + progress);
@@ -276,6 +278,7 @@ public class RateActivity extends Activity {
                         toppingSeekBar.setMax(10);
                         progress = Math.round(progress/increment) *increment;
                         toppingSeekBar.setProgress(progress);
+                        mRateToppings = String.valueOf(progress);
 
                         //Update value for burgerator object
                         //toppingsDescription.setText(" "+ progress);
@@ -320,6 +323,7 @@ public class RateActivity extends Activity {
                         bunSeekBar.setMax(10);
                         progress = ((int)Math.round(progress/increment))*increment;
                         bunSeekBar.setProgress(progress);
+                        mRateBun = String.valueOf(progress);
 
                         //Update value for burgerator object
                         //bunDescription.setText("" + progress);
@@ -382,6 +386,7 @@ public class RateActivity extends Activity {
                             public void onClick(View v) {
                                 mSpnrRatio.setTypeface(eastwood);
                                 mSpnrRatio.setText(R.string.bun_heavy);
+                                mSelectedRatio = "bun heavy";
                                 ratio.dismiss();
                             }
                         });
@@ -392,6 +397,7 @@ public class RateActivity extends Activity {
                             public void onClick(View v) {
                                 mSpnrRatio.setTypeface(eastwood);
                                 mSpnrRatio.setText(R.string.balanced);
+                                mSelectedRatio = "balanced";
                                 ratio.dismiss();
                             }
                         });
@@ -402,6 +408,7 @@ public class RateActivity extends Activity {
                             public void onClick(View v) {
                                 mSpnrRatio.setTypeface(eastwood);
                                 mSpnrRatio.setText(R.string.meat_heavy);
+                                mSelectedRatio = "meat heavy";
                                 ratio.dismiss();
                             }
                         });
@@ -478,8 +485,9 @@ public class RateActivity extends Activity {
      * Sends the user to SelectRestaurantActivity.class
      */
     public void onRestaurantSelect(){
-        Intent intent = new Intent(getApplicationContext(), SelectRestaurantActivity.class);
-        startActivityForResult(intent,REQUEST_GET_RESTAURANT);
+        //TODO: uncomment and complete
+        //Intent intent = new Intent(getApplicationContext(), SelectRestaurantActivity.class);
+        //startActivityForResult(intent,REQUEST_GET_RESTAURANT);
     }
 
     @Override
@@ -531,6 +539,8 @@ public class RateActivity extends Activity {
             if(resultCode == Activity.RESULT_OK) {
                 mSpnrCheese.setTypeface(eastwood);
                 mSpnrCheese.setText(data.getStringExtra("result"));
+                mSelectedCheese = data.getStringExtra("result");
+
             }
         }
 
@@ -587,9 +597,9 @@ public class RateActivity extends Activity {
             rating.setVal("burgerName","Test Post Toast Burger"); //test value
             rating.setVal("restaurantName","Testaurant"); //test value
             rating.setVal("restaurantZip","98909");
-            rating.setVal("restaurantImageUrl","");
-            rating.setVal("restaurantAddress","");
-            rating.setVal("restaurantCity","");
+            rating.setVal("restaurantImageUrl","kh");
+            rating.setVal("restaurantAddress","kh");
+            rating.setVal("restaurantCity","kh");
 
             //Making these test values not be null beacuse of lots of null point exceptions
             rating.setVal("fries","0");         //0 by default in iOS db

@@ -71,12 +71,13 @@ public class Burgerator {
         boolean result = false;
         String resultMessage = "";
 
-        if(validateRestaurant()){
+        //TODO: uncomment and finish implmenting
+        //if(validateRestaurant()){
             if(validateBurgerAttributes(imageUrl)){
                 result = true;
                 resultMessage = "data validated";
             }else{resultMessage = "Burger data empty";}
-        }else{resultMessage = "restaurant data empty";}
+        //}else{resultMessage = "restaurant data empty";}
 
         Toast.makeText(_c,resultMessage,Toast.LENGTH_LONG).show();
 
@@ -98,7 +99,6 @@ public class Burgerator {
             !burgerMap.get("toppings").isEmpty() &&
             !burgerMap.get("bunrate").isEmpty() &&
             !burgerMap.get("wycbftb").isEmpty() &&
-            !burgerMap.get("comment").isEmpty() &&
             !imageUrl.isEmpty()){
             result = true;
         }

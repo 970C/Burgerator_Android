@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +18,14 @@ import android.widget.TextView;
 
 import com.example.luis.burgerator.R;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
+import burgerator.db.BurgerDB;
+import burgerator.util.Callback;
 import burgerator.util.SearchAdapter;
 
 /**
@@ -32,6 +38,8 @@ public class SelectBurgerActivity extends Activity {
     private LayoutInflater mInflater;
     private Button mFooterBtn;
     private Intent mReturn;
+    private BurgerDB mBurgerDbRequest;
+    private Intent mIntent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +71,23 @@ public class SelectBurgerActivity extends Activity {
 
         onNewBurger();
 
+        mBurgerDbRequest = new BurgerDB(getApplicationContext());
+        mIntent = getIntent();
+        JSONObject selectedRestaurant = new JSONObject();
+        try {
+            selectedRestaurant = new JSONObject(mIntent.getStringExtra("result"));
+            mBurgerDbRequest.getBurgersFromRestaurant(
+                    selectedRestaurant.getString("id"),
+                    new Callback() {
+                        @Override
+                        public void onSuccess(Object result) {
+                            Log.d("SelecBurgerAct.onCreate", ((JSONObject)result).toString());
+
+                        }
+                    });
+        } catch (JSONException e) {Log.e("SelecBurgerAct.onCreate", e.getMessage());}
+
+
         mReturn = new Intent();
         ImageButton back = (ImageButton)findViewById(R.id.imgbtn_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +103,11 @@ public class SelectBurgerActivity extends Activity {
         });
     }
 
+    public void onRestaurantBurgersResponse(){
+
+    }
+
+    //generates the dialog to create a new burger fora restaurant
     public void onNewBurger(){
         final Dialog newBurgerDialog = new Dialog(SelectBurgerActivity.this);
         newBurgerDialog.setContentView(R.layout.activity_select_burger_new_burger);
