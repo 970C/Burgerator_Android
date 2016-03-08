@@ -209,7 +209,7 @@ public class SearchActivityMapView extends FragmentActivity implements OnMapRead
 
 
         //initialize an array of MapPins
-        for(int i = 0; i<place.length; i++){
+        for(int i = 0; i<restaurantName.size(); i++){
             pins.add(i, new MapPin(restaurantName.get(i), restaurantXCoordinates.get(i), restaurantYCoordinates.get(i)));
         }
 
