@@ -36,7 +36,7 @@ public class LocationMarker {
 
             //  int zoomValue = pointBounds.;
             //System.out.println("ZoomValue: " + zoomValue);
-            gMap.moveCamera(CameraUpdateFactory.newLatLngBounds(pointBounds, 200, 200, 0));
+            gMap.moveCamera(CameraUpdateFactory.newLatLngBounds(pointBounds, 400, 400, 0));
             //gMap.moveCamera(CameraUpdateFactory.newCameraPosition(CameraPosition.fromLatLngZoom(<some lat & long>, setZoom)));
             //gMap.moveCamera(CameraUpdateFactory.zoomTo(setZoom));
 
