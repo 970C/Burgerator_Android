@@ -9,69 +9,69 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.luis.burgerator.R;
 
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+
+import burgerator.util.SearchAdapter;
 
 /**
  * Created by Luis on 2/15/2016.
  */
 public class SelectBurgerActivity extends Activity {
+
+    private ListView mListView;
+    private SearchAdapter mAdapter;
+    private LayoutInflater mInflater;
+    private Button mFooterBtn;
+    private Intent mReturn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_rate_select_burger);
 
         Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
 
-        /*This indented block should come before the onClick listeners before
-        the onClick listeners wont trigger.*/
-        // Adding custom elements to a ScrollView
-        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.activity_rate_select_burger, null);
+        //Attach the adapter to the list view
+        // Find the ListView
+        mListView = (ListView) findViewById(R.id.lv_select_burger);
+        ArrayList dummyBurgers = new ArrayList<>();
+        mAdapter = new SearchAdapter(this, dummyBurgers );
+        mListView.setAdapter(mAdapter);
 
-        // Find the ScrollView
-        ScrollView sv = (ScrollView) v.findViewById(R.id.restaurant_view_scroll);
+        //Inflate footerView for footer_view.xml file
+        mInflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View row = mInflater.inflate(R.layout.activity_rate_dont_see_your_burger, null, false);
+        mFooterBtn = (Button) row.findViewById(R.id.select_burger_footer);
 
-        // Inflate the first box of the scroll view
-        View restaurantView = inflater.inflate(R.layout.activity_restaurant_view_scroll_content,null);
-
-        // Add the forms/content to the ScrollView
-        sv.addView(restaurantView);
-
-
-        // Display the view
-        setContentView(v);
+        //Add footerView to ListView
+        mListView.addFooterView(mFooterBtn);
 
         //Add the string to the banner
-        TextView bannerBurgerFeed = (TextView)findViewById(R.id.restaurant_view_banner);
+        TextView bannerBurgerFeed = (TextView)findViewById(R.id.rest_banner);
         bannerBurgerFeed.setText(R.string.title_activity_select_burger);
         bannerBurgerFeed.setGravity(Gravity.CENTER);
         bannerBurgerFeed.setTypeface(eastwood);
 
-
-        // Initializes button views and their onClickListeners
-        // button to go to findABurger
-        Button findABurgerButton = (Button) findViewById(R.id.btn_search_activity);
-        findABurgerButton.setOnClickListener(new View.OnClickListener() {
+        mReturn = new Intent();
+        ImageButton back = (ImageButton)findViewById(R.id.imgbtn_back);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
-                startActivity(intent);
+                if (mReturn.getStringExtra("result") == null || mReturn.getStringExtra("result").isEmpty())
+                    setResult(Activity.RESULT_CANCELED, mReturn);
+                else
+                    setResult(Activity.RESULT_OK, mReturn);
+
+                finish();
             }
         });
-
-        // button to go to burger_feed
-        Button burgerFeedButton = (Button) findViewById(R.id.btn_feed_activity);
-        burgerFeedButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), FeedActivity.class);
-                startActivity(intent);
-            }
-        });
-
     }
 }

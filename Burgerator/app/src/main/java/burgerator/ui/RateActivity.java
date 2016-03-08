@@ -62,6 +62,8 @@ public class RateActivity extends Activity {
     static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_GET_CHEESE = 2;
+    static final int REQUEST_GET_RESTAURANT = 3;
+
 
     // path for burger photo
     private String mBurgerPhotoPath;
@@ -198,34 +200,24 @@ public class RateActivity extends Activity {
                 });
 
                 //select restaurant to rate
-                imgbtnLogo = (ImageButton) findViewById(R.id.imgv_restaurant_thumbnail);
-                imgbtnLogo.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(), SelectRestaurantActivity.class);
-                        startActivity(intent);
-                    }
-                });
-
-                btnSelectYourRestaurant = (Button) findViewById(R.id.et_restaurant_name);
-                btnSelectYourRestaurant.setTypeface(eastwood);
-                btnSelectYourRestaurant.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(), SelectRestaurantActivity.class);
-                        startActivity(intent);
-                    }
-                });
-
-                btnPickYourRestaurant = (Button) findViewById(R.id.et_pick_your_restaurant);
-                btnPickYourRestaurant.setTypeface(eastwood);
-                btnPickYourRestaurant.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getApplicationContext(), SelectRestaurantActivity.class);
-                        startActivity(intent);
-                    }
-                });
+                //TODO: condense to one button
+                        imgbtnLogo = (ImageButton) findViewById(R.id.imgv_restaurant_thumbnail);
+                        imgbtnLogo.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {onRestaurantSelect();}
+                        });
+                        btnSelectYourRestaurant = (Button) findViewById(R.id.et_restaurant_name);
+                        btnSelectYourRestaurant.setTypeface(eastwood);
+                        btnSelectYourRestaurant.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {onRestaurantSelect();}
+                        });
+                        btnPickYourRestaurant = (Button) findViewById(R.id.et_pick_your_restaurant);
+                        btnPickYourRestaurant.setTypeface(eastwood);
+                        btnPickYourRestaurant.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {onRestaurantSelect();}
+                        });
 
                 //seekbar intervals
                 tasteSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -373,21 +365,6 @@ public class RateActivity extends Activity {
                     }
                 });
 
-                // Spinner Drop down elements
-               /* List<String> cheeses = new ArrayList <String>();
-                cheeses.add(" ");
-                cheeses.add("no cheese");
-                cheeses.add("american");
-                cheeses.add("cheddar");
-                cheeses.add("pepper jack");
-                cheeses.add("blue");
-                cheeses.add("swiss");
-                cheeses.add("gouda");
-                cheeses.add("other");
-                cheeses.add("provolone");
-                cheeses.add("goat");
-                cheeses.add("mozzarella");
-                cheeses.add("monterey jack");*/
 
             ////SETTING UP RATIO SPINNER
                 mSpnrRatio = (Button) findViewById(R.id.spnr_ratio);
@@ -435,49 +412,6 @@ public class RateActivity extends Activity {
                     }
                 });
 
-                /*List<String> ratios = new ArrayList <String>();
-                ratios.add(" ");
-                ratios.add("bun heavy");
-                ratios.add("balanced");
-                ratios.add("meat heavy");*/
-
-                // Creating adapter for spinner
-                //ArrayAdapter<String> ratioAdapter = new ArrayAdapter <String>(this, android.R.layout.simple_spinner_item, ratios);
-
-                // Drop down layout style - list view with radio button
-                //ratioAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                // attaching data adapter to spinner
-                /*mSpnrRatio.setAdapter(ratioAdapter);
-                mSpnrRatio.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        // On selecting a spinner item
-                        mSelectedRatio = parent.getItemAtPosition(position).toString();
-                        String item = parent.getItemAtPosition(position).toString();
-                    }
-                    public void onNothingSelected(AdapterView<?> arg0) {}
-                });
-                */
-
-
-                // Drop down layout style - list view with radio button
-                //prepAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                // attaching data adapter to spinner
-                /*mSpnrPrep.setAdapter(prepAdapter);
-                mSpnrPrep.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        // On selecting a spinner item
-                        mSelcetedPrep = parent.getItemAtPosition(position).toString();
-                        String item = parent.getItemAtPosition(position).toString();
-                    }
-
-                    public void onNothingSelected(AdapterView<?> arg0) {
-                    }
-                });
-                */
 
         ////RADIO GROUP WYCBFTB and text
                 TextView wycbftbText = (TextView)findViewById(R.id.tv_come_back);
@@ -532,9 +466,20 @@ public class RateActivity extends Activity {
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
                         Uri.fromFile(photoFile));
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
-                Log.d("Burgerator Image", mBurgerPhotoPath );
+                Log.d("Burgerator Image", mBurgerPhotoPath);
             }
         }
+    }
+
+    /**
+     * Method that acts as the response to the user clicking one
+     * of the three select restaurant buttons:
+     * imgbtnLogo, btnSelectYourRestaurant, btnPickYourRestaurant
+     * Sends the user to SelectRestaurantActivity.class
+     */
+    public void onRestaurantSelect(){
+        Intent intent = new Intent(getApplicationContext(), SelectRestaurantActivity.class);
+        startActivityForResult(intent,REQUEST_GET_RESTAURANT);
     }
 
     @Override
@@ -588,6 +533,12 @@ public class RateActivity extends Activity {
                 mSpnrCheese.setText(data.getStringExtra("result"));
             }
         }
+
+        //get cheese string from string activity
+        if(requestCode == REQUEST_GET_RESTAURANT && resultCode == RESULT_OK) {
+            mSpnrCheese.setTypeface(eastwood);
+            mSpnrCheese.setText(data.getStringExtra("result"));
+        }
     }
 
     private File createImageFile() throws IOException {
@@ -608,7 +559,6 @@ public class RateActivity extends Activity {
     }
 
     public void onRatingSubmit(View view){
-        //TODO:
         //construct burgerator backend class
         Burgerator rating = new Burgerator();
 
@@ -664,21 +614,23 @@ public class RateActivity extends Activity {
         try {
             //get map from burgerator blackend class
             //pass map to BurgerDB
+            if(rating.validate(getApplicationContext(), mBurgerPhotoPath)){
 
-            mRequest.rate(rating.getBurgerMap(), mBurgerPhotoPath, new BurgerDB.VolleyCallback() {
-                @Override
-                public void onSuccess(JSONObject response) {
-                    Log.d("Burgerator Rate Response", response.toString());
-                    onRatingSubmitResponse(response);
-                }
-            });
+                Toast.makeText(getApplicationContext(),"Uploading Burger...", Toast.LENGTH_LONG).show();
+
+                mRequest.rate(rating.getBurgerMap(), mBurgerPhotoPath, new BurgerDB.VolleyCallback() {
+                    @Override
+                    public void onSuccess(JSONObject response) {
+                        Log.d("Burgerator Rate Response", response.toString());
+                        onRatingSubmitResponse(response);
+                    }
+                });
+            }else{
+                //toast generated in rating
+            }
         }catch(Exception e){
             Log.d("Burgerator BurgerDB.Rate Catch",e.toString());
         }
-
-        Toast.makeText(getApplicationContext(),
-                "Uploading Burger...",
-                Toast.LENGTH_LONG).show();
     }
 
     public void onRatingSubmitResponse(JSONObject response) {

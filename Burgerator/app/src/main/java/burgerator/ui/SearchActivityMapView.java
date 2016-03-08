@@ -30,6 +30,7 @@ import burgerator.gms.GPSTracker;
 import burgerator.gms.LocationDistances;
 import burgerator.gms.LocationMarker;
 import burgerator.gms.MapPin;
+import burgerator.util.Restaurants;
 
 /**
  * Created by Luis on 2/28/2016.

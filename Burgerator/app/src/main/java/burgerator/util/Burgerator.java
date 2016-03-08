@@ -1,4 +1,7 @@
 package burgerator.util;
+import android.content.Context;
+import android.widget.Toast;
+
 import java.util.*;
 
 
@@ -55,4 +58,71 @@ public class Burgerator {
         return this.burgerMap;
     }
 
+    /**
+     * Function to validate the data entered by the user
+     * Requirements:
+     *      Must Select: restaurant, ratio,cheese,taste,toppings, bun, WYCBFTB
+     *      Must take photo
+     * @param _c context to display toast in
+     * @param imageUrl a url to the image the user has taken
+     * @return true if validation is successful and false if not
+     */
+    public boolean validate(Context _c, String imageUrl){
+        boolean result = false;
+        String resultMessage = "";
+
+        if(validateRestaurant()){
+            if(validateBurgerAttributes(imageUrl)){
+                result = true;
+                resultMessage = "data validated";
+            }else{resultMessage = "Burger data empty";}
+        }else{resultMessage = "restaurant data empty";}
+
+        Toast.makeText(_c,resultMessage,Toast.LENGTH_LONG).show();
+
+        return result;
+    }
+
+    /**
+     * Function to validate the burger data entered by the user
+     * Requirements:
+     *      Must contain: ratio,cheese,taste,toppings, bun, WYCBFTB, photo url
+     * @param imageUrl a url to the image the user has taken
+     * @return true if validation is successful and false if not
+     */
+    private boolean validateBurgerAttributes(String imageUrl){
+        boolean result = false;
+        if( !burgerMap.get("cheese").isEmpty() &&
+            !burgerMap.get("ratio").isEmpty() &&
+            !burgerMap.get("taste").isEmpty() &&
+            !burgerMap.get("toppings").isEmpty() &&
+            !burgerMap.get("bunrate").isEmpty() &&
+            !burgerMap.get("wycbftb").isEmpty() &&
+            !burgerMap.get("comment").isEmpty() &&
+            !imageUrl.isEmpty()){
+            result = true;
+        }
+        return result;
+    }
+
+    /**
+     * Function to validate the restaurant data entered by the user
+     * Requirements:
+     *      Must contain: "restaurantId","burgerName","restaurantName","restaurantZip",
+     *      "restaurantImageUrl","restaurantAddress","restaurantCity"
+     * @return true if validation is successful and false if not
+     */
+    private boolean validateRestaurant(){
+        boolean result = false;
+        if( !burgerMap.get("restaurantId").isEmpty() &&
+                !burgerMap.get("burgerName").isEmpty() &&
+                !burgerMap.get("restaurantName").isEmpty() &&
+                !burgerMap.get("restaurantZip").isEmpty() &&
+                !burgerMap.get("restaurantImageUrl").isEmpty() &&
+                !burgerMap.get("restaurantAddress").isEmpty() &&
+                !burgerMap.get("restaurantCity").isEmpty()){
+            result = true;
+        }
+        return result;
+    }
 }

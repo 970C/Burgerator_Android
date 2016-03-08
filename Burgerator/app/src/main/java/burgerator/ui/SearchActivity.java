@@ -37,6 +37,7 @@ import burgerator.util.LoadingDialog;
 import burgerator.util.Restaurants;
 import burgerator.util.SearchAdapter;
 import burgerator.yelp.YelpCallback;
+import burgerator.yelp.YelpRestaurant;
 
 public class SearchActivity extends Activity {
 
@@ -65,17 +66,23 @@ public class SearchActivity extends Activity {
         mLoadingDialog = new LoadingDialog(this);
         mLoadingDialog.start();
 
-        // Find the ListView
-        mListView = (ListView) findViewById(R.id.searchListView);
-
         //and requisition request for yelp restaurants
         mLocation =  new GPSTracker(getApplicationContext());
         Location currentLocation = mLocation.getLocation();
         String defaultLocation = "Ellensburg, WA";
-        mLoadingDialog.start();
         if(currentLocation != null){
             Controller.instance().requestYelpRestaurantList(
                     currentLocation,
+                    new Callback() {
+                        @Override
+                        public void onSuccess(Object result) {
+                            onRestaurantListResponse((List<JSONObject>) result);
+                        }
+                    }
+            );
+        }else if(!Controller.instance().getUser().getZip().equals("")){
+            Controller.instance().requestYelpRestaurantList(
+                    Controller.instance().getUser().getZip(),
                     new Callback() {
                         @Override
                         public void onSuccess(Object result) {
@@ -97,6 +104,8 @@ public class SearchActivity extends Activity {
 
 
         //Attach the adapter to the list view
+            // Find the ListView
+            mListView = (ListView) findViewById(R.id.searchListView);
         ArrayList dummyBurgers = new ArrayList<>();
         mAdapter = new SearchAdapter(this, dummyBurgers );
         mListView.setAdapter(mAdapter);
@@ -184,8 +193,7 @@ public class SearchActivity extends Activity {
         mSearch.setOnEditorActionListener(new EditText.OnEditorActionListener() {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    //Toast.makeText(getApplicationContext(),"YELP IS NOW SEARCHING", Toast.LENGTH_SHORT).show();
-
+                    mLoadingDialog.start();
 
                     Controller.instance().requestYelpRestaurantList(
                             mSearch.getText().toString(),
@@ -193,7 +201,6 @@ public class SearchActivity extends Activity {
                                 @Override
                                 public void onSuccess(Object result) {
                                     onRestaurantListResponse((List<JSONObject>) result);
-                                    mLoadingDialog.start();
                                 }
                             }
                     );
@@ -205,46 +212,7 @@ public class SearchActivity extends Activity {
         });
     }
 
-    public class YelpRestaurant{
-        public boolean is_claimed;
-        public Double rating;
-        public String mobile_url;
-        public String rating_img_url;
-        public int review_count;
-        public String name;
-        public String rating_img_url_small;
-        public String url;
-        public List<List<String>> categories;
-        public long menu_date_updated;
-        public String phone;
-        public String snippet_text;
-        public String image_url;
-        public String snippet_image_url;
-        public String display_phone;
-        public String rating_img_url_large;
-        public String menu_provider;
-        public String id;
-        public boolean is_closed;
-        public YelpLocation location;
-
-
-    }
-    public class YelpLocation{
-        public String cross_streets;
-        public String city;
-        public List<String> display_address;
-        public Double geo_accuracy;
-        public List<String> neighborhoods;
-        public String postal_code;
-        public String country_code;
-        public List<String> address;
-        public YelpCoordinate coordinate;
-        public String state_code;
-    }
-    public class YelpCoordinate{
-        public BigDecimal latitude;
-        public BigDecimal longitude;
-    }
+    //TODO: reengineer to get this inner class within YelpRestaurant or the Yelp package
     public class YelpRestaurantRankComparator implements Comparator<YelpRestaurant> {
         @Override
         public int compare(YelpRestaurant lhs, YelpRestaurant rhs) {

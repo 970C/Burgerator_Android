@@ -15,18 +15,10 @@
         android:layout_marginLeft="5dp"
         android:layout_marginBottom="5dp"/>
 
-    <include
-        android:id="@+id/restaurant_view_scroll"
-        layout="@layout/activity_restaurant_view_scroll_content"
-        android:layout_width="wrap_content"
-        android:layout_height="150dp"
-        android:layout_below="@+id/red_banner"/>
-
-    <include layout="@layout/activity_rate_dont_see_your_burger"
-        android:layout_width="wrap_content"
-        android:layout_height="60dp"
-        android:layout_below="@+id/restaurant_view_scroll"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"/>
+    <ListView
+        android:layout_below="@id/red_banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv_select_burger"/>
 
 </RelativeLayout>

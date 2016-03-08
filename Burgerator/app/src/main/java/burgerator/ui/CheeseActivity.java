@@ -40,15 +40,6 @@ public class CheeseActivity extends Activity {
         //font
         final Typeface eastwood = Typeface.createFromAsset(getAssets(), "fonts/Eastwood.ttf");
 
-        /*This indented block should come before the onClick listeners before
-        the onClick listeners wont trigger.*/
-        // Adding custom elements to a ScrollView
-        /*LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View v = inflater.inflate(R.layout.activity_cheese, null);
-
-        // Find the ScrollView
-        ScrollView sv = (ScrollView) v.findViewById(R.id.select_cheese);*/
-
         // Display the view
         setContentView(R.layout.activity_cheese);
 
