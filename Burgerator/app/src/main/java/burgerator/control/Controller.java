@@ -142,6 +142,9 @@ public class Controller implements Callback{
     public void setUser(JSONObject _obj){
         user.setUser(_obj);
     }
+    public void setUserName(String name){
+        user.setUserName(name);
+    }
 
     public boolean isAuthenticated(){
         if(user.getResult().equalsIgnoreCase("1")) {

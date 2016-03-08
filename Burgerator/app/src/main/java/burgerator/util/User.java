@@ -45,6 +45,13 @@ public class User {
     public String getUserName(){
         return getVal("username");
     }
+    public void setUserName(String name){
+        try {
+            json.getJSONObject("result").getJSONObject("content").put("username", name);
+        }catch (JSONException e){
+            Log.d("ctrl.setUserName", e.getMessage());
+        }
+    }
 
     public String getUserPassword(){
         return getVal("userpassword");

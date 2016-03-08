@@ -112,7 +112,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("FBloginResult", loginResult.toString());
                         accessToken = loginResult.getAccessToken();
                         if (accessToken != null) {
-                            Toast.makeText(LoginActivity.this, "Your FB token: " + accessToken.getToken(), Toast.LENGTH_LONG).show();
+                            //Toast.makeText(LoginActivity.this, "Your FB token: " + accessToken.getToken(), Toast.LENGTH_LONG).show();
                             Log.d("FBlogin", accessToken.getToken());
 
                             GraphRequest request = GraphRequest.newMeRequest(
@@ -120,11 +120,12 @@ public class LoginActivity extends AppCompatActivity {
                                     new GraphRequest.GraphJSONObjectCallback() {
                                         @Override
                                         public void onCompleted(
-                                                JSONObject object,
-                                                GraphResponse response) {
+                                                final JSONObject object,
+                                                final GraphResponse response) {
                                             // Application code
-                                            //Log.d("GraphResponse", response.toString());
+                                            Log.d("GraphResponse", object.toString());
                                             String email;
+
                                             try {
                                                 email = object.getString("email");
                                                 Log.d("Json", email);
@@ -152,7 +153,27 @@ public class LoginActivity extends AppCompatActivity {
                                             Controller.instance().requestSocialLogin(getApplicationContext(), email, accessToken.getToken(), new Callback() {
                                                 @Override
                                                 public void onSuccess(Object result) {
-                                                    onLoginResponse(Controller.instance().getUser());
+                                                    JSONObject json = (JSONObject) result;
+                                                    final String name;
+                                                    final String email;
+                                                    final String pw;
+                                                    try{
+                                                        name = object.getString("name");
+                                                        email = object.getString("email");
+                                                        pw = json.getJSONObject("result").getJSONObject("content").getString("userpassword");
+                                                        Log.d("test put name", json.toString());
+                                                        Controller.instance().requestUserAuth(email, pw, getApplicationContext(), new Callback() {
+                                                            @Override
+                                                            public void onSuccess(Object result) {
+                                                                Log.d("auth fbuser->email json result", result.toString());
+                                                                Controller.instance().setUserName(name);
+
+                                                                onLoginResponse((User)result);
+                                                            }
+                                                        });
+                                                    }catch(JSONException e){
+
+                                                    }
                                                 }
                                             });
                                         }
@@ -173,8 +194,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(FacebookException exception) {
-                        Log.d("FBError", "FB Login error");
-                        Toast.makeText(LoginActivity.this, exception.getMessage(), Toast.LENGTH_LONG).show();
+                        Log.d("FBError", exception.getMessage());
+                        Toast.makeText(LoginActivity.this, "FB Login error", Toast.LENGTH_LONG).show();
                     }
                 });
 
