@@ -204,6 +204,30 @@ public class LoginActivity extends AppCompatActivity {
 
     public void forgottenPassword(View view){
         //TODO: take in the user email  and pass it to the server
+
+        if(!mEmailAddress.getText().toString().isEmpty()) {
+            mRequest.renewPassword(null, mEmailAddress.getText().toString(), new Callback() {
+                @Override
+                public void onSuccess(Object result) {
+                    JSONObject JSONResult = (JSONObject)result;
+
+                    try {
+                        int status = JSONResult.getJSONObject("result").getInt("status");
+                        String resultMessage = "error recovering email";
+                        if(status == 1){
+                            resultMessage = "recovery email sent";
+                        }else{
+                            resultMessage = JSONResult.getJSONObject("result").getJSONObject("error").getString("message");
+                        }
+                        Toast.makeText(getApplicationContext(), resultMessage, Toast.LENGTH_LONG).show();
+                    } catch (JSONException e) {
+                        Log.e("LoginAct.forgottPass", e.getMessage());
+                    }
+                }
+            });
+        }else{
+            Toast.makeText(getApplicationContext(), "please enter an email", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void emailLogin(View view){
@@ -212,18 +236,33 @@ public class LoginActivity extends AppCompatActivity {
         String e = mEmailAddress.getText().toString();
         String p = mPassword.getText().toString();
 
-        Controller.instance().requestUserAuth(e, p, getApplicationContext(), new Callback() {
-            @Override
-            public void onSuccess(Object result) {
-                System.out.print(Log.DEBUG);
-                onLoginResponse((User) result);
-            }
-        });
+        if(!e.isEmpty()) {
+            Controller.instance().requestUserAuth(e, p, getApplicationContext(), new Callback() {
+                @Override
+                public void onSuccess(Object result) {
+
+                    try {
+                        JSONObject JSONResult = new JSONObject(result.toString());
+                        int status = JSONResult.getJSONObject("result").getInt("status");
+                        String resultMessage = "error logging in";
+                        if (status == 1) {
+                            System.out.print(Log.DEBUG);
+                            onLoginResponse((User) result);
+                        } else {
+                            resultMessage = JSONResult.getJSONObject("result").getJSONObject("error").getString("message");
+                            Toast.makeText(getApplicationContext(), resultMessage, Toast.LENGTH_LONG).show();
+                        }
+                    } catch (JSONException e) {
+                        Log.e("LoginAct.forgottPass", e.getMessage());
+                    }
+                }
+            });
+        }else{Toast.makeText(getApplicationContext(), "email is empty", Toast.LENGTH_LONG).show();}
     }
 
     //public void onLoginResponse(JSONObject response){
     public void onLoginResponse(User response){
-        Log.d("Burgerator LoginActivity","onLoginResponse(): " + response.toString());
+        Log.d("LoginActivity","onLoginResponse(): " + response.toString());
 
         //TODO: if status 1 go to search, if status 0 open error dialog
         //UserOLD.instance().setUser(response); old

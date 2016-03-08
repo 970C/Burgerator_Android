@@ -49,8 +49,8 @@ public class Controller implements Callback{
 
         // HTTP Request to get the burger feed
         burgerDB = new BurgerDB(_c);
-        //TODO replace static email with user email
-        burgerDB.getBurgerFeed(null, "harokevin@yahoo.com", "1", "true",
+        //burgerDB.getBurgerFeed(null, "harokevin@yahoo.com", "1", "true",
+        burgerDB.getBurgerFeed(null, user.getEmail(), "1", "true",
                 new BurgerDB.VolleyCallback() {
                     @Override
                     public void onSuccess(JSONObject result) {
@@ -64,8 +64,8 @@ public class Controller implements Callback{
 
     public void requestTopTenFeed(Context _c, final Callback callback){
         burgerDB = new BurgerDB(_c);
-        //TODO replace static email with user email
-        burgerDB.getTopBurgers(null, "harokevin@yahoo.com", "",
+        //TODO test app with user.getEmail()
+        burgerDB.getTopBurgers(null, user.getEmail(), "1",
                 new BurgerDB.VolleyCallback() {
                     @Override
                     public void onSuccess(JSONObject result) {

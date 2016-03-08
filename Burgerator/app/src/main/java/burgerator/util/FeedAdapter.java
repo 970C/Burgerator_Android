@@ -77,6 +77,7 @@ public class FeedAdapter extends ArrayAdapter {
         TextView    restaurantTxt = (TextView)container.findViewById(R.id.restaurant_name);
         TextView    restaurantAddrTxt = (TextView)container.findViewById(R.id.restaurant_address);
         TextView    burgerTxt = (TextView)container.findViewById(R.id.burger_name);
+        TextView    ratingTxt = (TextView)container.findViewById(R.id.rating_value);
         /* Pound feature: Removed until fully implemented
 
         TextView    poundsTxt = (TextView)container.findViewById(R.id.amount_burger_pounded);
@@ -100,6 +101,7 @@ public class FeedAdapter extends ArrayAdapter {
             restaurantTxt.setText(mBurgers.get(position).getRestaurantName());
             restaurantAddrTxt.setText(mBurgers.get(position).getRestaurantAddress());
             burgerTxt.setText(mBurgers.get(position).getBurgerName());
+            ratingTxt.setText(mBurgers.get(position).getRating());
             /* Pound feature: Removed until fully implemented
             poundsTxt.setText(mBurgers.get(position).getPound());
             */

@@ -7,8 +7,11 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -18,19 +21,27 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
+import burgerator.control.Controller;
 import burgerator.gms.GPSTracker;
 import burgerator.gms.LocationDistances;
 import burgerator.gms.LocationMarker;
 import burgerator.gms.MapPin;
+import burgerator.util.Callback;
+import burgerator.util.LoadingDialog;
 import burgerator.util.Restaurants;
+import burgerator.util.SearchAdapter;
+import burgerator.yelp.YelpRestaurant;
 
 /**
  * Created by Luis on 2/28/2016.
@@ -38,6 +49,11 @@ import burgerator.util.Restaurants;
 public class SearchActivityMapView extends FragmentActivity implements OnMapReadyCallback {
 
     private GPSTracker mLocation;
+    private EditText mSearch;
+    private LoadingDialog mLoadingDialog;
+    private List mRestaurants;
+    SupportMapFragment mMapFragment;
+
     //Parameters for security authorization permissions.
     private static final String[] INITIAL_PERMS={
             Manifest.permission.ACCESS_FINE_LOCATION,
@@ -63,9 +79,9 @@ public class SearchActivityMapView extends FragmentActivity implements OnMapRead
 
         mLocation = new GPSTracker(SearchActivityMapView.this);
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        mMapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        mMapFragment.getMapAsync(this);
 
 
         //Add the string to the banner
@@ -138,7 +154,85 @@ public class SearchActivityMapView extends FragmentActivity implements OnMapRead
                 startActivity(intent);
             }
         });
+
+        //TODO: BIG NO NO! TAKE THIS CODE OUT OF THE PROJECT/REFRACTOR ASAP
+        //TODO: FUNCTION WAS COPPIED OVER FROM SEARCH ACTIVITY FOR SPEED OF IMPLEMENTATION
+        //TODO: reengineer to get this inner class within YelpRestaurant or the Yelp package
+                    mRestaurants = new ArrayList<>();
+                    mLoadingDialog = new LoadingDialog(SearchActivityMapView.this);
+                    mSearch = (EditText)findViewById(R.id.et_search);
+                    mSearch.setTypeface(eastwood);
+                    mSearch.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+                        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                                mLoadingDialog.start();
+
+                                Controller.instance().requestYelpRestaurantList(
+                                        mSearch.getText().toString(),
+                                        new Callback() {
+                                            @Override
+                                            public void onSuccess(Object result) {
+                                                onRestaurantListResponse((List<JSONObject>) result);
+                                            }
+                                        }
+                                );
+
+                                return true;
+                            }
+                            return false;
+                        }
+                    });
     }
+
+
+    //TODO: BIG NO NO! TAKE THIS CODE OUT OF THE PROJECT/REFRACTOR ASAP
+    //TODO: FUNCTION WAS COPPIED OVER FROM SEARCH ACTIVITY FOR SPEED OF IMPLEMENTATION
+    //TODO: reengineer to get this inner class within YelpRestaurant or the Yelp package
+
+                public class YelpRestaurantRankComparator implements Comparator<YelpRestaurant> {
+                    @Override
+                    public int compare(YelpRestaurant lhs, YelpRestaurant rhs) {
+                        return lhs.rating.compareTo(rhs.rating);
+                    }
+                }
+
+                public void onRestaurantListResponse(List<JSONObject> response) {
+                    Log.d("SearchActiivity oRLR", response.toString());
+
+                    //// sort list of restaurants by rating
+                    //JSONObjects -> YelpRestaurant objects
+                    Gson gson = new Gson();
+                    List<YelpRestaurant> restaurantList = new ArrayList<>();
+                    for(JSONObject restaurant: response ) {
+                        restaurantList.add(gson.fromJson(restaurant.toString(), YelpRestaurant.class));
+                    }
+
+                    //sort list of YelpRestaurants with YelpRestaurantRankComparator
+                    Collections.sort(restaurantList, Collections.reverseOrder(new YelpRestaurantRankComparator()));
+
+                    //YelpRestaurant objects -> JSONObjects
+                    List<JSONObject> sortedRestaurants = new ArrayList<>();
+                    for(YelpRestaurant yR: restaurantList) {
+                        // YelpRestaurant -> JSON String
+                        String restaurant = gson.toJson(yR);
+
+                        try {
+                            // JSON String -> JSONObject
+                            sortedRestaurants.add(new JSONObject(restaurant));
+                        }catch(JSONException e){Log.e("SearchActivityy oRLR()",e.toString());}
+                    }
+                    mRestaurants = sortedRestaurants;
+                    // Add restaurant list to persistant session object
+                    Restaurants.instance().addList(mRestaurants);
+                    //Log.d("SrchActv.reataurants", "sanity");
+                    Log.d("SrchActv.reataurants", Restaurants.instance().getList().toString());
+                    Restaurants.instance().getCoordsList();
+
+                    //RELOAD MAP!!!
+                    mMapFragment.getMapAsync(this);
+
+                    mLoadingDialog.stop();
+                }
 
     /**
      * Manipulates the map once available.

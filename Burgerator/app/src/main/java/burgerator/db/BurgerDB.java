@@ -133,23 +133,23 @@ public class BurgerDB {
      */
     public void getTopBurgers(View view, final String userEmail, final String page, final VolleyCallback callback){
         // /feed.php only works when you only send in the email
-        String endpointFile = "/topratedburgers.php";
-
+        //String endpointFile = "/topratedburgers.php";
+        String endpointFile = "http://burger-dev.elasticbeanstalk.com/cityrate.php";
 
         // Request parameters(body of request)
         Map<String,String> params = new HashMap<String,String>();
         //TODO: Check userEmail, page, and global are safe to pass to the server
-        params.put("useremail", userEmail);
+        params.put("useremail", "harokevin@yahoo.com");
         //params.put("page", page);
 
         // Create request and its response
         CustomRequest request = new CustomRequest(
-                Request.Method.POST, mEndpoint+endpointFile, params,
+                Request.Method.POST, endpointFile, params,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         // return a list of burger objects using the backend code
-                        Log.d("BurgerDbLog getTopBurgers", response.toString());
+                        Log.d("BrgrDbLog getTopBurgers", response.toString());
 
                         callback.onSuccess(response);
                     }
@@ -166,7 +166,7 @@ public class BurgerDB {
      * @param userEmail
      * @return password renewal sucessfull
      */
-    public void renewPassword(View view, final String userEmail, final VolleyCallback callback){
+    public void renewPassword(View view, final String userEmail, final Callback callback){
         String endpointFile = "/forgotten_password.php";
 
         // Request parameters(body of request)

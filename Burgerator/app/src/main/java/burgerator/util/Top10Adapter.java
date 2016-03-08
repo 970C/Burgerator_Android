@@ -110,7 +110,10 @@ public class Top10Adapter extends ArrayAdapter {
             burgerTxt.setText(mBurgers.get(position).getBurgerName());
             restaurantTxt.setText(mBurgers.get(position).getRestaurantName());
             restaurantAddrTxt.setText(mBurgers.get(position).getRestaurantAddress());
-            ratingTxt.setText(mBurgers.get(position).getRating());
+
+            String ratingString = mBurgers.get(position).getRating();
+            if(ratingString.length()>4){ ratingString = ratingString.substring(0,4); }
+            ratingTxt.setText(ratingString);
         }
 
 

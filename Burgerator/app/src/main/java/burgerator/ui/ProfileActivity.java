@@ -161,8 +161,9 @@ public class ProfileActivity extends Activity {
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
-                startActivity(intent);
+                //todo: uncomment and finish implmenting
+//                Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+//                startActivity(intent);
             }
         });
 
@@ -219,17 +220,18 @@ public class ProfileActivity extends Activity {
             }
         });
 
-        // Putting in an HTTP Request to get recent rated burgers
-        BurgerDB testRecentBurgers = new BurgerDB(getApplicationContext());
-        //should return an object that contains:
-        //      a list of burger objects, and the boolean to hasNextPage
-        testRecentBurgers.getUserRatedBurgers(null, "harokevin@yahoo.com","1",
-                new BurgerDB.VolleyCallback() {
-                    @Override
-                    public void onSuccess(JSONObject response) {
-                        onRecentBurgersResponse(response);
-                    }
-                });
+        //todo: uncomment and finish implementing
+//        // Putting in an HTTP Request to get recent rated burgers
+//        BurgerDB testRecentBurgers = new BurgerDB(getApplicationContext());
+//        //should return an object that contains:
+//        //      a list of burger objects, and the boolean to hasNextPage
+//        testRecentBurgers.getUserRatedBurgers(null, "harokevin@yahoo.com","1",
+//                new BurgerDB.VolleyCallback() {
+//                    @Override
+//                    public void onSuccess(JSONObject response) {
+//                        onRecentBurgersResponse(response);
+//                    }
+//                });
     }
 
     public void onRecentBurgersResponse(JSONObject response){

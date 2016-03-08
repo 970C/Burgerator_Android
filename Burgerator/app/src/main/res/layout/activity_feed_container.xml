@@ -59,8 +59,7 @@
         android:id="@+id/rating_value"
         android:textAlignment="center"
         android:layout_toRightOf="@id/burger_name"
-        android:layout_below="@+id/restaurant_name"
-        android:text="9"/>
+        android:layout_below="@+id/restaurant_name"/>
 
     <TextView
         android:layout_width="70dp"

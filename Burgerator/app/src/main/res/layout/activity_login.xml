@@ -63,8 +63,9 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/et_email_address"
-            android:text="harokevin@yahoo.com"
             android:textSize="14dp"
+            android:singleLine="true"
+            android:hint="@string/user_email"
             android:textIsSelectable="false"
             android:gravity="center_vertical" />
 
@@ -72,7 +73,8 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:id="@+id/et_password"
-            android:text="password"
+            android:hint="@string/password"
+            android:singleLine="true"
             android:gravity="center_vertical"
             android:textSize="14dp" />
 
