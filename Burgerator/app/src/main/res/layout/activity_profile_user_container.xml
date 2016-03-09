@@ -83,7 +83,7 @@
                                 android:id="@+id/rank_name"
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="10dp"
-                                android:hint="Burger ranking"
+                                android:hint="User not yet ranked..."
                                 android:maxLines="2"
                                 android:textSize="14dp"
                                 android:paddingLeft="5dp"
