@@ -3,7 +3,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="115dp"
+    android:layout_height="120dp"
     android:background="@drawable/burger_feed_border"
     android:layout_marginLeft="5dp"
     android:layout_marginRight="5dp"
@@ -30,7 +30,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_below="@id/tv_distance"
         android:layout_marginRight="20dp"
         android:id="@+id/layout_info_container"
@@ -44,38 +44,42 @@
             android:layout_marginLeft="5dp"/>
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
             android:id="@+id/tv_restaurant_name"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="25dp"
             android:textColor="@color/black"
             android:gravity="left"
-            android:text="RESTAURANT NAME" />
+            android:text="RESTAURANT NAME"
+            android:textSize="14dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
             android:id="@+id/restaurant_address"
-            android:layout_marginRight="5dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="25dp"
             android:textColor="@color/black"
             android:layout_below="@id/tv_restaurant_name"
             android:layout_alignParentLeft="true"
-            android:text="RESTAURANT ADDRESS" />
+            android:text="RESTAURANT ADDRESS"
+            android:textSize="12dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="45dp"
             android:layout_height="50dp"
             android:id="@+id/rating_value"
             android:gravity="right"
             android:textAlignment="gravity"
             android:layout_alignParentRight="true"
             android:layout_toRightOf="@id/tv_restaurant_name"
-            android:text="RatNum"/>
+            android:hint="Rating..."
+            android:layout_marginLeft="-45dp"
+            android:textSize="14dp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="45dp"
             android:layout_height="25dp"
             android:id="@+id/rating_text"
             android:text="rating"
@@ -83,7 +87,9 @@
             android:layout_below="@id/rating_value"
             android:gravity="right"
             android:textAlignment="gravity"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="-45dp"
+            android:textSize="12dp" />
 
     </RelativeLayout>
 
