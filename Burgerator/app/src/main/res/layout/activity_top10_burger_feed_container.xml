@@ -145,7 +145,7 @@
                         android:onClick="onTop10BurgerClick"
                         android:descendantFocusability="blocksDescendants"
                     android:adjustViewBounds="false"
-                    android:scaleType="center"
+                    android:scaleType="fitCenter"
                     android:background="#00000000" />
             </RelativeLayout>
 
