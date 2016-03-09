@@ -145,6 +145,8 @@ public class Controller implements Callback{
     public void setUserName(String name){
         user.setUserName(name);
     }
+    public void setUserImg(String url) {user.setUserImg(url);}
+
 
     public boolean isAuthenticated(){
         if(user.getResult().equalsIgnoreCase("1")) {

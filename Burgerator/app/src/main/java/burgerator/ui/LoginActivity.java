@@ -157,18 +157,21 @@ public class LoginActivity extends AppCompatActivity {
                                                     final String name;
                                                     final String email;
                                                     final String pw;
+                                                    final String img;
                                                     try{
                                                         name = object.getString("name");
                                                         email = object.getString("email");
                                                         pw = json.getJSONObject("result").getJSONObject("content").getString("userpassword");
+                                                        img = "https://graph.facebook.com/"+object.get("id")+"/picture?type=normal";
                                                         Log.d("test put name", json.toString());
                                                         Controller.instance().requestUserAuth(email, pw, getApplicationContext(), new Callback() {
                                                             @Override
                                                             public void onSuccess(Object result) {
                                                                 Log.d("auth fbuser->email json result", result.toString());
                                                                 Controller.instance().setUserName(name);
+                                                                Controller.instance().setUserImg(img);
 
-                                                                onLoginResponse((User)result);
+                                                                onLoginResponse((User) result);
                                                             }
                                                         });
                                                     }catch(JSONException e){

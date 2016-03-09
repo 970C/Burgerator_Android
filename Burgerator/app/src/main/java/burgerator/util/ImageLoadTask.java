@@ -3,6 +3,7 @@ package burgerator.util;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ImageView;
 
 import java.io.InputStream;
@@ -35,7 +36,7 @@ public class ImageLoadTask extends AsyncTask<Void, Void, Bitmap> {
             Bitmap myBitmap = BitmapFactory.decodeStream(input);
             return myBitmap;
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.d("imgLdTsk.doInBackground",e.getMessage());
         }
         return null;
     }

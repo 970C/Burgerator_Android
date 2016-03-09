@@ -53,6 +53,13 @@ public class User {
         }
     }
 
+    public void setUserImg(String url){
+        try {
+            json.getJSONObject("result").getJSONObject("content").put("userphoto", url);
+        }catch (JSONException e){
+            Log.d("ctrl.setUserImg", e.getMessage());
+        }
+    }
     public String getUserPassword(){
         return getVal("userpassword");
     }
