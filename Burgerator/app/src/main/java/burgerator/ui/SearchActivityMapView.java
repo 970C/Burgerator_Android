@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.luis.burgerator.R;
 import com.google.android.gms.maps.GoogleMap;
@@ -199,37 +200,43 @@ public class SearchActivityMapView extends FragmentActivity implements OnMapRead
                 public void onRestaurantListResponse(List<JSONObject> response) {
                     Log.d("SearchActiivity oRLR", response.toString());
 
-                    //// sort list of restaurants by rating
-                    //JSONObjects -> YelpRestaurant objects
-                    Gson gson = new Gson();
-                    List<YelpRestaurant> restaurantList = new ArrayList<>();
-                    for(JSONObject restaurant: response ) {
-                        restaurantList.add(gson.fromJson(restaurant.toString(), YelpRestaurant.class));
+                    if (!response.isEmpty()){
+                        //// sort list of restaurants by rating
+                        //JSONObjects -> YelpRestaurant objects
+                        Gson gson = new Gson();
+                        List<YelpRestaurant> restaurantList = new ArrayList<>();
+                        for (JSONObject restaurant : response) {
+                            restaurantList.add(gson.fromJson(restaurant.toString(), YelpRestaurant.class));
+                        }
+
+                        //sort list of YelpRestaurants with YelpRestaurantRankComparator
+                        Collections.sort(restaurantList, Collections.reverseOrder(new YelpRestaurantRankComparator()));
+
+                        //YelpRestaurant objects -> JSONObjects
+                        List<JSONObject> sortedRestaurants = new ArrayList<>();
+                        for (YelpRestaurant yR : restaurantList) {
+                            // YelpRestaurant -> JSON String
+                            String restaurant = gson.toJson(yR);
+
+                            try {
+                                // JSON String -> JSONObject
+                                sortedRestaurants.add(new JSONObject(restaurant));
+                            } catch (JSONException e) {
+                                Log.e("SearchActivityy oRLR()", e.toString());
+                            }
+                        }
+                        mRestaurants = sortedRestaurants;
+                        // Add restaurant list to persistant session object
+                        Restaurants.instance().addList(mRestaurants);
+                        //Log.d("SrchActv.reataurants", "sanity");
+                        Log.d("SrchActv.reataurants", Restaurants.instance().getList().toString());
+                        Restaurants.instance().getCoordsList();
+
+                        //RELOAD MAP!!!
+                        mMapFragment.getMapAsync(this);
+                    }else{
+                        Toast.makeText(getApplicationContext(),"location not found",Toast.LENGTH_LONG).show();
                     }
-
-                    //sort list of YelpRestaurants with YelpRestaurantRankComparator
-                    Collections.sort(restaurantList, Collections.reverseOrder(new YelpRestaurantRankComparator()));
-
-                    //YelpRestaurant objects -> JSONObjects
-                    List<JSONObject> sortedRestaurants = new ArrayList<>();
-                    for(YelpRestaurant yR: restaurantList) {
-                        // YelpRestaurant -> JSON String
-                        String restaurant = gson.toJson(yR);
-
-                        try {
-                            // JSON String -> JSONObject
-                            sortedRestaurants.add(new JSONObject(restaurant));
-                        }catch(JSONException e){Log.e("SearchActivityy oRLR()",e.toString());}
-                    }
-                    mRestaurants = sortedRestaurants;
-                    // Add restaurant list to persistant session object
-                    Restaurants.instance().addList(mRestaurants);
-                    //Log.d("SrchActv.reataurants", "sanity");
-                    Log.d("SrchActv.reataurants", Restaurants.instance().getList().toString());
-                    Restaurants.instance().getCoordsList();
-
-                    //RELOAD MAP!!!
-                    mMapFragment.getMapAsync(this);
 
                     mLoadingDialog.stop();
                 }

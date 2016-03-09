@@ -20,6 +20,8 @@ public class LoadingDialog {
             progress.setTitle("Loading...");
             //progress.setMessage("Wait while loading...");
             progress.show();
+            progress.setCancelable(false);
+            progress.setCanceledOnTouchOutside(false);
         }
 
         public void stop(){progress.dismiss();}
