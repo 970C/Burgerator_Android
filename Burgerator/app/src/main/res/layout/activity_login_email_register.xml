@@ -87,7 +87,8 @@
         android:textAlignment="center"
         android:textColor="@color/black"
         android:id="@+id/et_password"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:inputType="textPassword"/>
 
     <EditText
         android:layout_width="300dp"
