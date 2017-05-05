@@ -1,6 +1,6 @@
 # Burgerator_Android
 
-EDIT: Project closed, documentation kept for archive. If you want to read about our project, Please have a look at the project docs.
+EDIT: Project closed, documentation kept for archive. If you want to read about our project, please have a look at the project docs.
 
 Team Hamburgerler's CS480 project to port the Burgerator iOS app to android 
 
